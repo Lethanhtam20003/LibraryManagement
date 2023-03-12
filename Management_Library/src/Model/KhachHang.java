@@ -1,13 +1,13 @@
 package Model;
 
-public class KhacHang {
+public class KhachHang {
 	private String idKhachHang;
 	private String tenKhachHang;
 	private String diaChi;
 	private String SDT_KhachHang;
 	private int soSachDangMuon;
 
-	public KhacHang(String idKhachHang, String tenKhachHang, String diaChi, String sDT_KhachHang) {
+	public KhachHang(String idKhachHang, String tenKhachHang, String diaChi, String sDT_KhachHang) {
 		super();
 		this.idKhachHang = idKhachHang;
 		this.tenKhachHang = tenKhachHang;

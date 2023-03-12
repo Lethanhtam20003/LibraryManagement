@@ -6,11 +6,11 @@ import java.util.List;
 public class PhieuMuon {
 	private String idPhieuMuon;
 	private String tenNhanVien;
-	private KhacHang khachHang;
+	private KhachHang khachHang;
 	private List<Sach> dsMuonSach;
 	private Date ngayMuon;
 	private Date ngayTra;
-	public PhieuMuon(String idPhieuMuon, String tenNhanVien, KhacHang khachHang, List<Sach> dsMuonSach, Date ngayMuon,
+	public PhieuMuon(String idPhieuMuon, String tenNhanVien, KhachHang khachHang, List<Sach> dsMuonSach, Date ngayMuon,
 			Date ngayTra) {
 		super();
 		this.idPhieuMuon = idPhieuMuon;
@@ -32,10 +32,10 @@ public class PhieuMuon {
 	public void setTenNhanVien(String tenNhanVien) {
 		this.tenNhanVien = tenNhanVien;
 	}
-	public KhacHang getKhachHang() {
+	public KhachHang getKhachHang() {
 		return khachHang;
 	}
-	public void setKhachHang(KhacHang khachHang) {
+	public void setKhachHang(KhachHang khachHang) {
 		this.khachHang = khachHang;
 	}
 	public List<Sach> getDsMuonSach() {
