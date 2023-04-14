@@ -11,7 +11,7 @@ public class KhachHang {
 		super();
 		this.idKhachHang = idKhachHang;
 		this.tenKhachHang = tenKhachHang;
-		this.diaChi = diaChi;
+		this.diaChi = diaChi; 
 		SDT_KhachHang = sDT_KhachHang;
 		this.soSachDangMuon = 0;
 	}
