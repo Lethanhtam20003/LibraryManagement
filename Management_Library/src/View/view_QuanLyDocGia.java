@@ -25,25 +25,22 @@ public class view_QuanLyDocGia extends JPanel {
 
 	private void init() {
 		// TODO Auto-generated method stub
-		
-
 		this.setLayout(new BorderLayout());
-		
+
 		JPanel pn_input = createPn_input();
 		JPanel pn = new JPanel();
-		FlowLayout	fl = new FlowLayout();
+		FlowLayout fl = new FlowLayout();
 		fl.setHgap(40);
 		pn.setLayout(fl);
 		pn.add(pn_input);
-		
+
 		this.add(pn, BorderLayout.NORTH);
 		JPanel pn_show = createPn_show();
 		this.add(pn_show, BorderLayout.SOUTH);
-		
+
 	}
 
 	private JPanel createPn_input() {
-		// TODO Auto-generated method stub
 		JPanel pn_result = new JPanel();
 		pn_result.setLayout(new GridLayout(1, 2));
 		JPanel pn_left = new JPanel();
@@ -112,53 +109,49 @@ public class view_QuanLyDocGia extends JPanel {
 		pn_left.add(pn_ip);
 		pn_left.add(pn_bt);
 
-		JPanel pn_null =createPn_null();
+		JPanel pn_null = createPn_null();
 		pn_result.add(pn_left);
 		pn_result.add(pn_null);
 		return pn_result;
 	}
 
 	private JPanel createPn_null() {
-		// TODO Auto-generated method stub
 		JPanel pn_result = new JPanel();
 		pn_result.setLayout(new BorderLayout());
 		JPanel pn = new JPanel();
-		
-		pn.setLayout(new FlowLayout(FlowLayout.CENTER,0,10));
-		
+
+		pn.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 10));
+
 		JLabel lb = new JLabel("số sách đang mượn");
 		pn.add(lb);
-		pn_result.add(pn,BorderLayout.NORTH);
-		
+		pn_result.add(pn, BorderLayout.NORTH);
+
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("Mã Sách");
 		model.addColumn("Tên Sách");
 		model.addColumn("Số Lượng Sách");
-		
-		model.addRow(new Object[] {"","",""});
-		model.addRow(new Object[] {"","",""});
-	
-		model.addRow(new Object[] {"","",""});
-		model.addRow(new Object[] {"","",""});
-		
-		
-		
+
+		model.addRow(new Object[] { "", "", "" });
+		model.addRow(new Object[] { "", "", "" });
+
+		model.addRow(new Object[] { "", "", "" });
+		model.addRow(new Object[] { "", "", "" });
+
 		JTable tb = new JTable(model);
-		
+
 		tb.getColumnModel().getColumn(0).setPreferredWidth(50);
 		tb.getColumnModel().getColumn(1).setPreferredWidth(100);
-		tb.getColumnModel().getColumn(2).setPreferredWidth(50); 
-		
+		tb.getColumnModel().getColumn(2).setPreferredWidth(50);
+
 		JScrollPane scoll = new JScrollPane(tb);
-		scoll.setPreferredSize(new Dimension(200,200));
-		pn_result.add(scoll,BorderLayout.CENTER);
+		scoll.setPreferredSize(new Dimension(200, 200));
+		pn_result.add(scoll, BorderLayout.CENTER);
 		return pn_result;
 	}
 
 	private JPanel createPn_show() {
-		// TODO Auto-generated method stub
 		JPanel pn_result = new JPanel();
-		pn_result.setPreferredSize(new Dimension(200,300));
+		pn_result.setPreferredSize(new Dimension(200, 300));
 		pn_result.setLayout(new BorderLayout());
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("Mã Đọc Giả");
@@ -191,8 +184,6 @@ public class view_QuanLyDocGia extends JPanel {
 		tb.getColumnModel().getColumn(2).setPreferredWidth(300);
 		tb.getColumnModel().getColumn(3).setPreferredWidth(500);
 
-		
-		
 		JScrollPane scrollPane = new JScrollPane(tb);
 		pn_result.add(scrollPane, BorderLayout.CENTER);
 		return pn_result;
