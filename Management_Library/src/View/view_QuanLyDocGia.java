@@ -15,12 +15,30 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import Controler.controler_quanlydocgia;
+
 public class view_QuanLyDocGia extends JPanel {
+
+	private JTextField tfMaDocGia;
+	private JTextField tfDiaChi;
+	private JTextField tfTEnDocGia;
+	private JTextField tfSDT;
+
+	private JButton bt_tim;
+	private JButton bt_them;
+	private JButton bt_sua;
+	private JButton bt_xoa;
 
 	public view_QuanLyDocGia() {
 		// TODO Auto-generated constructor stub
 		this.init();
-
+		
+		controler_quanlydocgia ac_qldg = new controler_quanlydocgia(this);
+		bt_tim.addActionListener(ac_qldg);
+		bt_them.addActionListener(ac_qldg);
+		bt_sua.addActionListener(ac_qldg);
+		bt_xoa.addActionListener(ac_qldg);
+		
 	}
 
 	private void init() {
@@ -64,13 +82,13 @@ public class view_QuanLyDocGia extends JPanel {
 
 		JPanel pn2 = new JPanel();
 		pn2.setLayout(grLayout);
-		JTextField tf1 = new JTextField();
-		JTextField tf2 = new JTextField();
-		tf1.setPreferredSize(new Dimension(300, 40));
-		tf2.setPreferredSize(new Dimension(300, 40));
+		tfMaDocGia = new JTextField();
+		tfDiaChi = new JTextField();
+		tfMaDocGia.setPreferredSize(new Dimension(300, 40));
+		tfDiaChi.setPreferredSize(new Dimension(300, 40));
 
-		pn2.add(tf1);
-		pn2.add(tf2);
+		pn2.add(tfMaDocGia);
+		pn2.add(tfDiaChi);
 		pn_ip.add(pn2);
 		pn_ip.add(Box.createRigidArea(new Dimension(0, 20)));
 
@@ -83,27 +101,27 @@ public class view_QuanLyDocGia extends JPanel {
 
 		JPanel pn4 = new JPanel();
 		pn4.setLayout(grLayout);
-		JTextField tf3 = new JTextField();
-		JTextField tf4 = new JTextField();
-		tf3.setPreferredSize(new Dimension(300, 40));
-		tf4.setPreferredSize(new Dimension(300, 40));
-		pn4.add(tf3);
-		pn4.add(tf4);
+		tfTEnDocGia = new JTextField();
+		tfSDT = new JTextField();
+		tfTEnDocGia.setPreferredSize(new Dimension(300, 40));
+		tfSDT.setPreferredSize(new Dimension(300, 40));
+		pn4.add(tfTEnDocGia);
+		pn4.add(tfSDT);
 		pn_ip.add(pn4);
 		pn_ip.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JPanel pn_bt = new JPanel();
 		pn_bt.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 30));
-		JButton bt_tim = new JButton("Tìm");
+		bt_tim = new JButton("Find");
 		pn_bt.add(bt_tim);
 
-		JButton bt_them = new JButton("Thêm");
+		bt_them = new JButton("Add");
 		pn_bt.add(bt_them);
 
-		JButton bt_sua = new JButton("Sửa");
+		bt_sua = new JButton("Fix");
 		pn_bt.add(bt_sua);
 
-		JButton bt_xoa = new JButton("Xóa");
+		bt_xoa = new JButton("Delete");
 		pn_bt.add(bt_xoa);
 
 		pn_left.add(pn_ip);
@@ -187,6 +205,27 @@ public class view_QuanLyDocGia extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(tb);
 		pn_result.add(scrollPane, BorderLayout.CENTER);
 		return pn_result;
+	}
+
+	
+	public void tim_docGia() {
+		// TODO Auto-generated method stub
+		tfMaDocGia.setText("dang lam");
+	}
+
+	public void them_docGia() {
+		// TODO Auto-generated method stub
+		tfMaDocGia.setText("dang lam");
+	}
+
+	public void xoa_docGia() {
+		// TODO Auto-generated method stub
+		tfMaDocGia.setText("dang lam");
+	}
+
+	public void sua_docGia() {
+		// TODO Auto-generated method stub
+		tfMaDocGia.setText("dang lam");
 	}
 
 }

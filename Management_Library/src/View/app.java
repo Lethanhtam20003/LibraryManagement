@@ -10,12 +10,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
-public class viewMain extends JFrame {
+public class app extends JFrame {
+	public static app app ;
 	private JMenu menu;
 	private JPanel containpane;
 
-	public viewMain() {
-		this.setTitle("tv");
+	public app() {
+		this.setTitle("quản lý thư viện");
 		this.setSize(this.getPreferredSize());
 
 		this.init();
@@ -47,7 +48,7 @@ public class viewMain extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new viewMain();
+		new app();
 
 	}
 }
