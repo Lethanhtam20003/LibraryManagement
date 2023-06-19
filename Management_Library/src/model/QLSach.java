@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QLSach implements ThuThu {
@@ -38,8 +39,14 @@ public class QLSach implements ThuThu {
 
 	@Override
 	public void xoa(String id) {
-		// TODO Auto-generated method stub
-
+		List<Sach> res = new ArrayList<>();
+		for(Sach s: listSach) {
+			if(s.getiD().equals(id)) {
+				res.add(s);
+			}
+		}
+		listSach.removeAll(res);
+		
 	}
 
 	@Override
