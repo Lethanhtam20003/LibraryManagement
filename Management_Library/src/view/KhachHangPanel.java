@@ -23,6 +23,8 @@ import java.awt.GridBagConstraints;
 import javax.swing.BoxLayout;
 import javax.swing.DropMode;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
 
 public class KhachHangPanel extends JPanel {
 	private JTable table;
@@ -132,10 +134,14 @@ public class KhachHangPanel extends JPanel {
 		panel_11_1.setLayout(new GridLayout(1, 1, 0, 0));
 		
 		JPanel panel_8 = new JPanel();
+		FlowLayout flowLayout_1 = (FlowLayout) panel_8.getLayout();
+		flowLayout_1.setAlignment(FlowLayout.LEFT);
+		flowLayout_1.setVgap(20);
+		flowLayout_1.setHgap(20);
 		panel_8.setBackground(SystemColor.window);
 		panel_11_1.add(panel_8);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Mã Đọc Giả ");
+		JLabel lblNewLabel_2_1 = new JLabel(" Số Điện Thoại");
 		lblNewLabel_2_1.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblNewLabel_2_1.setBackground(Color.WHITE);
 		panel_8.add(lblNewLabel_2_1);
@@ -151,12 +157,13 @@ public class KhachHangPanel extends JPanel {
 		panel_1_1.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.setHorizontalAlignment(SwingConstants.LEFT);
 		textField.setForeground(Color.BLACK);
 		textField.setFont(new Font("Arial", Font.PLAIN, 14));
 		textField.setDropMode(DropMode.ON);
 		textField.setColumns(18);
-		textField.setBackground(Color.WHITE);
+		textField.setBackground(Color.LIGHT_GRAY);
 		panel_1_1.add(textField);
 		
 		JPanel panel_7_2 = new JPanel();
@@ -171,10 +178,14 @@ public class KhachHangPanel extends JPanel {
 		panel_11_2.setLayout(new GridLayout(1, 1, 0, 0));
 		
 		JPanel panel_9 = new JPanel();
+		FlowLayout flowLayout_2 = (FlowLayout) panel_9.getLayout();
+		flowLayout_2.setVgap(20);
+		flowLayout_2.setHgap(20);
+		flowLayout_2.setAlignment(FlowLayout.LEFT);
 		panel_9.setBackground(SystemColor.window);
 		panel_11_2.add(panel_9);
 		
-		JLabel lblNewLabel_2_2 = new JLabel("Mã Đọc Giả ");
+		JLabel lblNewLabel_2_2 = new JLabel("Tên Đọc Giả");
 		lblNewLabel_2_2.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblNewLabel_2_2.setBackground(Color.WHITE);
 		panel_9.add(lblNewLabel_2_2);
@@ -190,12 +201,13 @@ public class KhachHangPanel extends JPanel {
 		panel_1_2.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		
 		textField_1 = new JTextField();
+		textField_1.setEditable(false);
 		textField_1.setHorizontalAlignment(SwingConstants.LEFT);
 		textField_1.setForeground(Color.BLACK);
 		textField_1.setFont(new Font("Arial", Font.PLAIN, 14));
 		textField_1.setDropMode(DropMode.ON);
 		textField_1.setColumns(18);
-		textField_1.setBackground(Color.WHITE);
+		textField_1.setBackground(Color.LIGHT_GRAY);
 		panel_1_2.add(textField_1);
 		
 		JPanel panel_7_3 = new JPanel();
@@ -210,10 +222,14 @@ public class KhachHangPanel extends JPanel {
 		panel_11_3.setLayout(new GridLayout(1, 1, 0, 0));
 		
 		JPanel panel_10 = new JPanel();
+		FlowLayout flowLayout_3 = (FlowLayout) panel_10.getLayout();
+		flowLayout_3.setAlignment(FlowLayout.LEFT);
+		flowLayout_3.setVgap(20);
+		flowLayout_3.setHgap(20);
 		panel_10.setBackground(SystemColor.window);
 		panel_11_3.add(panel_10);
 		
-		JLabel lblNewLabel_2_3 = new JLabel("Mã Đọc Giả ");
+		JLabel lblNewLabel_2_3 = new JLabel("Email");
 		lblNewLabel_2_3.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblNewLabel_2_3.setBackground(Color.WHITE);
 		panel_10.add(lblNewLabel_2_3);
@@ -229,18 +245,21 @@ public class KhachHangPanel extends JPanel {
 		panel_1_3.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		
 		textField_2 = new JTextField();
+		textField_2.setEditable(false);
 		textField_2.setHorizontalAlignment(SwingConstants.LEFT);
 		textField_2.setForeground(Color.BLACK);
 		textField_2.setFont(new Font("Arial", Font.PLAIN, 14));
 		textField_2.setDropMode(DropMode.ON);
 		textField_2.setColumns(18);
-		textField_2.setBackground(Color.WHITE);
+		textField_2.setBackground(Color.LIGHT_GRAY);
 		panel_1_3.add(textField_2);
 
 		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(Color.WHITE);
 		panel_2.add(panel_6, BorderLayout.SOUTH);
 
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Tìm ");
+		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 15));
 		panel_6.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("New button");
@@ -266,6 +285,10 @@ public class KhachHangPanel extends JPanel {
 		container.add(pnShow_tableKhachHang);
 
 		table_1 = new JTable();
+		table_1.setBorder(new LineBorder(SystemColor.menuText, 2));
+
+		
+		table_1.setFont(new Font("Arial", Font.PLAIN, 12));
 		pnShow_tableKhachHang.add(table_1);
 
 	}
