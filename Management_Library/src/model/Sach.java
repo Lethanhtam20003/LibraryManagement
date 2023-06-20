@@ -8,9 +8,9 @@ public class Sach {
 	private String nhaXuatBan;
 	private int soLuongNhapKho;
 	private int soLuongChoMuon;
+	private double giaSach;
 
-	public Sach(String iD, String ten, String theLoai, String tacGia, String nhaXuatBan, int soLuongNhapKho,
-			int soLuongChoMuon) {
+	public Sach(String iD, String ten, String theLoai, String tacGia, String nhaXuatBan, int soLuongNhapKho, int soLuongChoMuon, double giaSach) {
 		super();
 		this.iD = iD;
 		this.ten = ten;
@@ -19,7 +19,9 @@ public class Sach {
 		this.nhaXuatBan = nhaXuatBan;
 		this.soLuongNhapKho = soLuongNhapKho;
 		this.soLuongChoMuon = soLuongChoMuon;
+		this.giaSach = giaSach;
 	}
+
 
 	public String getiD() {
 		return iD;
@@ -76,10 +78,20 @@ public class Sach {
 	public void setSoLuongChoMuon(int soLuongChoMuon) {
 		this.soLuongChoMuon = soLuongChoMuon;
 	}
+	public double getGiaSach() {
+		return giaSach;
+	}
 
+	public void setGiaSach(double giaSach) {
+		this.giaSach = giaSach;
+	}
+	
 	@Override
 	public String toString() {
 		return "[Sach iD=" + iD + "] "+", ten=" + ten + ", theLoai=" + theLoai + ", tacGia=" + tacGia + ", nhaXuatBan="
-				+ nhaXuatBan + ", soLuongNhapKho=" + soLuongNhapKho + ", soLuongChoMuon=" + soLuongChoMuon + "]" +"\n";
+				+ nhaXuatBan + ", soLuongNhapKho=" + soLuongNhapKho + ", soLuongChoMuon=" + soLuongChoMuon + ", giaSach: "+ giaSach + "]" +"\n";
 	}
+
+
+
 }
