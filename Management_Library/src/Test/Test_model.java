@@ -68,11 +68,18 @@ public class Test_model  extends TestCase{
 		sach1.them(s2);
 		sach1.them(s3);
 		
+		
+		
 		QLPhieuMuonTra m1 = new QLPhieuMuonTra(list, sach1);
 		m1.them(phieu1);
+		
+		sach1.xoa("a3");
+		
 		System.out.println(list);
 		System.out.println("--------------------------------------");
 		System.out.println(list2);
+		
+		
 		
 		
 	}
