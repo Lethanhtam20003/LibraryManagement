@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ThuThu {
 	// tìm kiêm (sách, khách hàng, phiếu mượn) theo id
-		public List<Object> timKiemTheoID(String id);
+		public Object timKiemTheoID(String id);
 
 	//tìm kiêm (sách, khách hàng, phiếu mượn) theo ten
 		public List<Object> timKiemTheoTen(String id);

@@ -45,4 +45,10 @@ public class KhachHang {
 	public void setDiaChi(String diaChi) {
 		this.diaChi = diaChi;
 	}
+
+	@Override
+	public String toString() {
+		return "KhachHang [iD=" + iD + ", ten=" + ten + ", soDT=" + soDT + ", diaChi=" + diaChi + "]";
+	}
+	
 }
