@@ -4,27 +4,21 @@ import java.util.Date;
 
 public class PhieuMuon {
 	private String iD;
-	private String ten;
-	KhachHang khachHang;
-	Sach sach;
-	Date ngayMuon;
-	Date ngayDuKienTra;
+	private KhachHang khachHang;
+	private List<Sach> listSachMuon;
+	private Date ngayMuon;
+	private Date ngayDuKienTra;
 	private String trangThai;
 
-	public PhieuMuon(String iD, String ten, KhachHang khachHang, Sach sach, Date ngayMuon, Date ngayDuKienTra,
+	public PhieuMuon(String iD, KhachHang khachHang, List<Sach> listSachMuon, Date ngayMuon, Date ngayDuKienTra,
 			String trangThai) {
 		super();
 		this.iD = iD;
-		this.ten = ten;
 		this.khachHang = khachHang;
-		this.sach = sach;
+		this.listSachMuon = listSachMuon;
 		this.ngayMuon = ngayMuon;
 		this.ngayDuKienTra = ngayDuKienTra;
 		this.trangThai = trangThai;
-	}
-
-	public PhieuMuon() {
-		super();
 	}
 
 	public String getiD() {
@@ -35,14 +29,6 @@ public class PhieuMuon {
 		this.iD = iD;
 	}
 
-	public String getTen() {
-		return ten;
-	}
-
-	public void setTen(String ten) {
-		this.ten = ten;
-	}
-
 	public KhachHang getKhachHang() {
 		return khachHang;
 	}
@@ -51,12 +37,12 @@ public class PhieuMuon {
 		this.khachHang = khachHang;
 	}
 
-	public Sach getSach() {
-		return sach;
+	public List<Sach> getListSachMuon() {
+		return listSachMuon;
 	}
 
-	public void setSach(Sach sach) {
-		this.sach = sach;
+	public void setListSachMuon(List<Sach> listSachMuon) {
+		this.listSachMuon = listSachMuon;
 	}
 
 	public Date getNgayMuon() {
@@ -82,11 +68,21 @@ public class PhieuMuon {
 	public void setTrangThai(String trangThai) {
 		this.trangThai = trangThai;
 	}
-
-	@Override
-	public String toString() {
-		return "--PhieuMuon: iD=" + iD + ", ten=" + ten + ", khachHang=" + khachHang + ", sach=" + sach + ", ngayMuon="
-				+ ngayMuon + ", ngayDuKienTra=" + ngayDuKienTra + ", trangThai=" + trangThai;
+	public double tinhTongGiaSachMuon() {
+		double result = 0;
+		for(Sach sach : listSachMuon) {
+			result += sach.price;
+		}
+		return result;
 	}
-
+	public double tinhTienMuonSach() {
+		double result = 0;
+		for(Sach sach : listSachMuon) {
+			result += 1000;
+		}
+		return result;
+	}
+	public double tinhTienTraLaiSauKhiTraSach() {
+		return tinhTongGiaSachMuon() - tinhTienMuonSach();
+	}
 }
