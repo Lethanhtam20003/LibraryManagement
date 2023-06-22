@@ -8,9 +8,10 @@ public class Sach {
 	private String nhaXuatBan;
 	private int soLuongNhapKho;
 	private int soLuongChoMuon;
+	private double gia;
 
 	public Sach(String iD, String ten, String theLoai, String tacGia, String nhaXuatBan, int soLuongNhapKho,
-			int soLuongChoMuon) {
+			int soLuongChoMuon, double gia) {
 		super();
 		this.iD = iD;
 		this.ten = ten;
@@ -19,6 +20,15 @@ public class Sach {
 		this.nhaXuatBan = nhaXuatBan;
 		this.soLuongNhapKho = soLuongNhapKho;
 		this.soLuongChoMuon = soLuongChoMuon;
+		this.gia = gia;
+	}
+
+	public double getGia() {
+		return gia;
+	}
+
+	public void setGia(double gia) {
+		this.gia = gia;
 	}
 
 	public String getiD() {
@@ -79,7 +89,8 @@ public class Sach {
 
 	@Override
 	public String toString() {
-		return "[Sach iD=" + iD + "] "+", ten=" + ten + ", theLoai=" + theLoai + ", tacGia=" + tacGia + ", nhaXuatBan="
-				+ nhaXuatBan + ", soLuongNhapKho=" + soLuongNhapKho + ", soLuongChoMuon=" + soLuongChoMuon + "]" +"\n";
+		return "[Sach iD=" + iD + "] " + ", ten=" + ten + ", theLoai=" + theLoai + ", tacGia=" + tacGia
+				+ ", nhaXuatBan=" + nhaXuatBan + ", soLuongNhapKho=" + soLuongNhapKho + ", soLuongChoMuon="
+				+ soLuongChoMuon + "]" + "\n";
 	}
 }

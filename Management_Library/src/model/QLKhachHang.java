@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QLKhachHang implements ThuThu {
+public class QLKhachHang implements ThuVien {
 	private List<KhachHang> listKhachHang;
 
 	// constructor
