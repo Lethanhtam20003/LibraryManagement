@@ -15,9 +15,9 @@ import model.Sach;
 public class Test_model  extends TestCase{
 	
 	public void testConstructor() {
-		Sach s1 = new Sach("a1", "doraemon", "truyen tranh", "kim dong", "giao duc viet nam", 10, 0);
-		Sach s2 = new Sach("a2", "onepice", "truyen tranh", "abc", "xyz", 20, 0);
-		Sach s3 = new Sach("a3", "dac nhan tam", "sach tham khao", "tac gia", "xyz", 5, 0);
+		Sach s1 = new Sach("a1", "doraemon", "truyen tranh", "kim dong", "giao duc viet nam", 10, 0,10);
+		Sach s2 = new Sach("a2", "onepice", "truyen tranh", "abc", "xyz", 20, 0,15);
+		Sach s3 = new Sach("a3", "dac nhan tam", "sach tham khao", "tac gia", "xyz", 5, 0,10);
 		
 		
 		KhachHang kh1 = new KhachHang("01", "quyen", "0345551000", "chon tran gian");
@@ -45,9 +45,9 @@ public class Test_model  extends TestCase{
 	}
 	
 	public static void main(String[] args) {
-		Sach s1 = new Sach("a1", "doraemon", "truyen tranh", "kim dong", "giao duc viet nam", 10, 0);
-		Sach s2 = new Sach("a2", "onepice", "truyen tranh", "abc", "xyz", 20, 0);
-		Sach s3 = new Sach("a3", "dac nhan tam", "sach tham khao", "tac gia", "xyz", 5, 0);
+		Sach s1 = new Sach("a1", "doraemon", "truyen tranh", "kim dong", "giao duc viet nam", 10, 0,10);
+		Sach s2 = new Sach("a2", "onepice", "truyen tranh", "abc", "xyz", 20, 0,15);
+		Sach s3 = new Sach("a3", "dac nhan tam", "sach tham khao", "tac gia", "xyz", 5, 0,10);
 		
 		
 		KhachHang kh1 = new KhachHang("01", "quyen", "0345551000", "chon tran gian");

@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QLSach implements ThuThu {
+public class QLSach implements ThuVien {
 	List<Sach> listSach;
 
 	public QLSach(List<Sach> listSach) {
@@ -60,4 +60,5 @@ public class QLSach implements ThuThu {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 }
