@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
 public class QLKhachHang implements QuanLyThuVien {
 	private List<KhachHang> listKhachHang;
+
 
 	// constructor
 	public QLKhachHang() {
@@ -67,7 +69,13 @@ public class QLKhachHang implements QuanLyThuVien {
 	}
 
 	@Override
-	public int getSoLuong() {
+	public int getTongSoLuong() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSoLuong(String id) {
 		// TODO Auto-generated method stub
 		return this.getListKhachHang().size();
 	}

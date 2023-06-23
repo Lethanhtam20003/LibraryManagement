@@ -9,9 +9,10 @@ public class PhieuMuon {
 	Sach sach;
 	Date ngayMuon;
 	Date ngayDuKienTra;
+	private double giaMuon;
 	private String trangThai;
 
-	public PhieuMuon(String iD, String ten, KhachHang khachHang, Sach sach, Date ngayMuon, Date ngayDuKienTra,
+	public PhieuMuon(String iD, String ten, KhachHang khachHang, Sach sach, Date ngayMuon, Date ngayDuKienTra,double giaMuon,
 			String trangThai) {
 		super();
 		this.iD = iD;
@@ -20,6 +21,7 @@ public class PhieuMuon {
 		this.sach = sach;
 		this.ngayMuon = ngayMuon;
 		this.ngayDuKienTra = ngayDuKienTra;
+		this.giaMuon = giaMuon;
 		this.trangThai = trangThai;
 	}
 
@@ -82,11 +84,18 @@ public class PhieuMuon {
 	public void setTrangThai(String trangThai) {
 		this.trangThai = trangThai;
 	}
+	public String getGiaMuon() {
+		return trangThai;
+	}
+
+	public void setGiaMuon(double giaMuon) {
+		this.giaMuon = giaMuon;
+	}
 
 	@Override
 	public String toString() {
 		return "--PhieuMuon: iD=" + iD + ", ten=" + ten + ", khachHang=" + khachHang + ", sach=" + sach + ", ngayMuon="
-				+ ngayMuon + ", ngayDuKienTra=" + ngayDuKienTra + ", trangThai=" + trangThai;
+				+ ngayMuon + ", ngayDuKienTra=" + ngayDuKienTra + ", gia muon:" + giaMuon + ", trangThai=" + trangThai;
 	}
 
 }

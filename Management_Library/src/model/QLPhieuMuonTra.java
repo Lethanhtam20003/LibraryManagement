@@ -2,7 +2,10 @@ package model;
 
 import java.util.List;
 
+
 public class QLPhieuMuonTra implements QuanLyThuVien {
+
+
 	List<PhieuMuon>listPhieuMuon;
 	QLSach qlSach;
 	
@@ -60,7 +63,13 @@ public class QLPhieuMuonTra implements QuanLyThuVien {
 	}
 
 	@Override
-	public int getSoLuong() {
+	public int getTongSoLuong() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSoLuong(String id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

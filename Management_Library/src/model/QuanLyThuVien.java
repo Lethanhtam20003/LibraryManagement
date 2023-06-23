@@ -4,7 +4,9 @@ import java.util.List;
 
 public interface QuanLyThuVien {
 	// tìm kiêm (sách, khách hàng, phiếu mượn) theo id
-		public Object timKiemTheoID(String id);
+
+		public List<Object> timKiemTheoID(String id);
+
 
 	//tìm kiêm (sách, khách hàng, phiếu mượn) theo ten
 		public List<Object> timKiemTheoTen(String id);
@@ -12,13 +14,17 @@ public interface QuanLyThuVien {
 	//tao(sach, khách hàng, phieu mượn)=> tạo ra đối tượng
 		public void them(Object object);
 
-	//xóa tương tự
+
+	//xóa (sach, khách hàng, phieu mượn)
 		public void xoa(String id);
 
-	//cập nhật tương tự
+	//cập nhật (sach, khách hàng, phieu mượn) có id.
 		public void capNhat(String id);
 
-	//lấy ra số lượng(sách, ...., khach hàng..., phieu mượn.....)
-		public int getSoLuong();
+	//lấy ra số lượng tổng (sách, ...., khach hàng..., phieu mượn.....) co trong kho
+		public int getTongSoLuong();
+		
+	//lấy ra số lượng của một quyến sách có id...
+		public int getSoLuong(String id);
 
 }
