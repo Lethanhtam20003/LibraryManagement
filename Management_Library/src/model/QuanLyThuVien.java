@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public interface ThuVien {
+public interface QuanLyThuVien {
 	// tìm kiêm (sách, khách hàng, phiếu mượn) theo id
 		public Object timKiemTheoID(String id);
 

@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QLSach implements ThuVien {
+public class QLSach implements QuanLyThuVien {
 	List<Sach> listSach;
 
 	public QLSach(List<Sach> listSach) {

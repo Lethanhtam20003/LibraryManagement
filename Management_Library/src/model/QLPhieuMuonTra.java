@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public class QLPhieuMuonTra implements ThuVien {
+public class QLPhieuMuonTra implements QuanLyThuVien {
 	List<PhieuMuon>listPhieuMuon;
 	QLSach qlSach;
 	

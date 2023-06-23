@@ -3,89 +3,201 @@ package controller;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.ObjectInputStream.GetField;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
 import model.KhachHang;
-import model.ThuVien;
+import model.QLKhachHang;
+import model.QuanLyThuVien;
 import view.KhachHangPanel;
-import view.View;
 
-public class QuanLyDocGia_controller extends Controller implements ActionListener {
-
+public class QuanLyDocGia_controller implements ActionListener {
+	private KhachHangPanel view;
+	private QLKhachHang model;
 	private String showChucNang;
 
-	public QuanLyDocGia_controller(KhachHangPanel view, ThuVien model) {
-		super(view, model);
-		this.view = view;
+	public QuanLyDocGia_controller(KhachHangPanel viewkh, QLKhachHang qlkh) {
+		this.model = qlkh;
+		this.view = viewkh;
+		run();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getActionCommand().equals("Tìm")) {
-
+			clearTableKhachHang();
+			tim();
+			resetTim();
 		} else if (e.getActionCommand().equals("Thêm")) {
-
 			them();
 		} else if (e.getActionCommand().equals("Cập nhật")) {
-
+			capNhat();
 		} else if (e.getActionCommand().equals("Xóa")) {
-
+			xoa();
 		} else if (e.getActionCommand().equals("Xem Phiếu Mượn")) {
-
+			XemPhieuMuon();
+		} else if (e.getActionCommand().equals("Xem Ds Độc Giả")) {
+			XemDSDocGia();
 		}
 	}
 
 	public void tim() {
 		showChucNang = "Tìm";
-		if (((KhachHangPanel) this.view).getLbShow_ChucNangDangThucHien().getText().equals("Tìm")) {
-			if (((KhachHangPanel) this.view).getTfMaDocGia().getText() != "") {
-				String s = ((KhachHangPanel) this.view).getTfMaDocGia().getText();
+		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Tìm")) {
+
+			if (!this.view.getTfMaDocGia().getText().equals("")) {
+				System.out.println("tìm theo id");
+				String s = this.view.getTfMaDocGia().getText().trim();
 				Object result = model.timKiemTheoID(s);
-			}
-			if (((KhachHangPanel) this.view).getTf_TenDocGia().getText() != "") {
-				String s = ((KhachHangPanel) this.view).getTf_TenDocGia().getText();
+				if (result instanceof KhachHang) {
+					ArrayList<KhachHang> r = new ArrayList<>();
+					r.add((KhachHang) result);
+					ShowDSKhachHang(r);
+					this.view.showResultTim(result);
+				}
+
+			} else if (this.view.getTfTenDocGia().getText() != "") {
+				System.out.println("tìm theo ten");
+				String s = this.view.getTfTenDocGia().getText().trim();
 				List<Object> result = model.timKiemTheoTen(s);
+				List<KhachHang> r = chuyenDoiDanhSach(result);
+				if (r != null) {
+					ShowDSKhachHang(r);
+					this.view.showResultTim(result);
+				}
 			}
+
 		} else {
-			((KhachHangPanel) this.view).getLbShow_ChucNangDangThucHien().setText(showChucNang);
+			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
+			resetTim();
 		}
 	}
 
 	public void them() {
 		showChucNang = "Thêm";
-		if (((KhachHangPanel) this.view).getLbShow_ChucNangDangThucHien().getText().equals("Thêm")) {
-			String id = ((KhachHangPanel) this.view).getTfMaDocGia().getText();
-			String ten = ((KhachHangPanel) this.view).getTf_TenDocGia().getText();
-			String sdt = ((KhachHangPanel) this.view).getTfSoDienThoai().getText();
-			String email = ((KhachHangPanel) this.view).getTfEmail().getText();
+		System.out.println(showChucNang);
+		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Thêm")) {
 
-			KhachHang kh = new KhachHang(id, ten, sdt, email);
+			String id = this.model.createID(model.getListKhachHang().get(model.getListKhachHang().size() - 1).getiD());
 
-			model.them(kh);
-			((KhachHangPanel) this.view).getTbDocGia().setModel(new DefaultTableModel(
-					new Object[][] { { id, ten, sdt, email }, { null, null, null, null }, { null, null, null, null },
-							{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-							{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-							{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-							{ null, null, null, null }, { null, null, null, null }, },
-					new String[] { "M\u00E3 \u0110\u1ECDc Gi\u1EA3", "T\u00EAn \u0110\u1ECDc Gi\u00E3",
-							"\u0110\u1ECBa Ch\u1EC9", "S\u1ED1 \u0110i\u1EC7n Tho\u1EA1i" }));
+			String ten = this.view.getTfTenDocGia().getText();
+			String sdt = this.view.getTfSoDienThoai().getText();
+			String email = this.view.getTfEmail().getText();
+			if (!ten.equals("")) {
+				KhachHang kh = new KhachHang(id, ten, sdt, email);
+				model.them(kh);
+				XemDSDocGia();
+			}
+
+			resetThem();
 
 		} else {
-			((KhachHangPanel) this.view).getLbShow_ChucNangDangThucHien().setText(showChucNang);
+			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
+			resetThem();
 
-			((KhachHangPanel) this.view).getTf_TenDocGia().setEditable(true);
-			((KhachHangPanel) this.view).getTf_TenDocGia().setBackground(Color.white);
-
-			((KhachHangPanel) this.view).getTfEmail().setEditable(true);
-			((KhachHangPanel) this.view).getTfEmail().setBackground(Color.white);
-
-			((KhachHangPanel) this.view).getTfSoDienThoai().setEditable(true);
-			((KhachHangPanel) this.view).getTfSoDienThoai().setBackground(Color.white);
 		}
 	}
+
+	private void xoa() {
+		// TODO Auto-generated method stub
+		showChucNang = "Xóa";
+		System.out.println(showChucNang);
+	}
+
+	private void capNhat() {
+		// TODO Auto-generated method stub
+		showChucNang = "Cập Nhật";
+		System.out.println(showChucNang);
+	}
+
+	private void XemPhieuMuon() {
+		// TODO Auto-generated method stub
+		showChucNang = "Xem Phiếu Mượn";
+		System.out.println(showChucNang);
+	}
+
+	private void XemDSDocGia() {
+		// TODO Auto-generated method stub
+		ShowDSKhachHang(model.getListKhachHang());
+	}
+
+	private void resetTim() {
+		// TODO Auto-generated method stub
+		this.view.getTfMaDocGia().setText("");
+		this.view.getTfTenDocGia().setText("");
+		this.view.getTfSoDienThoai().setText("");
+		this.view.getTfEmail().setText("");
+		
+		this.view.getTfMaDocGia().setEditable(false);
+		this.view.getTfTenDocGia().setEditable(false);
+		this.view.getTfSoDienThoai().setEditable(false);
+		this.view.getTfEmail().setEditable(false);
+
+		this.view.getTfMaDocGia().setBackground(Color.white);
+		this.view.getTfTenDocGia().setBackground(Color.white);
+		this.view.getTfSoDienThoai().setBackground(Color.LIGHT_GRAY);
+		this.view.getTfEmail().setBackground(Color.LIGHT_GRAY);
+	}
+
+	private void resetThem() {
+		// TODO Auto-generated method stub
+		this.view.getTfMaDocGia().setEditable(false);
+		this.view.getTfMaDocGia().setBackground(Color.LIGHT_GRAY);
+
+		this.view.getTfTenDocGia().setEditable(true);
+		this.view.getTfTenDocGia().setBackground(Color.white);
+		this.view.getTfTenDocGia().setText("");
+
+		this.view.getTfEmail().setEditable(true);
+		this.view.getTfEmail().setBackground(Color.white);
+		this.view.getTfEmail().setText("");
+
+		this.view.getTfSoDienThoai().setEditable(true);
+		this.view.getTfSoDienThoai().setBackground(Color.white);
+		this.view.getTfSoDienThoai().setText("");
+
+		String id = this.model.createID(model.getListKhachHang().get(model.getListKhachHang().size() - 1).getiD());
+		this.view.getTfMaDocGia().setText(id);
+
+	}
+
+	private List<KhachHang> chuyenDoiDanhSach(List<Object> input) {
+		// TODO Auto-generated method stub
+		if (input == null) {
+			return null;
+		}
+		List<KhachHang> result = new ArrayList<>();
+		for (Object obj : input) {
+			if (obj instanceof KhachHang) {
+				result.add((KhachHang) obj);
+			}
+		}
+		return result;
+	}
+
+	public void ShowDSKhachHang(List<KhachHang> dsKhachHang) {
+		clearTableKhachHang();
+		this.view.ShowDSKhachHang(dsKhachHang);
+	}
+
+	public void clearTableKhachHang() {
+		this.view.clearTableKhachHang();
+	}
+
+	public void run() {
+
+		// them action
+		this.view.getBtTim().addActionListener(this);
+		this.view.getBtThem().addActionListener(this);
+		this.view.getBtXoa().addActionListener(this);
+		this.view.getBtCapNhat().addActionListener(this);
+		this.view.getBtXem().addActionListener(this);
+		this.view.getBtHienThiDS().addActionListener(this);
+
+		ShowDSKhachHang(model.getListKhachHang());
+	}
+
 }
