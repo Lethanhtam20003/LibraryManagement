@@ -3,8 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QLKhachHang implements ThuVien {
-	private List<KhachHang> listKhachHang;
+
+public class QLKhachHang implements QuanLyThuVien {
+	List<KhachHang> listKhachHang;
+
 
 	// constructor
 	public QLKhachHang() {
@@ -66,7 +68,13 @@ public class QLKhachHang implements ThuVien {
 	}
 
 	@Override
-	public int getSoLuong() {
+	public int getTongSoLuong() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSoLuong(String id) {
 		// TODO Auto-generated method stub
 		return this.getListKhachHang().size();
 	}
