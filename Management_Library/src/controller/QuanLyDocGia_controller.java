@@ -56,7 +56,6 @@ public class QuanLyDocGia_controller implements ActionListener {
 					ArrayList<KhachHang> r = new ArrayList<>();
 					r.add((KhachHang) result);
 					ShowDSKhachHang(r);
-					this.view.showResultTim(result);
 				}
 
 			} else if (this.view.getTfTenDocGia().getText() != "") {
@@ -66,7 +65,6 @@ public class QuanLyDocGia_controller implements ActionListener {
 				List<KhachHang> r = chuyenDoiDanhSach(result);
 				if (r != null) {
 					ShowDSKhachHang(r);
-					this.view.showResultTim(result);
 				}
 			}
 
@@ -130,7 +128,7 @@ public class QuanLyDocGia_controller implements ActionListener {
 		this.view.getTfTenDocGia().setText("");
 		this.view.getTfSoDienThoai().setText("");
 		this.view.getTfEmail().setText("");
-		
+
 		this.view.getTfMaDocGia().setEditable(false);
 		this.view.getTfTenDocGia().setEditable(false);
 		this.view.getTfSoDienThoai().setEditable(false);
@@ -180,11 +178,13 @@ public class QuanLyDocGia_controller implements ActionListener {
 
 	public void ShowDSKhachHang(List<KhachHang> dsKhachHang) {
 		clearTableKhachHang();
-		this.view.ShowDSKhachHang(dsKhachHang);
+		// TODO
+		// this.view.ShowDSKhachHang(dsKhachHang);
 	}
 
 	public void clearTableKhachHang() {
-		this.view.clearTableKhachHang();
+		// TODO
+		// this.view.clearTableKhachHang();
 	}
 
 	public void run() {
