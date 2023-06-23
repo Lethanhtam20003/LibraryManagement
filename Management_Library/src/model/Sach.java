@@ -8,9 +8,11 @@ public class Sach {
 	private String nhaXuatBan;
 	private int soLuongNhapKho;
 	private int soLuongChoMuon;
+
 	private double giaSach;
 
 	public Sach(String iD, String ten, String theLoai, String tacGia, String nhaXuatBan, int soLuongNhapKho, int soLuongChoMuon, double giaSach) {
+
 		super();
 		this.iD = iD;
 		this.ten = ten;
@@ -20,8 +22,8 @@ public class Sach {
 		this.soLuongNhapKho = soLuongNhapKho;
 		this.soLuongChoMuon = soLuongChoMuon;
 		this.giaSach = giaSach;
-	}
 
+	}
 
 	public String getiD() {
 		return iD;
@@ -88,8 +90,10 @@ public class Sach {
 	
 	@Override
 	public String toString() {
+
 		return "[Sach iD=" + iD + "] "+", ten=" + ten + ", theLoai=" + theLoai + ", tacGia=" + tacGia + ", nhaXuatBan="
 				+ nhaXuatBan + ", soLuongNhapKho=" + soLuongNhapKho + ", soLuongChoMuon=" + soLuongChoMuon + ", giaSach: "+ giaSach + "]" +"\n";
+
 	}
 
 

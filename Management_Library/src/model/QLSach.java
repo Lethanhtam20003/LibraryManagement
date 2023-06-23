@@ -2,10 +2,10 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import dao.Data;
 
 public class QLSach implements QuanLyThuVien {
+
 	List<Sach> listSach;
 
 	public QLSach() {
