@@ -3,12 +3,14 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QLSach implements ThuThu {
+import dao.Data;
+
+public class QLSach implements QuanLyThuVien {
 	List<Sach> listSach;
 
-	public QLSach(List<Sach> listSach) {
+	public QLSach() {
 		super();
-		this.listSach = listSach;
+		this.listSach = Data.listSach;
 	}
 
 	public List<Sach> getListSach() {
@@ -44,7 +46,20 @@ public class QLSach implements ThuThu {
 	@Override
 	public void them(Object object) {
 	Sach sach = (Sach) object;
-		listSach.add(sach);
+	boolean sachDaCo = false;
+    for (Sach s : listSach) {
+        if (s.getiD().equals(sach.getiD())) {
+            // Cập nhật số lượng sách
+            s.setSoLuongNhapKho(s.getSoLuongNhapKho() + sach.getSoLuongNhapKho());           
+            sachDaCo = true;
+            break;
+        }
+    }
+
+    if (!sachDaCo) {
+        // Thêm sách mới vào danh sách
+    	listSach.add(sach);
+    }
 	}
 
 	@Override
@@ -61,7 +76,7 @@ public class QLSach implements ThuThu {
 
 	@Override
 	public void capNhat(String id) {
-
+		 
 	}
 
 	@Override
@@ -112,5 +127,5 @@ public class QLSach implements ThuThu {
 		}
 		return getSoLuong(id);
 	}
-
+	
 }

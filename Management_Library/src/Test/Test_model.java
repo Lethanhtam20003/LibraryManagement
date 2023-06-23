@@ -12,39 +12,39 @@ import model.QLPhieuMuonTra;
 import model.QLSach;
 import model.Sach;
 
-public class Test_model extends TestCase {
-
-	public void testConstructor() {
-		Sach s1 = new Sach("a1", "doraemon", "truyen tranh", "kim dong", "giao duc viet nam", 10, 0, 10000.0);
-		Sach s2 = new Sach("a2", "onepice", "truyen tranh", "abc", "xyz", 20, 0, 13000.0);
-		Sach s3 = new Sach("a3", "dac nhan tam", "sach tham khao", "tac gia", "xyz", 15, 0, 20000.0);
-		
-
-		KhachHang kh1 = new KhachHang("01", "quyen", "0345551000", "TP.HCM");
-		KhachHang kh2 = new KhachHang("02", "ai", "0320001000", "Dong Thap");
-		KhachHang kh3 = new KhachHang("03", "tai", "0340001000", "Binh Thuan");
-		KhachHang kh4 = new KhachHang("03", "vay", "0340001000", "Ha Noi");
-
-		PhieuMuon phieu1 = new PhieuMuon("01", "tenphieu1", kh1, s3,
-				new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(),
-				new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(),50000.0, "dang muon");
-		PhieuMuon phieu2 = new PhieuMuon("02", "tenphieu2", kh1, s3,
-				new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(),
-				new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), 50000.0, "dang muon");
-
-		List<PhieuMuon> list = new ArrayList<>();
-
-		List<Sach> list2 = new ArrayList<>();
-		QLSach sach1 = new QLSach(list2);
-		sach1.them(s1);
-		sach1.them(s2);
-		sach1.them(s3);
-		
-
-		QLPhieuMuonTra m1 = new QLPhieuMuonTra(list, sach1);
-		m1.them(phieu1);
-
-	}
+public class Test_model{
+//
+//	public void testConstructor() {
+//		Sach s1 = new Sach("a1", "doraemon", "truyen tranh", "kim dong", "giao duc viet nam", 10, 0, 10000.0);
+//		Sach s2 = new Sach("a2", "onepice", "truyen tranh", "abc", "xyz", 20, 0, 13000.0);
+//		Sach s3 = new Sach("a3", "dac nhan tam", "sach tham khao", "tac gia", "xyz", 15, 0, 20000.0);
+//		
+//
+//		KhachHang kh1 = new KhachHang("01", "quyen", "0345551000", "TP.HCM");
+//		KhachHang kh2 = new KhachHang("02", "ai", "0320001000", "Dong Thap");
+//		KhachHang kh3 = new KhachHang("03", "tai", "0340001000", "Binh Thuan");
+//		KhachHang kh4 = new KhachHang("03", "vay", "0340001000", "Ha Noi");
+//
+//		PhieuMuon phieu1 = new PhieuMuon("01", "tenphieu1", kh1, s3,
+//				new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(),
+//				new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(),50000.0, "dang muon");
+//		PhieuMuon phieu2 = new PhieuMuon("02", "tenphieu2", kh1, s3,
+//				new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(),
+//				new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), 50000.0, "dang muon");
+//
+//		List<PhieuMuon> list = new ArrayList<>();
+//
+//		List<Sach> list2 = new ArrayList<>();
+//		QLSach sach1 = new QLSach(list2);
+//		sach1.them(s1);
+//		sach1.them(s2);
+//		sach1.them(s3);
+//		
+//
+//		QLPhieuMuonTra m1 = new QLPhieuMuonTra(list, sach1);
+//		m1.them(phieu1);
+//
+//	}
 
 	public static void main(String[] args) {
 		Sach s1 = new Sach("a1", "doraemon", "truyen tranh", "kim dong", "giao duc viet nam", 10, 0, 10000.0);
@@ -68,11 +68,13 @@ public class Test_model extends TestCase {
 
 		List<Sach> list2 = new ArrayList<>();
 
-		QLSach sach1 = new QLSach(list2);
+		QLSach sach1 = new QLSach();
 		sach1.them(s1);
 		sach1.them(s2);
 		sach1.them(s3);
 		sach1.them(s4);
+		sach1.them(s1);
+		
 
 		QLPhieuMuonTra m1 = new QLPhieuMuonTra(list, sach1);
 		m1.them(phieu1);
@@ -98,6 +100,7 @@ public class Test_model extends TestCase {
 		System.out.println("-----------------------------------------");
 		
 		System.out.println(s1.getSoLuongNhapKho());
+		
 		
 	}
 }

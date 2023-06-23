@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public class QLKhachHang implements ThuThu  {
+public class QLKhachHang implements QuanLyThuVien {
 	List<KhachHang> listKhachHang;
 
 	public QLKhachHang(List<KhachHang> listKhachHang) {
