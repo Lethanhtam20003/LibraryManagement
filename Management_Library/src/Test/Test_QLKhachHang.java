@@ -13,9 +13,9 @@ import view.KhachHangPanel;
 public class Test_QLKhachHang extends TestCase {
 
 	QLKhachHang qlkh = new QLKhachHang();
-	KhachHang kh1 = new KhachHang("01", "tri lo", "0345551000", "tan binh");
-	KhachHang kh2 = new KhachHang("02", "chua mom", "0320001000", "chau dua");
-	KhachHang kh3 = new KhachHang("03", "duc tri", "0340001000", "ba ria");
+	KhachHang kh1 = new KhachHang("KH101", "tri lo", "0345551000", "tan binh");
+	KhachHang kh2 = new KhachHang("KH102", "chua mom", "0320001000", "chau dua");
+	KhachHang kh3 = new KhachHang("KH103", "duc tri", "0340001000", "ba ria");
 
 	public void setDataForTest() {
 		qlkh.them(kh3);
@@ -26,9 +26,9 @@ public class Test_QLKhachHang extends TestCase {
 	public void testConstructor() {
 		QLKhachHang qlkh = new QLKhachHang();
 
-		KhachHang kh1 = new KhachHang("01", "tri lo", "0345551000", "tan binh");
-		KhachHang kh2 = new KhachHang("02", "chua mom", "0320001000", "chau dua");
-		KhachHang kh3 = new KhachHang("03", "duc tri", "0340001000", "ba ria");
+		KhachHang kh1 = new KhachHang("KH101", "tri lo", "0345551000", "tan binh");
+		KhachHang kh2 = new KhachHang("KH102", "chua mom", "0320001000", "chau dua");
+		KhachHang kh3 = new KhachHang("KH103", "duc tri", "0340001000", "ba ria");
 
 	}
 
@@ -51,9 +51,14 @@ public class Test_QLKhachHang extends TestCase {
 	}
 
 	public void testThem() {
-		qlkh.them(kh3);
-		qlkh.them(kh1);
 		qlkh.them(kh2);
+		qlkh.them(kh1);
+		qlkh.them(kh3);
+	}
+
+	public void testCreateIDRandom() {
+		assertEquals(("KH111"), "KH112");
+		System.out.println();
 	}
 
 	public void testxoa() {
@@ -66,10 +71,8 @@ public class Test_QLKhachHang extends TestCase {
 
 	public void testGetSoLuong() {
 		setDataForTest();
-		
+
 		assertEquals(qlkh.getSoLuong(), 3);
 	}
-	
-	
-	
+
 }
