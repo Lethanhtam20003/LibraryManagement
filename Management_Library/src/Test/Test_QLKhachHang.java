@@ -72,7 +72,7 @@ public class Test_QLKhachHang extends TestCase {
 	public void testGetSoLuong() {
 		setDataForTest();
 
-		assertEquals(qlkh.getSoLuong(), 3);
+		assertEquals(qlkh.getTongSoLuong(), 3);
 	}
 
 }

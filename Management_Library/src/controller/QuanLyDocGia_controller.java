@@ -12,6 +12,7 @@ import model.KhachHang;
 import model.QLKhachHang;
 import model.QuanLyThuVien;
 import view.KhachHangPanel;
+import view.ShowDSKH_Panel;
 
 public class QuanLyDocGia_controller implements ActionListener {
 	private KhachHangPanel view;
@@ -22,6 +23,7 @@ public class QuanLyDocGia_controller implements ActionListener {
 		this.model = qlkh;
 		this.view = viewkh;
 		run();
+		initObserver();
 	}
 
 	@Override
@@ -32,7 +34,9 @@ public class QuanLyDocGia_controller implements ActionListener {
 			tim();
 			resetTim();
 		} else if (e.getActionCommand().equals("Thêm")) {
+			clearTableKhachHang();
 			them();
+			resetThem();
 		} else if (e.getActionCommand().equals("Cập nhật")) {
 			capNhat();
 		} else if (e.getActionCommand().equals("Xóa")) {
@@ -49,20 +53,17 @@ public class QuanLyDocGia_controller implements ActionListener {
 		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Tìm")) {
 
 			if (!this.view.getTfMaDocGia().getText().equals("")) {
-				System.out.println("tìm theo id");
 				String s = this.view.getTfMaDocGia().getText().trim();
-				Object result = model.timKiemTheoID(s);
-				if (result instanceof KhachHang) {
-					ArrayList<KhachHang> r = new ArrayList<>();
-					r.add((KhachHang) result);
-					ShowDSKhachHang(r);
-				}
+				List<Object> find = model.timKiemTheoID(s);
+				List<KhachHang> result = chuyenDoiDanhSach(find);
+				System.out.println("tìm theo id" + s + " result:" + result.toString());
+				ShowDSKhachHang(result);
 
 			} else if (this.view.getTfTenDocGia().getText() != "") {
-				System.out.println("tìm theo ten");
 				String s = this.view.getTfTenDocGia().getText().trim();
 				List<Object> result = model.timKiemTheoTen(s);
 				List<KhachHang> r = chuyenDoiDanhSach(result);
+				System.out.println("tìm theo ten" + s + " result:" + result.toString());
 				if (r != null) {
 					ShowDSKhachHang(r);
 				}
@@ -90,11 +91,11 @@ public class QuanLyDocGia_controller implements ActionListener {
 				XemDSDocGia();
 			}
 
-			resetThem();
+//			resetThem();
 
 		} else {
 			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
-			resetThem();
+//			resetThem();
 
 		}
 	}
@@ -129,8 +130,8 @@ public class QuanLyDocGia_controller implements ActionListener {
 		this.view.getTfSoDienThoai().setText("");
 		this.view.getTfEmail().setText("");
 
-		this.view.getTfMaDocGia().setEditable(false);
-		this.view.getTfTenDocGia().setEditable(false);
+		this.view.getTfMaDocGia().setEditable(true);
+		this.view.getTfTenDocGia().setEditable(true);
 		this.view.getTfSoDienThoai().setEditable(false);
 		this.view.getTfEmail().setEditable(false);
 
@@ -179,12 +180,23 @@ public class QuanLyDocGia_controller implements ActionListener {
 	public void ShowDSKhachHang(List<KhachHang> dsKhachHang) {
 		clearTableKhachHang();
 		// TODO
-		// this.view.ShowDSKhachHang(dsKhachHang);
+		this.view.getPnDuoi().ShowDSKhachHang(dsKhachHang);
 	}
 
 	public void clearTableKhachHang() {
 		// TODO
+		this.view.getPnDuoi().clearTableKhachHang();
 		// this.view.clearTableKhachHang();
+	}
+
+	public void createShowDSPhieuMuon_panel() {
+
+	}
+
+	public void initObserver() {
+		model.addObserver(view);
+		model.addObserver(view.getPnDuoi());
+		model.addObserver(view.getPnTren_Phai());
 	}
 
 	public void run() {

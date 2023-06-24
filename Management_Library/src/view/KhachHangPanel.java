@@ -27,11 +27,13 @@ import javax.swing.table.TableColumn;
 
 import controller.QuanLyDocGia_controller;
 import model.KhachHang;
+import model.Observable;
+import model.Observer;
 import model.QLKhachHang;
 import model.QuanLyThuVien;
 import java.awt.event.ActionEvent;
 
-public class KhachHangPanel extends JPanel implements View {
+public class KhachHangPanel extends JPanel implements View, Observer {
 	ActionListener ac;
 	private JTextField tfMaDocGia;
 	private JTextField tfSoDienThoai;
@@ -134,6 +136,22 @@ public class KhachHangPanel extends JPanel implements View {
 
 	public void setTfTenDocGia(JTextField tfTenDocGia) {
 		this.tfTenDocGia = tfTenDocGia;
+	}
+
+	public ShowDSKH_Panel getPnDuoi() {
+		return pnDuoi;
+	}
+
+	public void setPnDuoi(ShowDSKH_Panel pnDuoi) {
+		this.pnDuoi = pnDuoi;
+	}
+
+	public ShowDSPhieuMuon_panel getPnTren_Phai() {
+		return pnTren_Phai;
+	}
+
+	public void setPnTren_Phai(ShowDSPhieuMuon_panel pnTren_Phai) {
+		this.pnTren_Phai = pnTren_Phai;
 	}
 
 	/**
@@ -412,6 +430,12 @@ public class KhachHangPanel extends JPanel implements View {
 		panel_2.add(btXemDSDocGia);
 
 		return pnTren_Trai;
+	}
+
+	@Override
+	public void update(Observable observable) {
+		// TODO Auto-generated method stub
+
 	}
 }
 

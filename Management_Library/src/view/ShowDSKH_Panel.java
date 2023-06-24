@@ -10,8 +10,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.KhachHang;
+import model.Observable;
+import model.Observer;
+import model.QuanLyThuVien;
 
-public class ShowDSKH_Panel extends JPanel {
+public class ShowDSKH_Panel extends JPanel implements Observer {
 
 	private DefaultTableModel tbModelKhachHang;
 	private JTable tbDocGia;
@@ -69,10 +72,7 @@ public class ShowDSKH_Panel extends JPanel {
 				result.addRow(a);
 			}
 		}
-		for (int i = 0; i < 10; i++) {
-			Object[] a = { null, null, null, null };
-			result.addRow(a);
-		}
+
 		tbDocGia.setModel(result);
 		return result;
 	}
@@ -80,4 +80,11 @@ public class ShowDSKH_Panel extends JPanel {
 	public void clearTableKhachHang() {
 		tbModelKhachHang.setRowCount(0);
 	}
+
+	@Override
+	public void update(Observable observable) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

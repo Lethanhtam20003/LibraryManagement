@@ -9,9 +9,12 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-public class ShowDSPhieuMuon_panel extends JPanel {
-	
-	
+import model.Observable;
+import model.Observer;
+import model.QuanLyThuVien;
+
+public class ShowDSPhieuMuon_panel extends JPanel implements Observer {
+
 	private DefaultTableModel tbModelPhieuNhap;
 	private JTable tbSachMuon;
 
@@ -42,5 +45,11 @@ public class ShowDSPhieuMuon_panel extends JPanel {
 
 		pnTren_Phai.add(scrollPane);
 		this.add(pnTren_Phai);
+	}
+
+	@Override
+	public void update(Observable observable) {
+		// TODO Auto-generated method stub
+
 	}
 }

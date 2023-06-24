@@ -2,17 +2,16 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-
-public class QLKhachHang implements QuanLyThuVien {
+public class QLKhachHang extends Observable implements QuanLyThuVien {
 	private List<KhachHang> listKhachHang;
-
+	private ArrayList<Observer> observers;
 
 	// constructor
 	public QLKhachHang() {
 		super();
 		this.listKhachHang = new ArrayList<>();
+		observers = new ArrayList<>();
 	}
 
 	public List<KhachHang> getListKhachHang() {
@@ -24,15 +23,16 @@ public class QLKhachHang implements QuanLyThuVien {
 	}
 
 	@Override
-	public Object timKiemTheoID(String id) {
+	public List<Object> timKiemTheoID(String id) {
 		// TODO Auto-generated method stub
+		List<Object> result = new ArrayList<>();
 		for (KhachHang khachHang : listKhachHang) {
 			if (khachHang.getiD().equals(id)) {
-				return khachHang;
+				result.add(khachHang);
 			}
 		}
 
-		return null;
+		return result;
 	}
 
 	@Override
@@ -98,7 +98,7 @@ public class QLKhachHang implements QuanLyThuVien {
 				createID("KH" + idNumbet);
 			}
 		}
-		
+
 		return id;
 	}
 
@@ -106,6 +106,21 @@ public class QLKhachHang implements QuanLyThuVien {
 		// TODO Auto-generated method stub
 		int result = Integer.parseInt(id.substring(id.indexOf("H") + 1, id.length()));
 		return result;
+	}
+
+	// obsever
+	public void addObserver(Observer observer) {
+		observers.add(observer);
+	}
+
+	public void removeObserver(Observer observer) {
+		observers.remove(observer);
+	}
+
+	public void notifyObservers() {
+		for (Observer observer : observers) {
+			(observer).update(this);
+		}
 	}
 
 	public static void main(String[] args) {

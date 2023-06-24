@@ -26,11 +26,12 @@ public class Test_model  extends TestCase{
 		KhachHang kh3 = new KhachHang("03", "vay", "0340001000", "trong tu");
 		
 		
-		PhieuMuon phieu1 = new PhieuMuon("01", "tenphieu1", kh1, s3, new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), "dang muon");
-		PhieuMuon phieu2 = new PhieuMuon("02", "tenphieu2", kh1, s3, new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), "dang muon");
+//		PhieuMuon phieu1 = new PhieuMuon("01", "tenphieu1", kh1, s3, new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), "dang muon");
+//		PhieuMuon phieu2 = new PhieuMuon("02", "tenphieu2", kh1, s3, new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), "dang muon");
 		
 		
 		List<PhieuMuon>list =new ArrayList<>();
+	}
 
 
 	public static void main(String[] args) {
@@ -38,6 +39,7 @@ public class Test_model  extends TestCase{
 		Sach s1 = new Sach("a1", "doraemon", "truyen tranh", "kim dong", "giao duc viet nam", 10, 0,10);
 		Sach s2 = new Sach("a2", "onepice", "truyen tranh", "abc", "xyz", 20, 0,15);
 		Sach s3 = new Sach("a3", "dac nhan tam", "sach tham khao", "tac gia", "xyz", 5, 0,10);
+		Sach s4 = new Sach("a3", "dac nhan tam", "sach tham khao", "tac gia", "xyz", 5, 0,10);
 		
 		
 
