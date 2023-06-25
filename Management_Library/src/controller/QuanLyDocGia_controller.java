@@ -9,7 +9,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 import model.KhachHang;
-import model.ThuVien;
+import model.QuanLyThuVien;
 import view.KhachHangPanel;
 import view.View;
 
@@ -17,7 +17,7 @@ public class QuanLyDocGia_controller extends Controller implements ActionListene
 
 	private String showChucNang;
 
-	public QuanLyDocGia_controller(KhachHangPanel view, ThuVien model) {
+	public QuanLyDocGia_controller(KhachHangPanel view, QuanLyThuVien model) {
 		super(view, model);
 		this.view = view;
 	}

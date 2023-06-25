@@ -26,12 +26,12 @@ public class Test_model  extends TestCase{
 		KhachHang kh3 = new KhachHang("03", "vay", "0340001000", "trong tu");
 		
 		
-		PhieuMuon phieu1 = new PhieuMuon("01", "tenphieu1", kh1, s3, new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), "dang muon");
-		PhieuMuon phieu2 = new PhieuMuon("02", "tenphieu2", kh1, s3, new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), "dang muon");
+		PhieuMuon phieu1 = new PhieuMuon("01", "tenphieu1", kh1, s3, new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(),5000.0, "dang muon");
+		PhieuMuon phieu2 = new PhieuMuon("02", "tenphieu2", kh1, s3, new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(),5000.0, "dang muon");
 		
 		
 		List<PhieuMuon>list =new ArrayList<>();
-
+	}
 
 	public static void main(String[] args) {
 
@@ -60,7 +60,6 @@ public class Test_model  extends TestCase{
 		sach1.them(s1);
 		sach1.them(s2);
 		sach1.them(s3);
-		sach1.them(s4);
 		sach1.them(s1);
 		
 
