@@ -35,6 +35,7 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 	private JButton btXemDSDocGia;
 	private ShowDSKH_Panel pnDuoi;
 	private ShowDSPhieuMuon_panel pnTren_Phai;
+	private JLabel lbShow_ChuThich;
 
 	// getter and setter
 	public JTextField getTfMaDocGia() {
@@ -141,6 +142,22 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 		this.pnTren_Phai = pnTren_Phai;
 	}
 
+	public JButton getBtXemDSDocGia() {
+		return btXemDSDocGia;
+	}
+
+	public void setBtXemDSDocGia(JButton btXemDSDocGia) {
+		this.btXemDSDocGia = btXemDSDocGia;
+	}
+
+	public JLabel getLbShow_ChuThich() {
+		return lbShow_ChuThich;
+	}
+
+	public void setLbShow_ChuThich(JLabel lbShow_ChuThich) {
+		this.lbShow_ChuThich = lbShow_ChuThich;
+	}
+
 	/**
 	 * Create the panel.
 	 */
@@ -198,8 +215,10 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 		JPanel pnTren_Trai_ShowChucNang = new JPanel();
 		pnTren_Trai_ShowChucNang.setBackground(SystemColor.window);
 		pnTren_Trai.add(pnTren_Trai_ShowChucNang, BorderLayout.NORTH);
+		pnTren_Trai_ShowChucNang.setLayout(new GridLayout(2, 2, 10, 10));
 
-		JLabel lblNewLabel = new JLabel("Chức Năng Đang Thực Hiện: ");
+		JLabel lblNewLabel = new JLabel("Chức Năng:  ");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 		pnTren_Trai_ShowChucNang.add(lblNewLabel);
 
@@ -213,6 +232,19 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 		lbShow_ChucNangDangThucHien.setLabelFor(lbShow_ChucNangDangThucHien);
 		lbShow_ChucNangDangThucHien.setFont(new Font("Arial", Font.PLAIN, 18));
 		pnTren_Trai_ShowChucNang.add(lbShow_ChucNangDangThucHien);
+		
+		JLabel lblChThch = new JLabel("Chú Thích:   ");
+		lblChThch.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblChThch.setFont(new Font("Arial", Font.PLAIN, 18));
+		pnTren_Trai_ShowChucNang.add(lblChThch);
+		
+		lbShow_ChuThich = new JLabel();
+		lbShow_ChuThich.setPreferredSize(new Dimension(100, 22));
+		lbShow_ChuThich.setForeground(Color.BLACK);
+		lbShow_ChuThich.setFont(new Font("Arial", Font.PLAIN, 18));
+		lbShow_ChuThich.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		lbShow_ChuThich.setBackground(Color.LIGHT_GRAY);
+		pnTren_Trai_ShowChucNang.add(lbShow_ChuThich);
 
 		JPanel pnTren_Trai_input = new JPanel();
 		pnTren_Trai_input.setBackground(SystemColor.window);

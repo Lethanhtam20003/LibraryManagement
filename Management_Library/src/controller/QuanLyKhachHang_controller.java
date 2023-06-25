@@ -14,12 +14,13 @@ import model.QuanLyThuVien;
 import view.KhachHangPanel;
 import view.ShowDSKH_Panel;
 
-public class QuanLyDocGia_controller implements ActionListener {
+public class QuanLyKhachHang_controller implements ActionListener {
 	private KhachHangPanel view;
 	private QLKhachHang model;
 	private String showChucNang;
+	private String dicription;
 
-	public QuanLyDocGia_controller(KhachHangPanel viewkh, QLKhachHang qlkh) {
+	public QuanLyKhachHang_controller(KhachHangPanel viewkh, QLKhachHang qlkh) {
 		this.model = qlkh;
 		this.view = viewkh;
 		run();
@@ -32,9 +33,8 @@ public class QuanLyDocGia_controller implements ActionListener {
 		if (e.getActionCommand().equals("Tìm")) {
 			clearTableKhachHang();
 			tim();
-			resetTim();
+
 		} else if (e.getActionCommand().equals("Thêm")) {
-			clearTableKhachHang();
 			them();
 			resetThem();
 		} else if (e.getActionCommand().equals("Cập nhật")) {
@@ -44,12 +44,14 @@ public class QuanLyDocGia_controller implements ActionListener {
 		} else if (e.getActionCommand().equals("Xem Phiếu Mượn")) {
 			XemPhieuMuon();
 		} else if (e.getActionCommand().equals("Xem Ds Độc Giả")) {
+			System.out.println(e.getActionCommand());
 			XemDSDocGia();
 		}
 	}
 
 	public void tim() {
 		showChucNang = "Tìm";
+		dicription = "nhập id hoặc nhập tên độc giả";
 		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Tìm")) {
 
 			if (!this.view.getTfMaDocGia().getText().equals("")) {
@@ -57,26 +59,44 @@ public class QuanLyDocGia_controller implements ActionListener {
 				List<Object> find = model.timKiemTheoID(s);
 				List<KhachHang> result = chuyenDoiDanhSach(find);
 				System.out.println("tìm theo id" + s + " result:" + result.toString());
-				ShowDSKhachHang(result);
-
-			} else if (this.view.getTfTenDocGia().getText() != "") {
-				String s = this.view.getTfTenDocGia().getText().trim();
-				List<Object> result = model.timKiemTheoTen(s);
-				List<KhachHang> r = chuyenDoiDanhSach(result);
-				System.out.println("tìm theo ten" + s + " result:" + result.toString());
-				if (r != null) {
-					ShowDSKhachHang(r);
+				if (result.size() == 1) {
+					ShowDSKhachHang(result);
+					dicription = "tìm thành công";
+					showDicription(dicription);
 				}
-			}
 
+			} else if (!this.view.getTfTenDocGia().getText().equals("")) {
+				String s = this.view.getTfTenDocGia().getText().trim();
+				List<Object> find = model.timKiemTheoTen(s);
+				List<KhachHang> result = chuyenDoiDanhSach(find);
+				System.out.println("tìm theo ten" + s + " result:" + result.toString());
+				if (result.size() == 1) {
+					ShowDSKhachHang(result);
+					dicription = "tìm thành công";
+					showDicription(dicription);
+				}
+			} else {
+
+				dicription = "tìm không thành công";
+				showDicription(dicription);
+				resetTim();
+			}
 		} else {
+			showDicription(dicription);
 			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
 			resetTim();
 		}
 	}
 
+	private void showDicription(String dicription2) {
+		// TODO Auto-generated method stub
+		this.view.getLbShow_ChuThich().setText(dicription2);
+	}
+
 	public void them() {
 		showChucNang = "Thêm";
+		dicription = "nhập thông tin độc giả";
+		showDicription(dicription);
 		System.out.println(showChucNang);
 		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Thêm")) {
 
@@ -89,12 +109,15 @@ public class QuanLyDocGia_controller implements ActionListener {
 				KhachHang kh = new KhachHang(id, ten, sdt, email);
 				model.them(kh);
 				XemDSDocGia();
+				dicription = "Thêm thanh công";
+				showDicription(dicription);
 			}
 
 //			resetThem();
 
 		} else {
 			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
+			showDicription(dicription);
 //			resetThem();
 
 		}
@@ -104,23 +127,49 @@ public class QuanLyDocGia_controller implements ActionListener {
 		// TODO Auto-generated method stub
 		showChucNang = "Xóa";
 		System.out.println(showChucNang);
+		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Xóa")) {
+			//
+
+		} else {
+			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
+		}
 	}
 
 	private void capNhat() {
 		// TODO Auto-generated method stub
 		showChucNang = "Cập Nhật";
 		System.out.println(showChucNang);
+		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("")) {
+			//
+
+		} else {
+			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
+		}
 	}
 
 	private void XemPhieuMuon() {
 		// TODO Auto-generated method stub
 		showChucNang = "Xem Phiếu Mượn";
 		System.out.println(showChucNang);
+		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Xem Phiếu Mượn")) {
+			//
+
+		} else {
+			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
+		}
 	}
 
 	private void XemDSDocGia() {
 		// TODO Auto-generated method stub
+		showChucNang = "Xem Ds Độc Giả";
+		System.out.println(showChucNang);
 		ShowDSKhachHang(model.getListKhachHang());
+		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Xem Ds Độc Giả")) {
+			//
+
+		} else {
+			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
+		}
 	}
 
 	private void resetTim() {
