@@ -49,7 +49,6 @@ public class ShowDSKH_Panel extends JPanel implements Observer {
 				return columnEditables[column];
 			}
 		};
-
 		tbDocGia = new JTable();
 		// không cho thay đổi thứ tự cột trong jtable
 		tbDocGia.getTableHeader().setReorderingAllowed(false);

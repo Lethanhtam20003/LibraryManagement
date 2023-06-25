@@ -36,7 +36,6 @@ public class QuanLyKhachHang_controller implements ActionListener {
 
 		} else if (e.getActionCommand().equals("Thêm")) {
 			them();
-			resetThem();
 		} else if (e.getActionCommand().equals("Cập nhật")) {
 			capNhat();
 		} else if (e.getActionCommand().equals("Xóa")) {
@@ -113,14 +112,12 @@ public class QuanLyKhachHang_controller implements ActionListener {
 				showDicription(dicription);
 			}
 
-//			resetThem();
-
 		} else {
 			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
 			showDicription(dicription);
-//			resetThem();
 
 		}
+		resetThem();
 	}
 
 	private void xoa() {
@@ -129,10 +126,29 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		System.out.println(showChucNang);
 		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Xóa")) {
 			//
+			String str = view.getTfMaDocGia().getText();
+			KhachHang kh = (KhachHang) model.timKiemTheoID(str).get(0);
+			model.xoa(str);
+			view.getTfTenDocGia().setText(kh.getTen());
+			view.getTfEmail().setText(kh.getDiaChi());
+			view.getTfSoDienThoai().setText(kh.getSoDT());
 
 		} else {
 			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
 		}
+		resetXoa();
+	}
+
+	private void resetXoa() {
+		// TODO Auto-generated method stub
+		view.getTfTenDocGia().setVisible(false);
+		view.getTfEmail().setVisible(false);
+		view.getTfSoDienThoai().setVisible(false);
+
+		view.getTfTenDocGia().setBackground(Color.LIGHT_GRAY);
+		view.getTfEmail().setBackground(Color.LIGHT_GRAY);
+		view.getTfSoDienThoai().setBackground(Color.LIGHT_GRAY);
+
 	}
 
 	private void capNhat() {

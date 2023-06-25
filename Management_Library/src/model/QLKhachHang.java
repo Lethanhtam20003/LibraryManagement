@@ -58,8 +58,10 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 	public void xoa(String id) {
 		// TODO Auto-generated method stub
 		KhachHang kh = (KhachHang) timKiemTheoID(id);
-		if (kh != null)
+		if (kh != null) {
 			this.getListKhachHang().remove(kh);
+			notifyObservers();
+		}
 	}
 
 	@Override
