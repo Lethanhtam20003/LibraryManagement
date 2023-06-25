@@ -23,6 +23,9 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -47,7 +50,7 @@ public class QuanLySach implements View, Observer {
 	public JTextField txtId;
 	public JTextField txtTheLoai;
 	ActionListener actionListener;
-
+	public ArrayList<Object> values;
 	public QuanLySach() {
 		this.actionListener = new QLSachController(new QLSach(), this);
 		frame = new JFrame("Quản lý sách");
@@ -150,10 +153,7 @@ public class QuanLySach implements View, Observer {
 		panel.add(txtGia);
 
 		JButton btnCapNhat = new JButton("Lưu thay đổi");
-		btnCapNhat.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnCapNhat.addActionListener(actionListener);
 		btnCapNhat.setBounds(381, 163, 117, 29);
 		panel.add(btnCapNhat);
 
@@ -183,10 +183,8 @@ public class QuanLySach implements View, Observer {
 		txtTheLoai.setColumns(10);
 		
 		JButton btnXa = new JButton("Xóa");
-		btnXa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnXa.addActionListener(actionListener);
+			
 		btnXa.setBounds(508, 163, 109, 29);
 		panel.add(btnXa);
 		
@@ -206,6 +204,23 @@ public class QuanLySach implements View, Observer {
 				return false; // Không cho phép chỉnh sửa trực tiếp trên bảng
 			}
 		};
+		 // Bắt sự kiện click chuột trên JTable
+		bookTable.addMouseListener(new MouseAdapter() {
+            
+
+			public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 1) { // Kiểm tra số lần click chuột
+                	int row = bookTable.getSelectedRow(); // Lấy số thứ tự hàng được click
+                	values = new ArrayList<>();
+                    // Lặp qua các cột và lấy giá trị của mỗi cột
+                    for (int column = 1; column < bookTable.getColumnCount(); column++) {
+                       Object value = bookTable.getValueAt(row, column);
+                       values.add(value);
+                    }
+                    setValuesToInputs(values);
+                }
+            }
+        });
 		JScrollPane scrollPane = new JScrollPane(bookTable);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
@@ -216,13 +231,13 @@ public class QuanLySach implements View, Observer {
 		model.addColumn("STT");
 		model.addColumn("ID");
 		model.addColumn("Tên Sách");
+		model.addColumn("Thể loại");
 		model.addColumn("Tác Giả");
 		model.addColumn("Nhà Xuất Bản");
 		model.addColumn("Số lượng nhập kho");
 		model.addColumn("Số lượng cho mượn");
 		model.addColumn("Số lượng còn lại");
 		model.addColumn("Giá");
-		model.addColumn("Chức năng");
 		model.setRowCount(0);
 
 		bookTable.setModel(model);
@@ -236,11 +251,21 @@ public class QuanLySach implements View, Observer {
 		for (Sach s : list) {
 			stt++;
 			model.addRow(
-					new Object[] { stt, s.getiD(), s.getTen(), s.getTacGia(), s.getNhaXuatBan(), s.getSoLuongNhapKho(),
+					new Object[] { stt, s.getiD(), s.getTen(),s.getTheLoai(), s.getTacGia(), s.getNhaXuatBan(), s.getSoLuongNhapKho(),
 							s.getSoLuongChoMuon(), s.getSoLuongNhapKho() - s.getSoLuongChoMuon(), s.getGiaSach(),
 
 					});
 		}
+	}
+	private void setValuesToInputs(ArrayList<Object> values) {
+	    txtId.setText(values.get(0).toString());
+	    txtTenSach.setText(values.get(1).toString());
+	    txtTacGia.setText(values.get(3).toString());
+	    txtTheLoai.setText(values.get(2).toString());
+	    txtNXB.setText(values.get(4).toString());
+	    txtSL.setText(values.get(5).toString());
+	    txtGia.setText(values.get(8).toString());
+	    // Các ô input khác tương tự
 	}
 
 	@Override
@@ -248,6 +273,7 @@ public class QuanLySach implements View, Observer {
 		// TODO Auto-generated method stub
 		if(observable instanceof QLSach) {
 			displaySach(((QLSach) observable).getListSach());
+			System.out.println();
 		}
 		
 	}
