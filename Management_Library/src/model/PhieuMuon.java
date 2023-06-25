@@ -12,8 +12,8 @@ public class PhieuMuon {
 	private double giaMuon;
 	private String trangThai;
 
-	public PhieuMuon(String iD, String ten, KhachHang khachHang, Sach sach, Date ngayMuon, Date ngayDuKienTra,double giaMuon,
-			String trangThai) {
+	public PhieuMuon(String iD, String ten, KhachHang khachHang, Sach sach, Date ngayMuon, Date ngayDuKienTra,
+			double giaMuon, String trangThai) {
 		super();
 		this.iD = iD;
 		this.ten = ten;
@@ -84,6 +84,7 @@ public class PhieuMuon {
 	public void setTrangThai(String trangThai) {
 		this.trangThai = trangThai;
 	}
+
 	public String getGiaMuon() {
 		return trangThai;
 	}

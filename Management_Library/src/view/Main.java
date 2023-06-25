@@ -8,10 +8,9 @@ import javax.swing.SwingUtilities;
 
 import controller.QLSachController;
 import model.QLSach;
-import model.Sach;
 
 public class Main extends JFrame {
-	
+
 //	private JFrame frame;
 	private JMenuBar menuBar;
 
@@ -21,13 +20,12 @@ public class Main extends JFrame {
 	private JMenu qLMTMenu;
 	private JMenu qLTKMenu;
 
-	 private JMenuItem MenuItem;
+	private JMenuItem MenuItem;
+
 	public Main() {
 		menuBar = new JMenuBar();
 		trangChuMenu = new JMenu("Trang chủ");
 		MenuItem = new JMenuItem("Exit");
-        
-
 
 		menuBar = new JMenuBar();
 		qLSMenu = new JMenu("Quản lý sách");
@@ -53,17 +51,18 @@ public class Main extends JFrame {
 
 		setJMenuBar(menuBar);
 	}
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-            	
-            	 QLSach model = new QLSach();
-                 QuanLySach view = new QuanLySach();
-                 QLSachController controller = new QLSachController(model,view);
 
-                 // Gọi phương thức để hiển thị danh sách sách trong View
-                 controller.getSach();
-            }
-        });
-    }
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+
+				QLSach model = new QLSach();
+				QuanLySach view = new QuanLySach();
+				QLSachController controller = new QLSachController(model, view);
+
+				// Gọi phương thức để hiển thị danh sách sách trong View
+				controller.getSach();
+			}
+		});
+	}
 }

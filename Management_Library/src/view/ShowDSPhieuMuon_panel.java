@@ -11,7 +11,6 @@ import javax.swing.table.DefaultTableModel;
 
 import model.Observable;
 import model.Observer;
-import model.QuanLyThuVien;
 
 public class ShowDSPhieuMuon_panel extends JPanel implements Observer {
 

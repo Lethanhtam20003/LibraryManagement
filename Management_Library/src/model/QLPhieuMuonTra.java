@@ -2,13 +2,10 @@ package model;
 
 import java.util.List;
 
-
 public class QLPhieuMuonTra implements QuanLyThuVien {
 
-
-	List<PhieuMuon>listPhieuMuon;
+	List<PhieuMuon> listPhieuMuon;
 	QLSach qlSach;
-	
 
 	public QLPhieuMuonTra(List<PhieuMuon> listPhieuMuon, QLSach qlSach) {
 		super();
@@ -39,13 +36,13 @@ public class QLPhieuMuonTra implements QuanLyThuVien {
 
 	@Override
 	public void them(Object object) {
-		
+
 		PhieuMuon obj = (PhieuMuon) object;
 		listPhieuMuon.add(obj);
-		for(Sach s: qlSach.listSach) {
-			
-			if(obj.sach.getiD().equals(s.getiD())) {
-				s.setSoLuongChoMuon(s.getSoLuongChoMuon()+1);
+		for (Sach s : qlSach.listSach) {
+
+			if (obj.sach.getiD().equals(s.getiD())) {
+				s.setSoLuongChoMuon(s.getSoLuongChoMuon() + 1);
 			}
 		}
 	}
@@ -53,13 +50,13 @@ public class QLPhieuMuonTra implements QuanLyThuVien {
 	@Override
 	public void xoa(String id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void capNhat(String id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
