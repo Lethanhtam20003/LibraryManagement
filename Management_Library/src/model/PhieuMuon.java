@@ -12,8 +12,10 @@ public class PhieuMuon {
 	private double giaSach;
 	private String trangThai;
 
+
 	public PhieuMuon(String iD, String maKhachHang, List<Sach> listSachMuon, Date ngayMuon, Date ngayDuKienTra,
 			double giaSach, String trangThai) {
+
 		super();
 		this.iD = iD;
 		this.maKhachHang = maKhachHang;
@@ -95,6 +97,11 @@ public class PhieuMuon {
 
 	public void setTrangThai(String trangThai) {
 		this.trangThai = trangThai;
+	}
+
+
+	public String getGiaMuon() {
+		return trangThai;
 	}
 
 
