@@ -5,9 +5,11 @@ import java.util.List;
 
 public class QLPhieuMuonTra implements QuanLyThuVien {
 
+
 List<PhieuMuon>listPhieuMuon;
 
 	public QLPhieuMuonTra(List<PhieuMuon> listPhieuMuon) {
+
 		super();
 		this.listPhieuMuon = listPhieuMuon;
 	}
@@ -34,13 +36,13 @@ List<PhieuMuon>listPhieuMuon;
 
 	@Override
 	public void them(Object object) {
-		
+
 		PhieuMuon obj = (PhieuMuon) object;
 		listPhieuMuon.add(obj);
-		for(Sach s: qlSach.listSach) {
-			
-			if(obj.sach.getiD().equals(s.getiD())) {
-				s.setSoLuongChoMuon(s.getSoLuongChoMuon()+1);
+		for (Sach s : qlSach.listSach) {
+
+			if (obj.sach.getiD().equals(s.getiD())) {
+				s.setSoLuongChoMuon(s.getSoLuongChoMuon() + 1);
 			}
 		}
 	}
@@ -63,6 +65,7 @@ List<PhieuMuon>listPhieuMuon;
 				phieuMuon.setNgayDuKienTra(ngayDuKienTraMoi);
 			}
 		}
+
 	}
 	@Override
 	public int getTongSoLuong() {

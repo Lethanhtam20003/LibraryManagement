@@ -12,7 +12,6 @@ import javax.swing.table.DefaultTableModel;
 import model.KhachHang;
 import model.Observable;
 import model.Observer;
-import model.QuanLyThuVien;
 
 public class ShowDSKH_Panel extends JPanel implements Observer {
 
