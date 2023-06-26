@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import model.KhachHang;
 import model.QLKhachHang;
 import view.KhachHangPanel;
-import view.View;
+
 
 public class testViewQuanLyKhachHang {
 

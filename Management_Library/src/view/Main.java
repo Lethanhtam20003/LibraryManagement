@@ -1,68 +1,97 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import controller.MainController;
 import controller.QLSachController;
 import model.QLSach;
 import model.Sach;
 
 public class Main extends JFrame {
 	
-//	private JFrame frame;
-	private JMenuBar menuBar;
+	private static  JMenuBar menuBar;
 
-	private JMenu trangChuMenu;
-	private JMenu qLSMenu;
-	private JMenu qLKHMenu;
-	private JMenu qLMTMenu;
-	private JMenu qLTKMenu;
+	public JMenu trangChuMenu;
+	public JMenu qLThuVien;
+	
 
-	 private JMenuItem MenuItem;
+
+	 private JMenuItem menuItem1, menuItem2, menuItem3, menuItem4, menuItem5;
+	 ActionListener action;
 	public Main() {
+//		this.action = new MainController(this);
+		setSize(900, 619);
+     	setVisible(true);
+     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+     	MyPanel myPanel = new MyPanel();//     	setLayout(new BorderLayout());
+//     	JPanel panel = new JPanel();
+//     	JLabel label = new JLabel("PHẦN MỀM QUẢN LÝ THƯ VIỆN"); 
+//     	label.setFont(new Font(null, Font.BOLD, 25));
+//     	label.setHorizontalAlignment(JLabel.CENTER);
+//     	panel.add(label, BorderLayout.CENTER);
+     	action = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				myPanel.change(e.getActionCommand());
+				if(e.getActionCommand().equals("Thoát")) {
+					System.exit(0);
+				}
+			}
+		};
 		menuBar = new JMenuBar();
-		trangChuMenu = new JMenu("Trang chủ");
-		MenuItem = new JMenuItem("Exit");
-        
+		trangChuMenu = new JMenu("Thoát");
+		menuItem1 = new JMenuItem("Thoát");
+		menuItem1.addActionListener(action);
+//        add(panel);
 
 
 		menuBar = new JMenuBar();
-		qLSMenu = new JMenu("Quản lý sách");
+		qLThuVien = new JMenu("Quản lý thư viện");
+		menuItem2 = new JMenuItem("Quản lý sách");
+		menuItem2.addActionListener(action);
 
-		menuBar = new JMenuBar();
-		qLKHMenu = new JMenu("Quản lý khách hàng");
+		
+		menuItem3 = new JMenuItem("Quản lý khách hàng");
+		menuItem3.addActionListener(action);
 
-		menuBar = new JMenuBar();
-		qLMTMenu = new JMenu("Quản lý mượn trả");
+		
+		menuItem4 = new JMenuItem("Quản lý mượn trả");
+		menuItem4.addActionListener(action);
 
-		menuBar = new JMenuBar();
-		qLTKMenu = new JMenu("Quản lý thống kê");
-
-		menuBar = new JMenuBar();
-		qLTKMenu = new JMenu("Giới thiệu");
+		
+		menuItem5 = new JMenuItem("Quản lý thống kê");
+		menuItem5.addActionListener(action);
 
 		menuBar.add(trangChuMenu);
-		trangChuMenu.add(MenuItem);
-		menuBar.add(qLSMenu);
-		menuBar.add(qLKHMenu);
-		menuBar.add(qLMTMenu);
-		menuBar.add(qLTKMenu);
-
+		trangChuMenu.add(menuItem1);
+		menuBar.add(qLThuVien);
+		qLThuVien.add(menuItem2);
+		qLThuVien.add(menuItem3);
+		qLThuVien.add(menuItem4);
+		qLThuVien.add(menuItem5);
 		setJMenuBar(menuBar);
+		getContentPane().add(myPanel);
+		
 	}
 	public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-            	
-            	 QLSach model = new QLSach();
-                 QuanLySach view = new QuanLySach();
-                 QLSachController controller = new QLSachController(model,view);
+           
+            	new Main();
 
-                 // Gọi phương thức để hiển thị danh sách sách trong View
-                 controller.getSach();
             }
         });
     }
