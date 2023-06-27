@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class QLKhachHang extends Observable implements QuanLyThuVien {
 	private List<KhachHang> listKhachHang;
@@ -73,6 +75,22 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 	@Override
 	public void capNhat(String chuoi) {
 		// TODO Auto-generated method stub
+		System.out.println(chuoi);
+		String id = chuoi.substring(0, chuoi.indexOf("name:"));
+		String name = chuoi.substring(chuoi.indexOf("name:") + 5, chuoi.indexOf("sdt:"));
+		String soDienThoai = chuoi.substring(chuoi.indexOf("sdt:") + 4, chuoi.indexOf("email:"));
+		String diaChi = chuoi.substring(chuoi.indexOf("email:") + 6);
+		if (name.equals("")) {
+			return;
+		}
+		xoa(id);
+		KhachHang kh = new KhachHang(id, name, soDienThoai, diaChi);
+		them(kh);
+
+		System.out.println("ID: " + id);
+		System.out.println("Name: " + name);
+		System.out.println("Địa chỉ: " + diaChi);
+		System.out.println("Số điện thoại: " + soDienThoai);
 
 	}
 
@@ -166,6 +184,7 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 		System.out.println("d" + qlkh.getListKhachHang());
 		qlkh.xoa(kh1.getiD());
 		System.out.println("d" + qlkh.getListKhachHang());
+
 	}
 
 }
