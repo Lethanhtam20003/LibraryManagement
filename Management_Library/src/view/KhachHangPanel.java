@@ -23,8 +23,6 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-
-import controller.Controller;
 import controller.QuanLyDocGia_controller;
 import model.QLKhachHang;
 import model.QuanLyThuVien;
@@ -32,7 +30,7 @@ import model.QuanLyThuVien;
 import javax.swing.border.LineBorder;
 import javax.swing.ListSelectionModel;
 
-public class KhachHangPanel extends JPanel implements View {
+public class KhachHangPanel extends JPanel {
 	private QuanLyThuVien model = new QLKhachHang();
 	Controller ac = new QuanLyDocGia_controller(this, model);
 	private JTextField tfMaDocGia;

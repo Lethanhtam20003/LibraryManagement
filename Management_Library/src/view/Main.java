@@ -13,7 +13,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import controller.MainController;
 import controller.QLSachController;
 import model.QLSach;
 import model.Sach;
@@ -30,21 +29,15 @@ public class Main extends JFrame {
 	 private JMenuItem menuItem1, menuItem2, menuItem3, menuItem4, menuItem5;
 	 ActionListener action;
 	public Main() {
-//		this.action = new MainController(this);
 		setSize(900, 619);
      	setVisible(true);
      	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     	MyPanel myPanel = new MyPanel();//     	setLayout(new BorderLayout());
-//     	JPanel panel = new JPanel();
-//     	JLabel label = new JLabel("PHẦN MỀM QUẢN LÝ THƯ VIỆN"); 
-//     	label.setFont(new Font(null, Font.BOLD, 25));
-//     	label.setHorizontalAlignment(JLabel.CENTER);
-//     	panel.add(label, BorderLayout.CENTER);
+     	MyPanel myPanel = new MyPanel();
+
      	action = new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				myPanel.change(e.getActionCommand());
 				if(e.getActionCommand().equals("Thoát")) {
 					System.exit(0);
@@ -55,8 +48,6 @@ public class Main extends JFrame {
 		trangChuMenu = new JMenu("Thoát");
 		menuItem1 = new JMenuItem("Thoát");
 		menuItem1.addActionListener(action);
-//        add(panel);
-
 
 		menuBar = new JMenuBar();
 		qLThuVien = new JMenu("Quản lý thư viện");
