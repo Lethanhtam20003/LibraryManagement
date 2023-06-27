@@ -20,7 +20,7 @@ import javax.swing.UIManager;
 import model.Observable;
 import model.Observer;
 
-public class KhachHangPanel extends JPanel implements View, Observer {
+public class KhachHangPanel extends JPanel implements Observer {
 	ActionListener ac;
 	private JTextField tfMaDocGia;
 	private JTextField tfSoDienThoai;
@@ -30,9 +30,8 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 	private JButton btThem;
 	private JButton btCapNhat;
 	private JButton btXoa;
-	private JButton btXem;
-	private JTextField tfTenDocGia;
 	private JButton btXemDSDocGia;
+	private JTextField tfTenDocGia;
 	private ShowDSKH_Panel pnDuoi;
 	private JLabel lbShow_ChuThich;
 
@@ -101,14 +100,6 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 		this.btXoa = btXoa;
 	}
 
-	public JButton getBtXem() {
-		return btXem;
-	}
-
-	public void setBtXem(JButton btXem) {
-		this.btXem = btXem;
-	}
-
 	public JButton getBtHienThiDS() {
 		return btXemDSDocGia;
 	}
@@ -132,7 +123,6 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 	public void setPnDuoi(ShowDSKH_Panel pnDuoi) {
 		this.pnDuoi = pnDuoi;
 	}
-
 
 	public JButton getBtXemDSDocGia() {
 		return btXemDSDocGia;
@@ -181,7 +171,6 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 
 	// init khởi tạo cách giá trị bắt đầu
 	public void init() {
-		// TODO Auto-generated method stub
 		this.lbShow_ChucNangDangThucHien.setText("Tìm");
 		tfSoDienThoai.setEditable(false);
 		tfEmail.setEditable(false);
@@ -196,7 +185,6 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 	}
 
 	private JPanel createPanelTren_trai() {
-		// TODO Auto-generated method stub
 		JPanel pnTren_Trai = new JPanel();
 		pnTren_Trai.setBackground(SystemColor.textHighlightText);
 		pnTren_Trai.setLayout(new BorderLayout(20, 20));
@@ -432,10 +420,6 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 		btXoa.setFont(new Font("Arial", Font.PLAIN, 15));
 		panel_2.add(btXoa);
 
-		btXem = new JButton("Xem Phiếu Mượn");
-		btXem.setFont(new Font("Arial", Font.PLAIN, 15));
-		panel_2.add(btXem);
-
 		btXemDSDocGia = new JButton("Xem Ds Độc Giả");
 
 		btXemDSDocGia.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -444,65 +428,9 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 		return pnTren_Trai;
 	}
 
+	
+	
 	@Override
 	public void update(Observable observable) {
-		// TODO Auto-generated method stub
 	}
 }
-
-//	private JPanel createPanelTren_phai() {
-//		// TODO Auto-generated method stub
-//		JPanel pnTren_Phai = new JPanel();
-//		pnTren_Phai.setLayout(new GridLayout(0, 1, 0, 0));
-//
-//		String[] tenCot = { "Mã Phiếu Nhập", "Tên Phiếu Nhập", "Ngày Thành Lập" };
-//		Object[][] giaTriHang = {};
-//
-//		tbModelPhieuNhap = new DefaultTableModel(giaTriHang, tenCot) {
-//			boolean[] columnEditables = new boolean[] { false, false, false, false };
-//
-//			public boolean isCellEditable(int row, int column) {
-//				return columnEditables[column];
-//			}
-//		};
-//		tbSachMuon = new JTable();
-//		tbSachMuon.setModel(tbModelPhieuNhap);
-//		// không cho thay đổi thứ tự cột trong jtable
-//		tbSachMuon.getTableHeader().setReorderingAllowed(false);
-//		tbSachMuon.setColumnSelectionAllowed(true);
-//		tbSachMuon.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//		tbSachMuon.setFont(new Font("Arial", Font.PLAIN, 15));
-//
-//		JScrollPane scrollPane = new JScrollPane(tbSachMuon);
-//
-//		pnTren_Phai.add(scrollPane);
-//		return pnTren_Phai;
-//	}
-
-//	private JPanel createPanelDuoi() {
-//		// TODO Auto-generated method stub
-//		JPanel pnDuoi = new JPanel();
-//		pnDuoi.setLayout(new GridLayout(1, 1, 10, 10));
-//
-//		String[] tenCot = { "Mã Đọc Giả", "Tên Đọc Giả", "Số Điện Thoại", "Địa Chỉ Email" };
-//		Object[][] giaTriHang = {};
-//
-//		tbModelKhachHang = new DefaultTableModel(giaTriHang, tenCot) {
-//			boolean[] columnEditables = new boolean[] { false, false, false, false };
-//
-//			public boolean isCellEditable(int row, int column) {
-//				return columnEditables[column];
-//			}
-//		};
-//
-//		tbDocGia = new JTable();
-//		// không cho thay đổi thứ tự cột trong jtable
-//		tbDocGia.getTableHeader().setReorderingAllowed(false);
-//		tbDocGia.setModel(tbModelKhachHang);
-//
-//		tbDocGia.setFont(new Font("Arial", Font.PLAIN, 13));
-//		JScrollPane scrollPane = new JScrollPane((tbDocGia));
-//		pnDuoi.add(scrollPane);
-//
-//		return pnDuoi;
-//	}
