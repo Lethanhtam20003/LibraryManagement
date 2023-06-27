@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -12,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import model.KhachHang;
 import model.Observable;
 import model.Observer;
+import model.QLKhachHang;
 
 public class ShowDSKH_Panel extends JPanel implements Observer {
 
@@ -80,9 +82,11 @@ public class ShowDSKH_Panel extends JPanel implements Observer {
 	}
 
 	@Override
-	public void update(Observable observable) {
+	public void update(Observable  observable) {
 		// TODO Auto-generated method stub
-
+		List<KhachHang> kh = ((QLKhachHang)observable).getListKhachHang();
+		clearTableKhachHang();
+		this.ShowDSKhachHang(kh);
 	}
 
 }

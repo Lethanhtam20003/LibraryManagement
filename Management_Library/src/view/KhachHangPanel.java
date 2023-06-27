@@ -34,7 +34,6 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 	private JTextField tfTenDocGia;
 	private JButton btXemDSDocGia;
 	private ShowDSKH_Panel pnDuoi;
-	private ShowDSPhieuMuon_panel pnTren_Phai;
 	private JLabel lbShow_ChuThich;
 
 	// getter and setter
@@ -134,13 +133,6 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 		this.pnDuoi = pnDuoi;
 	}
 
-	public ShowDSPhieuMuon_panel getPnTren_Phai() {
-		return pnTren_Phai;
-	}
-
-	public void setPnTren_Phai(ShowDSPhieuMuon_panel pnTren_Phai) {
-		this.pnTren_Phai = pnTren_Phai;
-	}
 
 	public JButton getBtXemDSDocGia() {
 		return btXemDSDocGia;
@@ -171,16 +163,12 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 
 		JPanel pnTren = new JPanel();
 		pnTren.setBackground(SystemColor.window);
-		pnTren.setLayout(new GridLayout(0, 2, 20, 40));
+		pnTren.setLayout(new GridLayout(0, 1, 20, 40));
 //          
 		JPanel pnTren_Trai = createPanelTren_trai();
-//
-		pnTren_Phai = new ShowDSPhieuMuon_panel();
-		pnTren_Phai.setLayout(new GridLayout(0, 1, 0, 0));
 
 		// add pn
 		pnTren.add(pnTren_Trai);
-		pnTren.add(pnTren_Phai);
 
 		pnDuoi = new ShowDSKH_Panel();
 		pnDuoi.setLayout(new GridLayout());
@@ -203,6 +191,7 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 		tfTenDocGia.setText("");
 		tfSoDienThoai.setText("");
 		tfEmail.setText("");
+		lbShow_ChuThich.setText("nhập id hoặc nhập tên độc giả");
 
 	}
 
@@ -232,12 +221,12 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 		lbShow_ChucNangDangThucHien.setLabelFor(lbShow_ChucNangDangThucHien);
 		lbShow_ChucNangDangThucHien.setFont(new Font("Arial", Font.PLAIN, 18));
 		pnTren_Trai_ShowChucNang.add(lbShow_ChucNangDangThucHien);
-		
+
 		JLabel lblChThch = new JLabel("Chú Thích:   ");
 		lblChThch.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblChThch.setFont(new Font("Arial", Font.PLAIN, 18));
 		pnTren_Trai_ShowChucNang.add(lblChThch);
-		
+
 		lbShow_ChuThich = new JLabel();
 		lbShow_ChuThich.setPreferredSize(new Dimension(100, 22));
 		lbShow_ChuThich.setForeground(Color.BLACK);
@@ -289,7 +278,7 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 		tfMaDocGia.setForeground(Color.BLACK);
 		tfMaDocGia.setFont(new Font("Arial", Font.PLAIN, 14));
 		tfMaDocGia.setHorizontalAlignment(SwingConstants.LEFT);
-		tfMaDocGia.setColumns(18);
+		tfMaDocGia.setColumns(40);
 		tfMaDocGia.setBackground(Color.WHITE);
 		panel_1.add(tfMaDocGia);
 
@@ -327,7 +316,7 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 		tfTenDocGia.setHorizontalAlignment(SwingConstants.LEFT);
 		tfTenDocGia.setForeground(Color.BLACK);
 		tfTenDocGia.setFont(new Font("Arial", Font.PLAIN, 14));
-		tfTenDocGia.setColumns(18);
+		tfTenDocGia.setColumns(40);
 		panel_1_2.add(tfTenDocGia);
 
 		JPanel panel_7_1 = new JPanel();
@@ -369,7 +358,7 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 		tfSoDienThoai.setForeground(Color.BLACK);
 		tfSoDienThoai.setFont(new Font("Arial", Font.PLAIN, 14));
 
-		tfSoDienThoai.setColumns(18);
+		tfSoDienThoai.setColumns(40);
 		tfSoDienThoai.setBackground(Color.LIGHT_GRAY);
 		panel_1_1.add(tfSoDienThoai);
 
@@ -412,15 +401,19 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 		tfEmail.setForeground(Color.BLACK);
 		tfEmail.setFont(new Font("Arial", Font.PLAIN, 14));
 
-		tfEmail.setColumns(18);
+		tfEmail.setColumns(40);
 		tfEmail.setBackground(Color.LIGHT_GRAY);
 		panel_1_3.add(tfEmail);
 
 		JPanel pnTren_trai_chuaButton = new JPanel();
 		pnTren_trai_chuaButton.setBackground(Color.WHITE);
 		pnTren_Trai.add(pnTren_trai_chuaButton, BorderLayout.SOUTH);
+		pnTren_trai_chuaButton.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(255, 255, 255));
+		FlowLayout flowLayout_2 = (FlowLayout) panel_2.getLayout();
+		flowLayout_2.setHgap(35);
 		pnTren_trai_chuaButton.add(panel_2);
 
 		btTim = new JButton("Tìm");
@@ -454,7 +447,6 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 	@Override
 	public void update(Observable observable) {
 		// TODO Auto-generated method stub
-
 	}
 }
 

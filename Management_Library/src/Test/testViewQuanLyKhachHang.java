@@ -1,8 +1,6 @@
 package Test;
 
 import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -10,7 +8,6 @@ import controller.QuanLyKhachHang_controller;
 import model.KhachHang;
 import model.QLKhachHang;
 import view.KhachHangPanel;
-import view.View;
 
 public class testViewQuanLyKhachHang {
 
@@ -31,6 +28,8 @@ public class testViewQuanLyKhachHang {
 		main.add(kh);
 		main.setSize(new Dimension(900, 900));
 		main.setVisible(true);
+		main.setLocation(0, 0);
+		main.pack();
 
 	}
 

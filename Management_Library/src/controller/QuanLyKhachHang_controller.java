@@ -6,13 +6,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.table.DefaultTableModel;
-
 import model.KhachHang;
 import model.QLKhachHang;
-import model.QuanLyThuVien;
 import view.KhachHangPanel;
-import view.ShowDSKH_Panel;
 
 public class QuanLyKhachHang_controller implements ActionListener {
 	private KhachHangPanel view;
@@ -29,19 +25,15 @@ public class QuanLyKhachHang_controller implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if (e.getActionCommand().equals("Tìm")) {
-			clearTableKhachHang();
 			tim();
-
+			resetTim();
 		} else if (e.getActionCommand().equals("Thêm")) {
 			them();
 		} else if (e.getActionCommand().equals("Cập nhật")) {
 			capNhat();
 		} else if (e.getActionCommand().equals("Xóa")) {
 			xoa();
-		} else if (e.getActionCommand().equals("Xem Phiếu Mượn")) {
-			XemPhieuMuon();
 		} else if (e.getActionCommand().equals("Xem Ds Độc Giả")) {
 			System.out.println(e.getActionCommand());
 			XemDSDocGia();
@@ -78,17 +70,14 @@ public class QuanLyKhachHang_controller implements ActionListener {
 
 				dicription = "tìm không thành công";
 				showDicription(dicription);
-				resetTim();
 			}
 		} else {
 			showDicription(dicription);
 			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
-			resetTim();
 		}
 	}
 
 	private void showDicription(String dicription2) {
-		// TODO Auto-generated method stub
 		this.view.getLbShow_ChuThich().setText(dicription2);
 	}
 
@@ -97,17 +86,20 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		dicription = "nhập thông tin độc giả";
 		showDicription(dicription);
 		System.out.println(showChucNang);
+		// chuc nang hien tai co phai them hay khong
 		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Thêm")) {
-
+			// tao id moi cho kh
 			String id = this.model.createID(model.getListKhachHang().get(model.getListKhachHang().size() - 1).getiD());
 
 			String ten = this.view.getTfTenDocGia().getText();
 			String sdt = this.view.getTfSoDienThoai().getText();
 			String email = this.view.getTfEmail().getText();
+
+			// khach hang phai co ten moi dc them vao
 			if (!ten.equals("")) {
 				KhachHang kh = new KhachHang(id, ten, sdt, email);
 				model.them(kh);
-				XemDSDocGia();
+				// XemDSDocGia();
 				dicription = "Thêm thanh công";
 				showDicription(dicription);
 			}
@@ -121,17 +113,12 @@ public class QuanLyKhachHang_controller implements ActionListener {
 	}
 
 	private void xoa() {
-		// TODO Auto-generated method stub
 		showChucNang = "Xóa";
 		System.out.println(showChucNang);
 		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Xóa")) {
 			//
 			String str = view.getTfMaDocGia().getText();
-			KhachHang kh = (KhachHang) model.timKiemTheoID(str).get(0);
 			model.xoa(str);
-			view.getTfTenDocGia().setText(kh.getTen());
-			view.getTfEmail().setText(kh.getDiaChi());
-			view.getTfSoDienThoai().setText(kh.getSoDT());
 
 		} else {
 			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
@@ -140,10 +127,13 @@ public class QuanLyKhachHang_controller implements ActionListener {
 	}
 
 	private void resetXoa() {
-		// TODO Auto-generated method stub
-		view.getTfTenDocGia().setVisible(false);
-		view.getTfEmail().setVisible(false);
-		view.getTfSoDienThoai().setVisible(false);
+		view.getTfMaDocGia().setEditable(true);
+		view.getTfMaDocGia().setText("");
+		view.getTfTenDocGia().setBackground(Color.white);
+
+		view.getTfTenDocGia().setEditable(false);
+		view.getTfEmail().setEditable(false);
+		view.getTfSoDienThoai().setEditable(false);
 
 		view.getTfTenDocGia().setBackground(Color.LIGHT_GRAY);
 		view.getTfEmail().setBackground(Color.LIGHT_GRAY);
@@ -152,7 +142,6 @@ public class QuanLyKhachHang_controller implements ActionListener {
 	}
 
 	private void capNhat() {
-		// TODO Auto-generated method stub
 		showChucNang = "Cập Nhật";
 		System.out.println(showChucNang);
 		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("")) {
@@ -163,20 +152,7 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		}
 	}
 
-	private void XemPhieuMuon() {
-		// TODO Auto-generated method stub
-		showChucNang = "Xem Phiếu Mượn";
-		System.out.println(showChucNang);
-		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Xem Phiếu Mượn")) {
-			//
-
-		} else {
-			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
-		}
-	}
-
 	private void XemDSDocGia() {
-		// TODO Auto-generated method stub
 		showChucNang = "Xem Ds Độc Giả";
 		System.out.println(showChucNang);
 		ShowDSKhachHang(model.getListKhachHang());
@@ -189,7 +165,6 @@ public class QuanLyKhachHang_controller implements ActionListener {
 	}
 
 	private void resetTim() {
-		// TODO Auto-generated method stub
 		this.view.getTfMaDocGia().setText("");
 		this.view.getTfTenDocGia().setText("");
 		this.view.getTfSoDienThoai().setText("");
@@ -207,7 +182,6 @@ public class QuanLyKhachHang_controller implements ActionListener {
 	}
 
 	private void resetThem() {
-		// TODO Auto-generated method stub
 		this.view.getTfMaDocGia().setEditable(false);
 		this.view.getTfMaDocGia().setBackground(Color.LIGHT_GRAY);
 
@@ -229,7 +203,6 @@ public class QuanLyKhachHang_controller implements ActionListener {
 	}
 
 	private List<KhachHang> chuyenDoiDanhSach(List<Object> input) {
-		// TODO Auto-generated method stub
 		if (input == null) {
 			return null;
 		}
@@ -244,26 +217,21 @@ public class QuanLyKhachHang_controller implements ActionListener {
 
 	public void ShowDSKhachHang(List<KhachHang> dsKhachHang) {
 		clearTableKhachHang();
-		// TODO
 		this.view.getPnDuoi().ShowDSKhachHang(dsKhachHang);
 	}
 
+	// xoa toan bo hang trong bang
 	public void clearTableKhachHang() {
-		// TODO
 		this.view.getPnDuoi().clearTableKhachHang();
-		// this.view.clearTableKhachHang();
 	}
 
-	public void createShowDSPhieuMuon_panel() {
-
-	}
-
+	// dang ky observer
 	public void initObserver() {
 		model.addObserver(view);
 		model.addObserver(view.getPnDuoi());
-		model.addObserver(view.getPnTren_Phai());
 	}
 
+	// chay dau tien khi run app
 	public void run() {
 
 		// them action

@@ -63,6 +63,7 @@ public class Test_QLKhachHang extends TestCase {
 
 	public void testxoa() {
 		qlkh.xoa(kh1.getiD());
+		System.out.println(qlkh.getListKhachHang());
 	}
 
 	public void testCapNhat() {
