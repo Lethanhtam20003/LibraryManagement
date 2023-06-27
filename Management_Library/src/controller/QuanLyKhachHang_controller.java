@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -135,16 +134,13 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		showChucNang = "Cập Nhật";
 		System.out.println(showChucNang);
 		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Cập Nhật")) {
-			
+
 			String id = this.view.getTfMaDocGia().getText();
 			String name = this.view.getTfTenDocGia().getText();
-			String sdt = this.view.getTfEmail().getText();
-			String email = this.view.getTfSoDienThoai().getText();
-			
-			model.xoa(id);
-			KhachHang kh = new KhachHang(id, name, sdt, email);
-			model.them(kh);
-			
+			String sdt = this.view.getTfSoDienThoai().getText();
+			String email = this.view.getTfEmail().getText();
+
+			model.capNhat(id + "name:" + name + "sdt:" + sdt + "email:" + email);
 
 		} else {
 			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
@@ -229,7 +225,7 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		view.getTfTenDocGia().setText("");
 		view.getTfEmail().setText("");
 		view.getTfSoDienThoai().setText("");
-		
+
 		view.getTfTenDocGia().setEditable(false);
 		view.getTfEmail().setEditable(false);
 		view.getTfSoDienThoai().setEditable(false);

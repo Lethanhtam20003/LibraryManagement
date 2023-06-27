@@ -73,6 +73,22 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 	@Override
 	public void capNhat(String chuoi) {
 		// TODO Auto-generated method stub
+		System.out.println(chuoi);
+		String id = chuoi.substring(0, chuoi.indexOf("name:"));
+		String name = chuoi.substring(chuoi.indexOf("name:") + 5, chuoi.indexOf("sdt:"));
+		String soDienThoai = chuoi.substring(chuoi.indexOf("sdt:") + 4, chuoi.indexOf("email:"));
+		String diaChi = chuoi.substring(chuoi.indexOf("email:") + 6);
+		if (name.equals("")) {
+			return;
+		}
+		xoa(id);
+		KhachHang kh = new KhachHang(id, name, soDienThoai, diaChi);
+		them(kh);
+
+		System.out.println("ID: " + id);
+		System.out.println("Name: " + name);
+		System.out.println("Địa chỉ: " + diaChi);
+		System.out.println("Số điện thoại: " + soDienThoai);
 
 	}
 
@@ -146,26 +162,6 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 			}
 
 		});
-	}
-
-	public static void main(String[] args) {
-		QLKhachHang qlkh = new QLKhachHang();
-		KhachHang kh1 = new KhachHang("KH101", "tri lo", "0345551000", "tan binh");
-		KhachHang kh2 = new KhachHang("KH102", "chua mom", "0320001000", "chau dua");
-		KhachHang kh3 = new KhachHang("KH103", "duc tri", "0340001000", "ba ria");
-		qlkh.them(kh1);
-		qlkh.them(kh2);
-		qlkh.them(kh3);
-		System.out.println("ds");
-		String id = (qlkh.getListKhachHang().get(qlkh.getListKhachHang().size() - 1).getiD());
-		System.out.println("id=" + id);
-		System.out.println(qlkh.tachSo(id));
-		System.out.println(qlkh.createID(id));
-
-		qlkh.xoa("ds");
-		System.out.println("d" + qlkh.getListKhachHang());
-		qlkh.xoa(kh1.getiD());
-		System.out.println("d" + qlkh.getListKhachHang());
 	}
 
 }
