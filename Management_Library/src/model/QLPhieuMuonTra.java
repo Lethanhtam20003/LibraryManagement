@@ -78,4 +78,16 @@ List<PhieuMuon>listPhieuMuon;
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public void xoa(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void capNhat(String id) {
+		// TODO Auto-generated method stub
+		
+	}
 }
