@@ -52,14 +52,20 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 		// TODO Auto-generated method stub
 		KhachHang kh = (KhachHang) object;
 		this.getListKhachHang().add(kh);
+		notifyObservers();
 	}
 
 	@Override
 	public void xoa(String id) {
 		// TODO Auto-generated method stub
-		KhachHang kh = (KhachHang) timKiemTheoID(id);
-		if (kh != null)
-			this.getListKhachHang().remove(kh);
+		if (timKiemTheoID(id).size() >= 1) {
+			KhachHang kh = (KhachHang) timKiemTheoID(id).get(0);
+
+			if (kh != null) {
+				this.getListKhachHang().remove(kh);
+				notifyObservers();
+			}
+		}
 	}
 
 	@Override
@@ -71,7 +77,7 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 	@Override
 	public int getTongSoLuong() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.getListKhachHang().size();
 	}
 
 	@Override
@@ -116,10 +122,9 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 	public void removeObserver(Observer observer) {
 		observers.remove(observer);
 	}
-
 	public void notifyObservers() {
 		for (Observer observer : observers) {
-			(observer).update(this);
+			observer.update(this);
 		}
 	}
 
@@ -136,6 +141,11 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 		System.out.println("id=" + id);
 		System.out.println(qlkh.tachSo(id));
 		System.out.println(qlkh.createID(id));
+		
+		qlkh.xoa("ds");
+		System.out.println("d" + qlkh.getListKhachHang());
+		qlkh.xoa(kh1.getiD());
+		System.out.println("d" + qlkh.getListKhachHang());
 	}
 
 }
