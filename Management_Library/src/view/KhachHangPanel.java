@@ -17,13 +17,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-
 import model.Observable;
 import model.Observer;
 
 public class KhachHangPanel extends JPanel implements Observer {
-
-	ActionListener ac;
 
 	private JTextField tfMaDocGia;
 	private JTextField tfSoDienThoai;
@@ -431,13 +428,9 @@ public class KhachHangPanel extends JPanel implements Observer {
 		return pnTren_Trai;
 	}
 
-	
-	
 	@Override
 	public void update(Observable observable) {
 	}
-
-
 
 }
 
@@ -497,4 +490,3 @@ public class KhachHangPanel extends JPanel implements Observer {
 //
 //		return pnDuoi;
 //	}
-

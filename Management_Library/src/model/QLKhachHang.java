@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class QLKhachHang extends Observable implements QuanLyThuVien {
 	private List<KhachHang> listKhachHang;
@@ -164,27 +162,6 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 			}
 
 		});
-	}
-
-	public static void main(String[] args) {
-		QLKhachHang qlkh = new QLKhachHang();
-		KhachHang kh1 = new KhachHang("KH101", "tri lo", "0345551000", "tan binh");
-		KhachHang kh2 = new KhachHang("KH102", "chua mom", "0320001000", "chau dua");
-		KhachHang kh3 = new KhachHang("KH103", "duc tri", "0340001000", "ba ria");
-		qlkh.them(kh1);
-		qlkh.them(kh2);
-		qlkh.them(kh3);
-		System.out.println("ds");
-		String id = (qlkh.getListKhachHang().get(qlkh.getListKhachHang().size() - 1).getiD());
-		System.out.println("id=" + id);
-		System.out.println(qlkh.tachSo(id));
-		System.out.println(qlkh.createID(id));
-
-		qlkh.xoa("ds");
-		System.out.println("d" + qlkh.getListKhachHang());
-		qlkh.xoa(kh1.getiD());
-		System.out.println("d" + qlkh.getListKhachHang());
-
 	}
 
 }
