@@ -91,23 +91,27 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 	public String createID(String string) {
 		// TODO Auto-generated method stub
 		String id = null;
-		int idNumbet = tachSo(string);
-		idNumbet++;
-		boolean idExists;
+		if (listKhachHang.size() >= 1) {
 
-		// Tạo ID
-		id = "KH" + idNumbet;
+			int idNumbet = tachSo(listKhachHang.get(listKhachHang.size() - 1).getiD());
+			idNumbet++;
+			boolean idExists;
 
-		// Kiểm tra xem ID đã tồn tại trong danh sách khách hàng chưa
-		idExists = false;
-		for (KhachHang khachHang : listKhachHang) {
-			if (khachHang.getiD().equals(id)) {
-				idExists = true;
-				createID("KH" + idNumbet);
+			// Tạo ID
+			id = "KH" + idNumbet;
+
+			// Kiểm tra xem ID đã tồn tại trong danh sách khách hàng chưa
+			idExists = false;
+			for (KhachHang khachHang : listKhachHang) {
+				if (khachHang.getiD().equals(id)) {
+					idExists = true;
+					createID("KH" + idNumbet);
+				}
 			}
-		}
 
-		return id;
+			return id;
+		}
+		return "KH101";
 	}
 
 	private int tachSo(String id) {

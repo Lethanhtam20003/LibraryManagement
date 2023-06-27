@@ -94,7 +94,7 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		// chuc nang hien tai co phai them hay khong
 		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Thêm")) {
 			// tao id moi cho kh
-			String id = this.model.createID(model.getListKhachHang().get(model.getListKhachHang().size() - 1).getiD());
+			String id = this.model.createID("");
 
 			String ten = this.view.getTfTenDocGia().getText();
 			String sdt = this.view.getTfSoDienThoai().getText();
@@ -197,7 +197,7 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		this.view.getTfSoDienThoai().setBackground(Color.white);
 		this.view.getTfSoDienThoai().setText("");
 
-		String id = this.model.createID(model.getListKhachHang().get(model.getListKhachHang().size() - 1).getiD());
+		String id = this.model.createID("");
 		this.view.getTfMaDocGia().setText(id);
 
 	}
