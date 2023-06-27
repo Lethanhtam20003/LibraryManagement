@@ -5,7 +5,7 @@ import java.util.List;
 
 import dao.Data;
 
-public class QLSach implements QuanLyThuVien {
+public class QLSach extends Observable implements QuanLyThuVien  {
 
 	List<Sach> listSach;
 

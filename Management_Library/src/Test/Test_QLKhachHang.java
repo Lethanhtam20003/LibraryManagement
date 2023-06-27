@@ -73,7 +73,9 @@ public class Test_QLKhachHang extends TestCase {
 	public void testGetSoLuong() {
 		setDataForTest();
 
+
 		assertEquals(qlkh.getTongSoLuong(), 3);
+
 	}
 
 }
