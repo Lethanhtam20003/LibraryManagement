@@ -17,11 +17,13 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+
 import model.Observable;
 import model.Observer;
 
-public class KhachHangPanel extends JPanel implements View, Observer {
+public class KhachHangPanel extends JPanel implements  Observer {
 	ActionListener ac;
+
 	private JTextField tfMaDocGia;
 	private JTextField tfSoDienThoai;
 	private JTextField tfEmail;
@@ -448,6 +450,8 @@ public class KhachHangPanel extends JPanel implements View, Observer {
 	public void update(Observable observable) {
 		// TODO Auto-generated method stub
 	}
+
+
 }
 
 //	private JPanel createPanelTren_phai() {
