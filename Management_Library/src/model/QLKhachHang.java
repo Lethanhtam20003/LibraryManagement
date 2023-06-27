@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class QLKhachHang extends Observable implements QuanLyThuVien {
@@ -122,10 +124,24 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 	public void removeObserver(Observer observer) {
 		observers.remove(observer);
 	}
+
 	public void notifyObservers() {
+		sapXep();
 		for (Observer observer : observers) {
 			observer.update(this);
 		}
+	}
+
+	public void sapXep() {
+		Collections.sort(listKhachHang, new Comparator<KhachHang>() {
+
+			@Override
+			public int compare(KhachHang o1, KhachHang o2) {
+				// TODO Auto-generated method stub
+				return o1.getiD().compareToIgnoreCase(o2.getiD());
+			}
+
+		});
 	}
 
 	public static void main(String[] args) {
@@ -141,7 +157,7 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 		System.out.println("id=" + id);
 		System.out.println(qlkh.tachSo(id));
 		System.out.println(qlkh.createID(id));
-		
+
 		qlkh.xoa("ds");
 		System.out.println("d" + qlkh.getListKhachHang());
 		qlkh.xoa(kh1.getiD());

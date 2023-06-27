@@ -6,6 +6,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import model.KhachHang;
 import model.QLKhachHang;
 import view.KhachHangPanel;
@@ -19,6 +23,7 @@ public class QuanLyKhachHang_controller implements ActionListener {
 	public QuanLyKhachHang_controller(KhachHangPanel viewkh, QLKhachHang qlkh) {
 		this.model = qlkh;
 		this.view = viewkh;
+		showChucNang = "";
 		run();
 		initObserver();
 	}
@@ -126,30 +131,25 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		resetXoa();
 	}
 
-	private void resetXoa() {
-		view.getTfMaDocGia().setEditable(true);
-		view.getTfMaDocGia().setText("");
-		view.getTfTenDocGia().setBackground(Color.white);
-
-		view.getTfTenDocGia().setEditable(false);
-		view.getTfEmail().setEditable(false);
-		view.getTfSoDienThoai().setEditable(false);
-
-		view.getTfTenDocGia().setBackground(Color.LIGHT_GRAY);
-		view.getTfEmail().setBackground(Color.LIGHT_GRAY);
-		view.getTfSoDienThoai().setBackground(Color.LIGHT_GRAY);
-
-	}
-
 	private void capNhat() {
 		showChucNang = "Cập Nhật";
 		System.out.println(showChucNang);
-		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("")) {
-			//
+		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Cập Nhật")) {
+			
+			String id = this.view.getTfMaDocGia().getText();
+			String name = this.view.getTfTenDocGia().getText();
+			String sdt = this.view.getTfEmail().getText();
+			String email = this.view.getTfSoDienThoai().getText();
+			
+			model.xoa(id);
+			KhachHang kh = new KhachHang(id, name, sdt, email);
+			model.them(kh);
+			
 
 		} else {
 			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
 		}
+		resetCapNhat();
 	}
 
 	private void XemDSDocGia() {
@@ -202,6 +202,44 @@ public class QuanLyKhachHang_controller implements ActionListener {
 
 	}
 
+	private void resetCapNhat() {
+		this.view.getTfMaDocGia().setEditable(true);
+		this.view.getTfMaDocGia().setBackground(Color.white);
+		this.view.getTfMaDocGia().setText("");
+
+		this.view.getTfTenDocGia().setEditable(true);
+		this.view.getTfTenDocGia().setBackground(Color.white);
+		this.view.getTfTenDocGia().setText("");
+
+		this.view.getTfEmail().setEditable(true);
+		this.view.getTfEmail().setBackground(Color.white);
+		this.view.getTfEmail().setText("");
+
+		this.view.getTfSoDienThoai().setEditable(true);
+		this.view.getTfSoDienThoai().setBackground(Color.white);
+		this.view.getTfSoDienThoai().setText("");
+
+	}
+
+	private void resetXoa() {
+		view.getTfMaDocGia().setEditable(true);
+		view.getTfMaDocGia().setText("");
+		view.getTfMaDocGia().setBackground(Color.white);
+
+		view.getTfTenDocGia().setText("");
+		view.getTfEmail().setText("");
+		view.getTfSoDienThoai().setText("");
+		
+		view.getTfTenDocGia().setEditable(false);
+		view.getTfEmail().setEditable(false);
+		view.getTfSoDienThoai().setEditable(false);
+
+		view.getTfTenDocGia().setBackground(Color.LIGHT_GRAY);
+		view.getTfEmail().setBackground(Color.LIGHT_GRAY);
+		view.getTfSoDienThoai().setBackground(Color.LIGHT_GRAY);
+
+	}
+
 	private List<KhachHang> chuyenDoiDanhSach(List<Object> input) {
 		if (input == null) {
 			return null;
@@ -239,10 +277,44 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		this.view.getBtThem().addActionListener(this);
 		this.view.getBtXoa().addActionListener(this);
 		this.view.getBtCapNhat().addActionListener(this);
-		this.view.getBtXem().addActionListener(this);
 		this.view.getBtHienThiDS().addActionListener(this);
-
+		this.view.getPnDuoi().getTbDocGia().getSelectionModel().addListSelectionListener(selectionListener());
 		ShowDSKhachHang(model.getListKhachHang());
+	}
+
+	private ListSelectionListener selectionListener() {
+		// TODO Auto-generated method stub
+		ListSelectionListener result = new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO Auto-generated method stub
+//				if (view.getLbShow_ChucNangDangThucHien().equals("Cập Nhật") || view.getLbShow_ChucNangDangThucHien().equals("Xóa")) {
+				if (showChucNang.equals("Cập Nhật") || showChucNang.equals("Xóa")) {
+					if (!e.getValueIsAdjusting()) {
+						int selectedRow = view.getPnDuoi().getTbDocGia().getSelectedRow();
+						if (selectedRow != -1) {
+							Object id = view.getPnDuoi().getTbDocGia().getValueAt(selectedRow, 0);
+							Object name = view.getPnDuoi().getTbDocGia().getValueAt(selectedRow, 1);
+							Object sdt = view.getPnDuoi().getTbDocGia().getValueAt(selectedRow, 2);
+							Object email = view.getPnDuoi().getTbDocGia().getValueAt(selectedRow, 3);
+
+							// Hiển thị thông tin
+							System.out.println("Selected Row: " + selectedRow);
+							System.out.println("ID: " + id);
+							System.out.println("Name: " + name);
+							System.out.println("Email: " + email);
+
+							view.getTfMaDocGia().setText((String) id);
+							view.getTfTenDocGia().setText((String) name);
+							view.getTfSoDienThoai().setText((String) sdt);
+							view.getTfEmail().setText((String) email);
+						}
+					}
+
+				}
+			}
+		};
+		return result;
 	}
 
 }
