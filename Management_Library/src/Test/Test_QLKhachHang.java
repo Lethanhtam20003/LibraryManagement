@@ -3,12 +3,9 @@ package Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JFrame;
-
 import junit.framework.TestCase;
 import model.KhachHang;
 import model.QLKhachHang;
-import view.KhachHangPanel;
 
 public class Test_QLKhachHang extends TestCase {
 

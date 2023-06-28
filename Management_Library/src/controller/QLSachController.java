@@ -4,13 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
-import model.Observable;
+import javax.swing.JOptionPane;
+
 import model.Observer;
 import model.QLSach;
-import model.QuanLyThuVien;
 import model.Sach;
 import view.QuanLySach;
 
@@ -40,8 +38,7 @@ public class QLSachController implements ActionListener {
 			String nxb = view.txtNXB.getText();
 			// Kiểm tra các trường nhập vào là null
 			if (id.isEmpty() || tenSach.isEmpty() || tacGia.isEmpty() || theLoai.isEmpty() || nxb.isEmpty()
-					|| view.txtSL.getText().isEmpty()
-					|| view.txtGia.getText().isEmpty()) {
+					|| view.txtSL.getText().isEmpty() || view.txtGia.getText().isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin", "Lỗi", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -68,7 +65,7 @@ public class QLSachController implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Thêm sách thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case "Xóa":
-			if(view.values==null) {
+			if (view.values == null) {
 				JOptionPane.showMessageDialog(null, "Chưa chọn sách cần xóa", "Thông báo", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -98,7 +95,7 @@ public class QLSachController implements ActionListener {
 
 		observerView.add((Observer) this.view);
 		for (Observer view : observerView) {
-			 model.add(view);
+			model.add(view);
 		}
 	}
 

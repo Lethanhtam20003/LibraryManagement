@@ -24,7 +24,9 @@ public class Main extends JFrame {
 	 private JMenuItem menuItem1, menuItem2, menuItem3, menuItem4, menuItem5;
 	 ActionListener action;
 	public Main() {
+//		setSize(900, 619);
 		setSize(900, 619);
+		
      	setVisible(true);
      	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      	MyPanel myPanel = new MyPanel();

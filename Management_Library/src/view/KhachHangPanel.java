@@ -7,7 +7,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -144,6 +143,7 @@ public class KhachHangPanel extends JPanel implements Observer {
 	 * Create the panel.
 	 */
 	public KhachHangPanel() {
+		this.setSize(new Dimension(900, 619));
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel container = new JPanel();
@@ -174,9 +174,6 @@ public class KhachHangPanel extends JPanel implements Observer {
 		this.lbShow_ChucNangDangThucHien.setText("Tìm");
 		tfSoDienThoai.setEditable(false);
 		tfEmail.setEditable(false);
-
-		//
-		tfMaDocGia.setText("");
 		tfTenDocGia.setText("");
 		tfSoDienThoai.setText("");
 		tfEmail.setText("");
@@ -242,9 +239,8 @@ public class KhachHangPanel extends JPanel implements Observer {
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.window);
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-		flowLayout.setVgap(20);
-		flowLayout.setHgap(20);
 		flowLayout.setAlignment(FlowLayout.LEFT);
+		flowLayout.setHgap(10);
 		panel_11.add(panel);
 
 		JLabel lblNewLabel_2 = new JLabel("Mã Độc Giả ");
@@ -262,11 +258,14 @@ public class KhachHangPanel extends JPanel implements Observer {
 		panel_12.add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
+		// text field mã đọc giã
 		tfMaDocGia = new JTextField();
 		tfMaDocGia.setForeground(Color.BLACK);
 		tfMaDocGia.setFont(new Font("Arial", Font.PLAIN, 14));
 		tfMaDocGia.setHorizontalAlignment(SwingConstants.LEFT);
-		tfMaDocGia.setColumns(40);
+		tfMaDocGia.setColumns(35);
+		tfMaDocGia.setPreferredSize(
+				new Dimension((int) getPreferredSize().getWidth(), (int) getPreferredSize().getHeight() + 30));
 		tfMaDocGia.setBackground(Color.WHITE);
 		panel_1.add(tfMaDocGia);
 
@@ -282,6 +281,9 @@ public class KhachHangPanel extends JPanel implements Observer {
 		panel_11_2.setLayout(new GridLayout(1, 1, 0, 0));
 
 		JPanel panel_9 = new JPanel();
+		FlowLayout flowLayout_4 = (FlowLayout) panel_9.getLayout();
+		flowLayout_4.setAlignment(FlowLayout.LEFT);
+		flowLayout_4.setHgap(10);
 		panel_9.setBackground(SystemColor.window);
 		panel_11_2.add(panel_9);
 
@@ -304,7 +306,9 @@ public class KhachHangPanel extends JPanel implements Observer {
 		tfTenDocGia.setHorizontalAlignment(SwingConstants.LEFT);
 		tfTenDocGia.setForeground(Color.BLACK);
 		tfTenDocGia.setFont(new Font("Arial", Font.PLAIN, 14));
-		tfTenDocGia.setColumns(40);
+		tfTenDocGia.setColumns(35);
+		tfTenDocGia.setPreferredSize(
+				new Dimension((int) getPreferredSize().getWidth(), (int) getPreferredSize().getHeight() + 30));
 		panel_1_2.add(tfTenDocGia);
 
 		JPanel panel_7_1 = new JPanel();
@@ -321,8 +325,7 @@ public class KhachHangPanel extends JPanel implements Observer {
 		JPanel panel_8 = new JPanel();
 		FlowLayout flowLayout_1 = (FlowLayout) panel_8.getLayout();
 		flowLayout_1.setAlignment(FlowLayout.LEFT);
-		flowLayout_1.setVgap(20);
-		flowLayout_1.setHgap(20);
+		flowLayout_1.setHgap(10);
 		panel_8.setBackground(SystemColor.window);
 		panel_11_1.add(panel_8);
 
@@ -345,8 +348,9 @@ public class KhachHangPanel extends JPanel implements Observer {
 		tfSoDienThoai.setHorizontalAlignment(SwingConstants.LEFT);
 		tfSoDienThoai.setForeground(Color.BLACK);
 		tfSoDienThoai.setFont(new Font("Arial", Font.PLAIN, 14));
-
-		tfSoDienThoai.setColumns(40);
+		tfSoDienThoai.setColumns(35);
+		tfSoDienThoai.setPreferredSize(
+				new Dimension((int) getPreferredSize().getWidth(), (int) getPreferredSize().getHeight() + 30));
 		tfSoDienThoai.setBackground(Color.LIGHT_GRAY);
 		panel_1_1.add(tfSoDienThoai);
 
@@ -364,8 +368,7 @@ public class KhachHangPanel extends JPanel implements Observer {
 		JPanel panel_10 = new JPanel();
 		FlowLayout flowLayout_3 = (FlowLayout) panel_10.getLayout();
 		flowLayout_3.setAlignment(FlowLayout.LEFT);
-		flowLayout_3.setVgap(20);
-		flowLayout_3.setHgap(20);
+		flowLayout_3.setHgap(10);
 		panel_10.setBackground(SystemColor.window);
 		panel_11_3.add(panel_10);
 
@@ -388,8 +391,9 @@ public class KhachHangPanel extends JPanel implements Observer {
 		tfEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		tfEmail.setForeground(Color.BLACK);
 		tfEmail.setFont(new Font("Arial", Font.PLAIN, 14));
-
-		tfEmail.setColumns(40);
+		tfEmail.setColumns(35);
+		tfEmail.setPreferredSize(
+				new Dimension((int) getPreferredSize().getWidth(), (int) getPreferredSize().getHeight() + 30));
 		tfEmail.setBackground(Color.LIGHT_GRAY);
 		panel_1_3.add(tfEmail);
 
