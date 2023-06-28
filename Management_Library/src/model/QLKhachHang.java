@@ -29,7 +29,7 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 		// TODO Auto-generated method stub
 		List<Object> result = new ArrayList<>();
 		for (KhachHang khachHang : listKhachHang) {
-			if (khachHang.getiD().equals(id)) {
+			if (khachHang.getiD().equalsIgnoreCase(id)) {
 				result.add(khachHang);
 			}
 		}
@@ -42,7 +42,9 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 		// TODO Auto-generated method stub
 		List<Object> result = new ArrayList<>();
 		for (KhachHang khachHang : listKhachHang) {
-			if (khachHang.getTen().equals(ten)) {
+			String srtfind = khachHang.getTen().trim().substring(khachHang.getTen().trim().lastIndexOf(" ") + 1);
+			if (srtfind.equalsIgnoreCase(ten)) {
+
 				result.add(khachHang);
 			}
 		}
@@ -52,6 +54,7 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 	@Override
 	public void them(Object object) {
 		// TODO Auto-generated method stub
+		sapXep();
 		KhachHang kh = (KhachHang) object;
 		this.getListKhachHang().add(kh);
 		notifyObservers();
@@ -146,7 +149,6 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 	}
 
 	public void notifyObservers() {
-		sapXep();
 		for (Observer observer : observers) {
 			observer.update(this);
 		}
@@ -162,6 +164,12 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 			}
 
 		});
+	}
+
+	public void loadData(List<KhachHang> listKH) {
+		// TODO Auto-generated method stub
+		this.listKhachHang = listKH;
+		sapXep();
 	}
 
 }
