@@ -1,11 +1,9 @@
 package view;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
-
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -46,7 +44,6 @@ import javax.swing.UIManager;
 
 public class QuanLySach extends JPanel implements Observer {
 
-
 	public JPanel contentPane;
 	public JTextField txtTimKiem;
 	public JTextField txtTenSach;
@@ -59,7 +56,6 @@ public class QuanLySach extends JPanel implements Observer {
 	public JTextField txtTheLoai;
 	ActionListener actionListener;
 	public ArrayList<Object> values;
-
 
 	public QuanLySach() {
 		this.actionListener = new QLSachController(new QLSach(), this);
@@ -105,7 +101,6 @@ public class QuanLySach extends JPanel implements Observer {
 		panel_timKiem.setLayout(null);
 		panel_timKiem.setBorder(new TitledBorder(new LineBorder(new Color(128, 128, 128)), "Tìm kiếm",
 				TitledBorder.LEFT, TitledBorder.TOP, null, UIManager.getColor("Button.darkShadow")));
-
 
 		txtTimKiem = new JTextField();
 		txtTimKiem.setBounds(160, 23, 450, 29);
@@ -165,7 +160,6 @@ public class QuanLySach extends JPanel implements Observer {
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(new LineBorder(new Color(128, 128, 128)), "Thao tác", TitledBorder.LEFT,
 				TitledBorder.TOP, null, UIManager.getColor("Button.darkShadow")));
-
 
 		JLabel lblTenSach = new JLabel("Tên sách:");
 		lblTenSach.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -252,7 +246,6 @@ public class QuanLySach extends JPanel implements Observer {
 
 		btnXa.setBounds(508, 163, 109, 29);
 		panel.add(btnXa);
-
 
 	}
 
