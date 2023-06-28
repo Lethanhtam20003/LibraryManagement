@@ -1,0 +1,73 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+import model.PhieuMuon;
+import model.QLPhieuMuonTra;
+import view.ViewQLPhieuMuon;
+import model.Observable;
+import model.Observer;
+
+public class QLPhieuMuonController implements ActionListener {
+	private QLPhieuMuonTra model;
+	private ViewQLPhieuMuon view;
+	
+	public QLPhieuMuonController(QLPhieuMuonTra model, ViewQLPhieuMuon view) {
+		super();
+		this.model = model;
+		this.view = view;
+		initObservers();
+	}
+	
+	public void initObservers() {
+		// TODO Auto-generated method stub
+		ArrayList<Observer> observerView = new ArrayList<>();
+
+		observerView.add((Observer) this.view);
+		for (Observer view : observerView) {
+			 model.add(view);
+		}
+	}
+	
+	public void getPhieu() {
+		List<PhieuMuon> list = model.getListPhieuMuon();
+		view.displayPhieu(list);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		switch(e.getActionCommand()) {
+			case "Tìm phiếu":
+			
+			case "Thêm phiếu":
+			
+			case "Xóa phiếu":
+				if(view.values == null) {
+					JOptionPane.showMessageDialog(null, "Chưa chọn phiếu cần xóa", "Thông báo", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				String idXoa = (String) view.values.get(0);
+				System.out.println(idXoa);
+				model.xoa(idXoa);
+				view.txtID.setText("");
+				view.txtKH.setText("");
+				view.txtSach.setText("");
+				view.txtTien.setText("");
+				view.txtNgayMuon.setText("");
+				view.txtNgayTra.setText("");
+				view.values = null;
+				JOptionPane.showMessageDialog(null, "Xóa sách thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+				break;
+							
+			case "Lưu thay đổi":
+
+			default:
+				break;
+		}
+	}
+}
