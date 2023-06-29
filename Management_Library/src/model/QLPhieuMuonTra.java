@@ -1,17 +1,16 @@
 package model;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
-public class QLPhieuMuonTra implements QuanLyThuVien {
+import dao.DataPhieuMuon;
 
-
-List<PhieuMuon>listPhieuMuon;
-
-	public QLPhieuMuonTra(List<PhieuMuon> listPhieuMuon) {
-
+public class QLPhieuMuonTra extends Observable implements QuanLyThuVien{
+	List<PhieuMuon>listPhieuMuon ;
+	
+	public QLPhieuMuonTra() {
 		super();
-		this.listPhieuMuon = listPhieuMuon;
+		listPhieuMuon = DataPhieuMuon.listPhieu;
 	}
 
 	public List<PhieuMuon> getListPhieuMuon() {
@@ -21,68 +20,47 @@ List<PhieuMuon>listPhieuMuon;
 	public void setListPhieuMuon(List<PhieuMuon> listPhieuMuon) {
 		this.listPhieuMuon = listPhieuMuon;
 	}
+
+	@Override
+	public String toString() {
+		return "QLPhieuMuonTra [listPhieuMuon=" + listPhieuMuon + "]";
+	}
 	
 	@Override
 	public List<Object> timKiemTheoID(String id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Object> timKiemTheoTen(String id) {
-		// TODO Auto-generated method stub
+	public List<Object> timKiemTheoTen(String tenSach) {
 		return null;
 	}
-
 	@Override
 	public void them(Object object) {
 
-		PhieuMuon obj = (PhieuMuon) object;
-		listPhieuMuon.add(obj);
-		for (Sach s : qlSach.listSach) {
-
-			if (obj.sach.getiD().equals(s.getiD())) {
-				s.setSoLuongChoMuon(s.getSoLuongChoMuon() + 1);
-			}
-		}
 	}
-
-	@Override
-	public void xoaPhieu(String id) {
-		PhieuMuon phieuMuon = timPhieu(id);
-		if(phieuMuon !=null) {
-			listPhieuMuon.remove(phieuMuon);
-		}	
-	}
-
-	@Override
-	public void capNhatPhieu(String idPhieu, List<Sach> listSachMuonMoi, Date ngayMuonMoi, Date ngayDuKienTraMoi) {
-		PhieuMuon phieuMuon = timPhieu(idPhieu);
-		if(phieuMuon != null) {
-			if(phieuMuon.getTrangThai().equals("Da Tra Sach")) {
-				phieuMuon.setListSachMuon(listSachMuonMoi);
-				phieuMuon.setNgayMuon(ngayMuonMoi);
-				phieuMuon.setNgayDuKienTra(ngayDuKienTraMoi);
-			}
-		}
-
-	}
-	@Override
-	public int getTongSoLuong() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getSoLuong(String id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 	@Override
 	public void xoa(String id) {
-		// TODO Auto-generated method stub
-		
+		for(PhieuMuon p : listPhieuMuon) {
+			if(p.getId()==id) {
+				listPhieuMuon.remove(p);
+				break;
+			}
+		}
+	}
+	
+	public void capNhat(String id,  String maKH, double tienMuon, String ngayMuon, String ngayDuKienTra, List<String> tenSach) {
+		for(PhieuMuon p : listPhieuMuon) {
+			if(p.getId().equals(id)) {
+				p.setMaKhachHang(maKH);
+				p.setTienMuonSach(tienMuon);
+				p.setNgayMuon(ngayMuon);
+				p.setNgayDuKienTra(ngayDuKienTra);
+				p.setTenSachMuon(tenSach);
+				break;
+			}
+		}
 	}
 
 	@Override
@@ -90,4 +68,16 @@ List<PhieuMuon>listPhieuMuon;
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public int getTongSoLuong() {
+		return listPhieuMuon.size();
+	}
+
+	@Override
+	public int getSoLuong(String id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 }
