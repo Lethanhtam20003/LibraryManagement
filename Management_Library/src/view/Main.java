@@ -26,7 +26,7 @@ public class Main extends JFrame {
 	public Main() {
 //		setSize(900, 619);
 		setSize(900, 619);
-		
+		setLocationRelativeTo(null);
      	setVisible(true);
      	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      	MyPanel myPanel = new MyPanel();

@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class QuanLyKhachHang_controller implements ActionListener {
 	private QLKhachHang model;
 	private String showChucNang;
 	private KhachHangData data;
-	
+
 	public QuanLyKhachHang_controller(KhachHangPanel viewkh, QLKhachHang qlkh) {
 		this.model = qlkh;
 		this.view = viewkh;
@@ -221,9 +222,9 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		this.view.getBtXoa().addActionListener(this);
 		this.view.getBtCapNhat().addActionListener(this);
 		this.view.getBtXemDSDocGia().addActionListener(this);
-		
+
 		this.loadData();
-		
+
 		this.view.getTbDocGia().getSelectionModel().addListSelectionListener(selectionListener());
 		ShowDSKhachHang(model.getListKhachHang());
 	}
@@ -238,6 +239,7 @@ public class QuanLyKhachHang_controller implements ActionListener {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (showChucNang.equals("Cập Nhật") || showChucNang.equals("Xóa")) {
+
 					if (!e.getValueIsAdjusting()) {
 						int selectedRow = view.getTbDocGia().getSelectedRow();
 						if (selectedRow != -1) {
@@ -251,6 +253,11 @@ public class QuanLyKhachHang_controller implements ActionListener {
 							view.getTfSoDienThoai().setText((String) sdt);
 							view.getTfEmail().setText((String) email);
 						}
+					}
+					if (showChucNang.equals("Cập Nhật")) {
+						view.getTfMaDocGia().setEditable(false);
+						view.getTfMaDocGia().setBackground(Color.LIGHT_GRAY);;
+						
 					}
 
 				}
