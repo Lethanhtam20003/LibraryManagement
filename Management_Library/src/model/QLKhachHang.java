@@ -149,6 +149,7 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 	}
 
 	public void notifyObservers() {
+		sapXep();
 		for (Observer observer : observers) {
 			observer.update(this);
 		}
