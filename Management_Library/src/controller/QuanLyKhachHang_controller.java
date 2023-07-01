@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import dao.KhachHangData;
+import dao.DataKhachHang;
 import model.KhachHang;
 import model.QLKhachHang;
 import view.KhachHangPanel;
@@ -19,7 +19,7 @@ public class QuanLyKhachHang_controller implements ActionListener {
 	private KhachHangPanel view;
 	private QLKhachHang model;
 	private String showChucNang;
-	private KhachHangData data;
+	private DataKhachHang data;
 
 	public QuanLyKhachHang_controller(KhachHangPanel viewkh, QLKhachHang qlkh) {
 		this.model = qlkh;

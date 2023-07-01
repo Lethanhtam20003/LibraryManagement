@@ -5,9 +5,11 @@ import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
+import controller.QLPhieuMuonController;
 import controller.QLSachController;
 import controller.QuanLyKhachHang_controller;
 import model.QLKhachHang;
+import model.QLPhieuMuonTra;
 import model.QLSach;
 
 public class MyPanel extends JPanel {
@@ -33,6 +35,12 @@ public class MyPanel extends JPanel {
 		QuanLyKhachHang_controller ac = new QuanLyKhachHang_controller(kh, QLkh);
 		mainGui.add(kh, "Quản lý khách hàng");
 
+		// phieu muon tra
+		QLPhieuMuonTra qlpmn = new QLPhieuMuonTra();
+		ViewQLPhieuMuon viewpmt = new ViewQLPhieuMuon();
+		QLPhieuMuonController acpmt = new QLPhieuMuonController(qlpmn,viewpmt);
+		mainGui.add(viewpmt,"Quản lý mượn trả");
+		
 		add(mainGui, BorderLayout.CENTER);
 		controller.getSach();
 	}
