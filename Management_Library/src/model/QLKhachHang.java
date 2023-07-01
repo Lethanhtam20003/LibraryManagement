@@ -43,7 +43,7 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 		List<Object> result = new ArrayList<>();
 		for (KhachHang khachHang : listKhachHang) {
 			String srtfind = khachHang.getTen().trim().substring(khachHang.getTen().trim().lastIndexOf(" ") + 1);
-			if (srtfind.equalsIgnoreCase(ten)) {
+			if (srtfind.equalsIgnoreCase(ten) || ten.equalsIgnoreCase(khachHang.getTen())) {
 
 				result.add(khachHang);
 			}
@@ -111,7 +111,6 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 		// TODO Auto-generated method stub
 		String id = null;
 		if (listKhachHang.size() >= 1) {
-
 			int idNumbet = tachSo(listKhachHang.get(listKhachHang.size() - 1).getiD());
 			idNumbet++;
 			boolean idExists;
@@ -135,7 +134,7 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 
 	private int tachSo(String id) {
 		// TODO Auto-generated method stub
-		int result = Integer.parseInt(id.substring(id.indexOf("H") + 1, id.length()));
+		int result = Integer.parseInt(id.substring(id.indexOf("H") + 1));
 		return result;
 	}
 
