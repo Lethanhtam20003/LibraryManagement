@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import controller.QLPhieuMuonController;
 import controller.QLSachController;
 import controller.QuanLyKhachHang_controller;
+import controller.ThongKeController;
 import model.QLKhachHang;
 import model.QLPhieuMuonTra;
 import model.QLSach;
@@ -26,21 +27,26 @@ public class MyPanel extends JPanel {
 		controller = new QLSachController(new QLSach(), (QuanLySach) quanLySach);
 		thongKe = new ThongKe();
 
+		QLPhieuMuonTra qlpmn = new QLPhieuMuonTra();
+		ViewQLPhieuMuon viewpmt = new ViewQLPhieuMuon();
+		QLPhieuMuonController acpmt = new QLPhieuMuonController(qlpmn, viewpmt);
+
 		mainGui.add(quanLySach, "Quản lý sách");
+		
+		ThongKeController thongKeController = new ThongKeController((ThongKe) thongKe, new QLPhieuMuonTra());
 		mainGui.add("Quản lý thống kê", thongKe);
+		thongKeController.getPhieuMuon();
 
 		// le tam
 		QLKhachHang QLkh = new QLKhachHang();
 		KhachHangPanel kh = new KhachHangPanel();
-		QuanLyKhachHang_controller ac = new QuanLyKhachHang_controller(kh, QLkh);
+		QuanLyKhachHang_controller ac = new QuanLyKhachHang_controller(kh, QLkh, qlpmn);
 		mainGui.add(kh, "Quản lý khách hàng");
 
 		// phieu muon tra
-		QLPhieuMuonTra qlpmn = new QLPhieuMuonTra();
-		ViewQLPhieuMuon viewpmt = new ViewQLPhieuMuon();
-		QLPhieuMuonController acpmt = new QLPhieuMuonController(qlpmn,viewpmt);
-		mainGui.add(viewpmt,"Quản lý mượn trả");
-		
+
+		mainGui.add(viewpmt, "Quản lý mượn trả");
+
 		add(mainGui, BorderLayout.CENTER);
 		controller.getSach();
 	}

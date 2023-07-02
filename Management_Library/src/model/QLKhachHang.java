@@ -76,7 +76,6 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 	@Override
 	public void capNhat(String chuoi) {
 		// TODO Auto-generated method stub
-		System.out.println(chuoi);
 		String id = chuoi.substring(0, chuoi.indexOf("name:"));
 		String name = chuoi.substring(chuoi.indexOf("name:") + 5, chuoi.indexOf("sdt:"));
 		String soDienThoai = chuoi.substring(chuoi.indexOf("sdt:") + 4, chuoi.indexOf("email:"));
@@ -87,11 +86,6 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 		xoa(id);
 		KhachHang kh = new KhachHang(id, name, soDienThoai, diaChi);
 		them(kh);
-
-		System.out.println("ID: " + id);
-		System.out.println("Name: " + name);
-		System.out.println("Địa chỉ: " + diaChi);
-		System.out.println("Số điện thoại: " + soDienThoai);
 
 	}
 
@@ -126,7 +120,6 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 					createID("KH" + idNumbet);
 				}
 			}
-
 			return id;
 		}
 		return "KH101";

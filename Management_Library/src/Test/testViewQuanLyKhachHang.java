@@ -23,7 +23,7 @@ public class testViewQuanLyKhachHang {
 		model.them(kh2);
 		model.them(kh3);
 		KhachHangPanel kh = new KhachHangPanel();
-		QuanLyKhachHang_controller ac = new QuanLyKhachHang_controller(kh, model);
+		QuanLyKhachHang_controller ac = new QuanLyKhachHang_controller(kh, model, null);
 
 		main.add(kh);
 		main.setSize(new Dimension(900, 900));
