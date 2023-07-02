@@ -50,7 +50,7 @@ public class QLPhieuMuonTra extends Observable implements QuanLyThuVien{
 		}
 	}
 	
-	public void capNhat(String id,  String maKH, double tienMuon, String ngayMuon, String ngayDuKienTra, List<String> tenSach) {
+	public void capNhat(String id,  String maKH, double tienMuon, String ngayMuon, String ngayDuKienTra, List<String> tenSach, String tinhTrang) {
 		for(PhieuMuon p : listPhieuMuon) {
 			if(p.getId().equals(id)) {
 				p.setMaKhachHang(maKH);
@@ -58,11 +58,20 @@ public class QLPhieuMuonTra extends Observable implements QuanLyThuVien{
 				p.setNgayMuon(ngayMuon);
 				p.setNgayDuKienTra(ngayDuKienTra);
 				p.setTenSachMuon(tenSach);
+				p.setTinhTrang(tinhTrang);
 				break;
 			}
 		}
 	}
 
+	public void thuPhieu(String id) {
+		for(PhieuMuon p : listPhieuMuon) {
+			if(p.getId().equals(id) && p.getTinhTrang().equals("Chưa trả sách")) {
+				p.setTinhTrang("Đã trả sách");
+			}
+		}
+	}
+	
 	@Override
 	public void capNhat(String id) {
 		// TODO Auto-generated method stub
