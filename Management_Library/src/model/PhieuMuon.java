@@ -9,16 +9,18 @@ public class PhieuMuon {
 	private String ngayMuon;
 	private String ngayDuKienTra;
 	private double tienMuonSach;
-	
+	private String tinhTrang;
+
 	public PhieuMuon(String id, String maKhachHang, List<String> tenSachMuon, String ngayMuon, String ngayDuKienTra,
-			double tienMuonSach) {
+			double tienMuonSach, String tinhTrang) {
 		super();
 		this.id = id;
 		this.maKhachHang = maKhachHang;
 		this.tenSachMuon = tenSachMuon;
 		this.ngayMuon = ngayMuon;
 		this.ngayDuKienTra = ngayDuKienTra;
-		this.tienMuonSach = tinhTienMuonSach(tenSachMuon);
+		this.tienMuonSach = tienMuonSach;
+		this.tinhTrang = tinhTrang;
 	}
 
 	public String getId() {
@@ -69,11 +71,21 @@ public class PhieuMuon {
 		this.tienMuonSach = tienMuonSach;
 	}
 
+	public String getTinhTrang() {
+		return tinhTrang;
+	}
+
+	public void setTinhTrang(String tinhTrang) {
+		this.tinhTrang = tinhTrang;
+	}
+
 	@Override
 	public String toString() {
 		return "PhieuMuon [id=" + id + ", maKhachHang=" + maKhachHang + ", tenSachMuon=" + tenSachMuon + ", ngayMuon="
-				+ ngayMuon + ", ngayDuKienTra=" + ngayDuKienTra + ", tienMuonSach=" + tienMuonSach + "]";
+				+ ngayMuon + ", ngayDuKienTra=" + ngayDuKienTra + ", tienMuonSach=" + tienMuonSach + ", tinhTrang="
+				+ tinhTrang + "]";
 	}
+
 	public static double tinhTienMuonSach(List<String> tenSachMuon) {
 		return 1000 * tenSachMuon.size();
 	}

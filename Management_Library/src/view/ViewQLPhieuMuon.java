@@ -18,18 +18,18 @@ import javax.swing.table.DefaultTableModel;
 
 public class ViewQLPhieuMuon extends JPanel implements Observer {
 	public JPanel contentPane;
-	public JTextField txtID, txtKH, txtSach, txtNgayMuon, txtNgayTra;
-	public JButton btnTimPhieu, btnThemPhieu, btnXoaPhieu, btnCapNhat, btnDSPhieu;
+	public JTextField txtID, txtKH,txtSach, txtNgayMuon, txtNgayTra, txtTinhTrang;
+	public JButton btnTimPhieu, btnThemPhieu, btnXoaPhieu, btnCapNhat, btnThuPhieu;
 	public DefaultTableModel model;
 	public ActionListener actionListener;
 	public ArrayList<Object> values;
 	public JTable table;
-
+	
 	public ViewQLPhieuMuon() {
-		setSize(900, 700);
-		setVisible(true);
-		setLayout(new BorderLayout());
-		contentPane = new JPanel();
+    	setSize(900, 700);
+    	setVisible(true);
+        setLayout(new BorderLayout());
+        contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		add(contentPane);
 		contentPane.setLayout(null);
@@ -45,15 +45,16 @@ public class ViewQLPhieuMuon extends JPanel implements Observer {
 		model.addColumn("Tiền mượn sách");
 		model.addColumn("Ngày mượn");
 		model.addColumn("Ngày dự kiến trả");
-//			model.setRowCount(0);
-
+		model.addColumn("Tình trạng");
+//		model.setRowCount(0);
+		
 		table = new JTable() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false; // Không cho phép chỉnh sửa trực tiếp trên bảng
 			}
 		};
-
+		
 		table.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 1) { // Kiểm tra số lần click chuột
@@ -68,18 +69,18 @@ public class ViewQLPhieuMuon extends JPanel implements Observer {
 				}
 			}
 		});
-
+		
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(18, 290, 846, 197);
 		contentPane.add(scrollPane);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		table.setModel(model);
-
+	
 		JPanel panel = new JPanel();
 		panel.setBounds(18, 50, 846, 206);
 		contentPane.add(panel);
 		panel.setLayout(null);
-
+				
 		JLabel lblId = new JLabel("Mã phiếu:");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblId.setBounds(117, 30, 100, 13);
@@ -119,7 +120,7 @@ public class ViewQLPhieuMuon extends JPanel implements Observer {
 		txtNgayMuon.setColumns(10);
 		txtNgayMuon.setBounds(570, 27, 191, 22);
 		panel.add(txtNgayMuon);
-
+				
 		JLabel lblNgayTra = new JLabel("Ngày dự kiến trả:");
 		lblNgayTra.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNgayTra.setBounds(459, 61, 100, 16);
@@ -129,52 +130,61 @@ public class ViewQLPhieuMuon extends JPanel implements Observer {
 		txtNgayTra.setColumns(10);
 		txtNgayTra.setBounds(570, 60, 191, 22);
 		panel.add(txtNgayTra);
+		
+		JLabel lblTinhTrang = new JLabel("Tình trạng:");
+		lblTinhTrang.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTinhTrang.setBounds(459, 90, 100, 16);
+		panel.add(lblTinhTrang);
 
-		btnDSPhieu = new JButton("Danh sách phiếu");
-		btnDSPhieu.setBounds(115, 163, 140, 29);
-		panel.add(btnDSPhieu);
-
+		txtTinhTrang = new JTextField();
+		txtTinhTrang.setColumns(10);
+		txtTinhTrang.setBounds(570, 92, 191, 22);
+		panel.add(txtTinhTrang);
+		
 		btnTimPhieu = new JButton("Tìm phiếu");
-		btnTimPhieu.setBounds(260, 163, 117, 29);
+		btnTimPhieu.setBounds(165, 163, 117, 29);
 		panel.add(btnTimPhieu);
 
 		btnThemPhieu = new JButton("Thêm phiếu");
-		btnThemPhieu.setBounds(382, 163, 109, 29);
+		btnThemPhieu.setBounds(287, 163, 109, 29);
 		panel.add(btnThemPhieu);
-
+				
 		btnXoaPhieu = new JButton("Xóa phiếu");
-		btnXoaPhieu.setBounds(496, 163, 109, 29);
+		btnXoaPhieu.setBounds(401, 163, 109, 29);
 		panel.add(btnXoaPhieu);
-
+				
 		btnCapNhat = new JButton("Cập nhật phiếu");
-		btnCapNhat.setBounds(610, 163, 130, 29);
+		btnCapNhat.setBounds(515, 163, 130, 29);
 		panel.add(btnCapNhat);
-	}
-
-	private void setValuesToInputs(ArrayList<Object> values) {
+		
+		btnThuPhieu = new JButton("Thu phiếu");
+		btnThuPhieu.setBounds(650, 163, 109, 29);
+		panel.add(btnThuPhieu);
+		
+    }
+				
+    private void setValuesToInputs(ArrayList<Object> values) {
 		txtID.setText(values.get(0).toString());
 		txtKH.setText(values.get(1).toString());
 		txtSach.setText(values.get(2).toString());
 		txtNgayMuon.setText(values.get(4).toString());
 		txtNgayTra.setText(values.get(5).toString());
-	}
-
-	public void displayPhieu(List<PhieuMuon> list) {
-		model.setRowCount(0);
-		for (PhieuMuon p : list) {
-			model.addRow(new Object[] { p.getId(), p.getMaKhachHang(), String.join(", ", p.getTenSachMuon()),
-					p.getTienMuonSach(), p.getNgayMuon(), p.getNgayDuKienTra(), });
-		}
-		table.setModel(model);
-	}
-
+		txtTinhTrang.setText(values.get(6).toString());
+    }
+    public void displayPhieu(List<PhieuMuon> list) {
+    		model.setRowCount(0);
+    		for(PhieuMuon p : list) {
+    			model.addRow(new Object[] {p.getId(), p.getMaKhachHang(), String.join(", ", p.getTenSachMuon()), p.getTienMuonSach(), p.getNgayMuon(), p.getNgayDuKienTra(), p.getTinhTrang(),});
+    		}
+//    		table.setModel(model);
+    }
+    
 	@Override
 	public void update(Observable observable) {
 		if (observable instanceof QLPhieuMuonTra) {
-			QLPhieuMuonTra qlPhieuMuonTra = (QLPhieuMuonTra) observable;
-			List<PhieuMuon> list = qlPhieuMuonTra.getListPhieuMuon();
-			displayPhieu(list);
-		}
+	        QLPhieuMuonTra qlPhieuMuonTra = (QLPhieuMuonTra) observable;
+	        List<PhieuMuon> list = qlPhieuMuonTra.getListPhieuMuon();
+	        displayPhieu(list);
+	    }
 	}
 }
-
