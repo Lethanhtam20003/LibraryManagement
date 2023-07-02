@@ -26,21 +26,23 @@ public class MyPanel extends JPanel {
 		controller = new QLSachController(new QLSach(), (QuanLySach) quanLySach);
 		thongKe = new ThongKe();
 
+		QLPhieuMuonTra qlpmn = new QLPhieuMuonTra();
+		ViewQLPhieuMuon viewpmt = new ViewQLPhieuMuon();
+		QLPhieuMuonController acpmt = new QLPhieuMuonController(qlpmn, viewpmt);
+
 		mainGui.add(quanLySach, "Quản lý sách");
 		mainGui.add("Quản lý thống kê", thongKe);
 
 		// le tam
 		QLKhachHang QLkh = new QLKhachHang();
 		KhachHangPanel kh = new KhachHangPanel();
-		QuanLyKhachHang_controller ac = new QuanLyKhachHang_controller(kh, QLkh);
+		QuanLyKhachHang_controller ac = new QuanLyKhachHang_controller(kh, QLkh, qlpmn);
 		mainGui.add(kh, "Quản lý khách hàng");
 
 		// phieu muon tra
-		QLPhieuMuonTra qlpmn = new QLPhieuMuonTra();
-		ViewQLPhieuMuon viewpmt = new ViewQLPhieuMuon();
-		QLPhieuMuonController acpmt = new QLPhieuMuonController(qlpmn,viewpmt);
-		mainGui.add(viewpmt,"Quản lý mượn trả");
-		
+
+		mainGui.add(viewpmt, "Quản lý mượn trả");
+
 		add(mainGui, BorderLayout.CENTER);
 		controller.getSach();
 	}

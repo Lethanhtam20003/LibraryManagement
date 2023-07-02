@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import model.KhachHang;
 import model.Observable;
 import model.Observer;
+import model.PhieuMuon;
 import model.QLKhachHang;
 
 public class KhachHangPanel extends JPanel implements Observer {
@@ -33,16 +34,20 @@ public class KhachHangPanel extends JPanel implements Observer {
 	private JTextField tfMaDocGia;
 	private JTextField tfSoDienThoai;
 	private JTextField tfEmail;
+	private JTextField tfTenDocGia;
 	private JButton btTim;
 	private JButton btThem;
 	private JButton btCapNhat;
 	private JButton btXoa;
 	private JButton btXemDSDocGia;
-	private JTextField tfTenDocGia;
-	private DefaultTableModel tbModelKhachHang;
-	private JTable tbDocGia;
+	private JButton btnXemPhieuMuon;
 	private JPanel pnDuoi;
 	private JLabel lbShow_ChucNangDangThucHien;
+	private JPanel pnPhieuMuon;
+	private JTable tbPhieuMuon;
+	private JTable tbDocGia;
+	private DefaultTableModel tbModelKhachHang;
+	private DefaultTableModel tbModelPhieuMuon;
 
 	// getter and setter
 
@@ -72,7 +77,7 @@ public class KhachHangPanel extends JPanel implements Observer {
 		// add pn
 		container.add(pnTren);
 		container.add(pnDuoi);
-
+		pnPhieuMuon = createPnPhieuMuon();
 		init();
 	}
 
@@ -331,6 +336,10 @@ public class KhachHangPanel extends JPanel implements Observer {
 		btXemDSDocGia.setFont(new Font("Arial", Font.PLAIN, 15));
 		panel_2.add(btXemDSDocGia);
 
+		btnXemPhieuMuon = new JButton("Xem Phiếu Mượn");
+		btnXemPhieuMuon.setFont(new Font("Arial", Font.PLAIN, 15));
+		panel_2.add(btnXemPhieuMuon);
+
 		return pnTren_Trai;
 	}
 
@@ -343,10 +352,6 @@ public class KhachHangPanel extends JPanel implements Observer {
 		Object[][] giaTriHang = {};
 
 		tbModelKhachHang = new DefaultTableModel(giaTriHang, tenCot) {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
 			boolean[] columnEditables = new boolean[] { false, false, false, false };
 
 			public boolean isCellEditable(int row, int column) {
@@ -357,18 +362,51 @@ public class KhachHangPanel extends JPanel implements Observer {
 		// không cho thay đổi thứ tự cột trong jtable
 		tbDocGia.getTableHeader().setReorderingAllowed(false);
 		tbDocGia.setModel(tbModelKhachHang);
-
+		
+		tbDocGia.getColumnModel().getColumn(0).setResizable(false);
+		tbDocGia.getColumnModel().getColumn(1).setResizable(false);
+		tbDocGia.getColumnModel().getColumn(2).setResizable(false);
+		tbDocGia.getColumnModel().getColumn(3).setResizable(false);
+		
 		tbDocGia.setFont(new Font("Arial", Font.PLAIN, 13));
 		JScrollPane scrollPane = new JScrollPane((tbDocGia));
 		pnDuoi.add(scrollPane);
 		return pnDuoi;
 	}
 
-	public DefaultTableModel ShowDSKhachHang(List<KhachHang> dsKH) {
+	private JPanel createPnPhieuMuon() {
+		// TODO Auto-generated method stub
+
+		JPanel pnPhieuMuon = new JPanel();
+		pnPhieuMuon.setLayout(new GridLayout(0, 1, 0, 0));
+
+		String[] tenCot = { "Mã Phiếu Mượn", "Sách Mượn", "Tiền Mượn", "Ngày Mượn", "Ngày trả" };
+		Object[][] giaTriHang = {};
+
+		tbPhieuMuon = new JTable();
+		
+		tbModelPhieuMuon = new DefaultTableModel(giaTriHang, tenCot) {
+
+			boolean[] columnEditables = new boolean[] { false, false, false, false, false };
+
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		};
+		tbPhieuMuon.setModel(tbModelPhieuMuon);
+		tbPhieuMuon.getTableHeader().setReorderingAllowed(false);
+
+		JScrollPane scrollPane = new JScrollPane(tbPhieuMuon);
+		
+		pnPhieuMuon.add(scrollPane);
+
+		return pnPhieuMuon;
+	}
+
+	public void ShowDSKhachHang(List<KhachHang> dsKH) {
 		DefaultTableModel result = tbModelKhachHang;
 
 		if (dsKH != null) {
-			System.out.println(dsKH.toString());
 			for (KhachHang g : dsKH) {
 				Object[] a = { g.getiD(), g.getTen(), g.getSoDT(), g.getDiaChi() };
 				result.addRow(a);
@@ -376,18 +414,41 @@ public class KhachHangPanel extends JPanel implements Observer {
 		}
 
 		tbDocGia.setModel(result);
-		return result;
+	}
+
+	public void ShowPhieuMuon(List<PhieuMuon> dsPM, String idKhachHang) {
+		
+		DefaultTableModel result = tbModelPhieuMuon;
+		tbModelPhieuMuon.setRowCount(0);
+		if (dsPM != null) {
+			for (PhieuMuon g : dsPM) {
+				System.out.println(idKhachHang +" và "+g.getMaKhachHang()+idKhachHang.equalsIgnoreCase(g.getId()));
+				if (idKhachHang.equalsIgnoreCase(g.getMaKhachHang())) {
+					Object[] a = { g.getId(), g.getTenSachMuon(), g.getTienMuonSach(), g.getNgayMuon(),
+							g.getNgayDuKienTra() };
+					result.addRow(a);
+				}
+			}
+		}
+		tbPhieuMuon.setModel(result);
 	}
 
 	public void clearTableKhachHang() {
 		tbModelKhachHang.setRowCount(0);
 	}
 
+	// update observer
+	@Override
+	public void update(Observable observable) {
+		List<KhachHang> kh = ((QLKhachHang) observable).getListKhachHang();
+		clearTableKhachHang();
+		this.ShowDSKhachHang(kh);
+	}
+
 	/*
 	 * reset sau khi su dung
 	 */
 	public void reresetTim() {
-		// TODO Auto-generated method stub
 		this.getTfMaDocGia().setText("");
 		this.getTfTenDocGia().setText("");
 		this.getTfSoDienThoai().setText("");
@@ -405,7 +466,6 @@ public class KhachHangPanel extends JPanel implements Observer {
 	}
 
 	public void resetThem(String id) {
-		// TODO Auto-generated method stub
 		this.getTfMaDocGia().setEditable(false);
 		this.getTfMaDocGia().setBackground(Color.LIGHT_GRAY);
 
@@ -445,7 +505,6 @@ public class KhachHangPanel extends JPanel implements Observer {
 	}
 
 	public void resetXoa() {
-		// TODO Auto-generated method stub
 		this.getTfMaDocGia().setEditable(true);
 		this.getTfMaDocGia().setText("");
 		this.getTfMaDocGia().setBackground(Color.white);
@@ -462,14 +521,6 @@ public class KhachHangPanel extends JPanel implements Observer {
 		this.getTfEmail().setBackground(Color.LIGHT_GRAY);
 		this.getTfSoDienThoai().setBackground(Color.LIGHT_GRAY);
 
-	}
-
-	// update observer
-	@Override
-	public void update(Observable observable) {
-		List<KhachHang> kh = ((QLKhachHang) observable).getListKhachHang();
-		clearTableKhachHang();
-		this.ShowDSKhachHang(kh);
 	}
 
 	/**
@@ -497,14 +548,6 @@ public class KhachHangPanel extends JPanel implements Observer {
 
 	public void setTfEmail(JTextField tfEmail) {
 		this.tfEmail = tfEmail;
-	}
-
-	public JLabel getLbShow_ChucNangDangThucHien() {
-		return lbShow_ChucNangDangThucHien;
-	}
-
-	public void setLbShow_ChucNangDangThucHien(JLabel lbShow_ChucNangDangThucHien) {
-		this.lbShow_ChucNangDangThucHien = lbShow_ChucNangDangThucHien;
 	}
 
 	public JButton getBtTim() {
@@ -577,6 +620,38 @@ public class KhachHangPanel extends JPanel implements Observer {
 
 	public void setPnDuoi(JPanel pnDuoi) {
 		this.pnDuoi = pnDuoi;
+	}
+
+	public JLabel getLbShow_ChucNangDangThucHien() {
+		return lbShow_ChucNangDangThucHien;
+	}
+
+	public void setLbShow_ChucNangDangThucHien(JLabel lbShow_ChucNangDangThucHien) {
+		this.lbShow_ChucNangDangThucHien = lbShow_ChucNangDangThucHien;
+	}
+
+	public JTable getTbPhieuMuon() {
+		return tbPhieuMuon;
+	}
+
+	public void setTbPhieuMuon(JTable tbPhieuMuon) {
+		this.tbPhieuMuon = tbPhieuMuon;
+	}
+
+	public JPanel getPnPhieuMuon() {
+		return pnPhieuMuon;
+	}
+
+	public void setPnPhieuMuon(JPanel pnPhieuMuon) {
+		this.pnPhieuMuon = pnPhieuMuon;
+	}
+
+	public JButton getBtnXemPhieuMuon() {
+		return btnXemPhieuMuon;
+	}
+
+	public void setBtnXemPhieuMuon(JButton btnXemPhieuMuon) {
+		this.btnXemPhieuMuon = btnXemPhieuMuon;
 	}
 
 }

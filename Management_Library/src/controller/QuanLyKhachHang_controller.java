@@ -3,6 +3,8 @@ package controller;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import javax.swing.event.ListSelectionListener;
 import dao.DataKhachHang;
 import model.KhachHang;
 import model.QLKhachHang;
+import model.QLPhieuMuonTra;
 import view.KhachHangPanel;
 
 public class QuanLyKhachHang_controller implements ActionListener {
@@ -20,11 +23,13 @@ public class QuanLyKhachHang_controller implements ActionListener {
 	private QLKhachHang model;
 	private String showChucNang;
 	private DataKhachHang data;
+	private QLPhieuMuonTra qlPhieuMuonTra;
 
-	public QuanLyKhachHang_controller(KhachHangPanel viewkh, QLKhachHang qlkh) {
+	public QuanLyKhachHang_controller(KhachHangPanel viewkh, QLKhachHang qlkh, QLPhieuMuonTra qlMuonTra) {
 		this.model = qlkh;
 		this.view = viewkh;
-		showChucNang = "";
+		this.qlPhieuMuonTra = qlMuonTra;
+		showChucNang = "Tìm";
 		run();
 		initObserver();
 	}
@@ -41,8 +46,10 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		} else if (e.getActionCommand().equals("Xóa")) {
 			xoa();
 		} else if (e.getActionCommand().equals("Xem Ds Độc Giả")) {
-			System.out.println(e.getActionCommand());
 			XemDSDocGia();
+		} else if (e.getActionCommand().equals("Xem Phiếu Mượn")) {
+			System.out.println(e.getActionCommand());
+			xemPhieuMuon();
 		}
 	}
 
@@ -57,7 +64,6 @@ public class QuanLyKhachHang_controller implements ActionListener {
 				String s = this.view.getTfMaDocGia().getText().trim();
 				List<Object> find = model.timKiemTheoID(s);
 				List<KhachHang> result = chuyenDoiDanhSach(find);
-				System.out.println("tìm theo id" + s + " result:" + result.toString());
 				if (result.size() == 1) {
 					ShowDSKhachHang(result);
 				} else {
@@ -69,7 +75,6 @@ public class QuanLyKhachHang_controller implements ActionListener {
 				String s = this.view.getTfTenDocGia().getText().trim();
 				List<Object> find = model.timKiemTheoTen(s);
 				List<KhachHang> result = chuyenDoiDanhSach(find);
-				System.out.println("tìm theo ten" + s + " result:" + result.toString());
 				if (result.size() >= 1) {
 					ShowDSKhachHang(result);
 				} else {
@@ -88,7 +93,6 @@ public class QuanLyKhachHang_controller implements ActionListener {
 	public void them() {
 		showChucNang = "Thêm";
 		String id = this.model.createID("");
-		System.out.println(showChucNang);
 		// chuc nang hien tai co phai them hay khong
 		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Thêm")) {
 			// tao id moi cho kh
@@ -116,7 +120,6 @@ public class QuanLyKhachHang_controller implements ActionListener {
 
 	private void capNhat() {
 		showChucNang = "Cập Nhật";
-		System.out.println(showChucNang);
 		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Cập Nhật")) {
 
 			String id = this.view.getTfMaDocGia().getText();
@@ -134,7 +137,6 @@ public class QuanLyKhachHang_controller implements ActionListener {
 
 	private void xoa() {
 		showChucNang = "Xóa";
-		System.out.println(showChucNang);
 		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Xóa")) {
 			//
 			if (this.view.getTfMaDocGia().getText().isEmpty()) {
@@ -153,7 +155,6 @@ public class QuanLyKhachHang_controller implements ActionListener {
 
 	private void XemDSDocGia() {
 		showChucNang = "Xem Ds Độc Giả";
-		System.out.println(showChucNang);
 		ShowDSKhachHang(model.getListKhachHang());
 		if (this.view.getLbShow_ChucNangDangThucHien().getText().equals("Xem Ds Độc Giả")) {
 			//
@@ -161,6 +162,16 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		} else {
 			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
 		}
+	}
+
+	private void xemPhieuMuon() {
+		// TODO Auto-generated method stub
+		if (this.view.getTfMaDocGia().getText().isEmpty()) {
+			JOptionPane.showMessageDialog(view, "Nhập id khách hàng cần xem", "Lỗi", JOptionPane.ERROR_MESSAGE);
+		}
+		this.view.ShowPhieuMuon(qlPhieuMuonTra.getListPhieuMuon(), this.view.getTfMaDocGia().getText());
+		JOptionPane.showOptionDialog(null, this.view.getPnPhieuMuon(), "Phiếu Mượn", JOptionPane.DEFAULT_OPTION,
+				JOptionPane.PLAIN_MESSAGE, null, new Object[] {}, null);
 	}
 
 	/*
@@ -222,6 +233,7 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		this.view.getBtXoa().addActionListener(this);
 		this.view.getBtCapNhat().addActionListener(this);
 		this.view.getBtXemDSDocGia().addActionListener(this);
+		this.view.getBtnXemPhieuMuon().addActionListener(this);
 
 		this.loadData();
 
@@ -238,7 +250,7 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		ListSelectionListener result = new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				if (showChucNang.equals("Cập Nhật") || showChucNang.equals("Xóa")) {
+				if (showChucNang.equals("Cập Nhật") || showChucNang.equals("Xóa") || showChucNang.equals("Tìm")) {
 
 					if (!e.getValueIsAdjusting()) {
 						int selectedRow = view.getTbDocGia().getSelectedRow();
@@ -256,11 +268,13 @@ public class QuanLyKhachHang_controller implements ActionListener {
 					}
 					if (showChucNang.equals("Cập Nhật")) {
 						view.getTfMaDocGia().setEditable(false);
-						view.getTfMaDocGia().setBackground(Color.LIGHT_GRAY);;
-						
+						view.getTfMaDocGia().setBackground(Color.LIGHT_GRAY);
+					}
+					if (showChucNang.equals("Tìm")) {
 					}
 
 				}
+
 			}
 		};
 		return result;

@@ -178,6 +178,3 @@ public class ViewQLPhieuMuon extends JPanel implements Observer {
 	}
 }
 
-class xemPhieuMuon extends JDialog {
-
-}
