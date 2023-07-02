@@ -14,10 +14,7 @@ public class ThongKe extends JPanel{
     private JLabel labelSoLuongSachTonKho;
     
     public ThongKe() {
-//    	 setTitle("Thống kê quản lý thư viện");
          setSize(400, 300);
-//         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//         setLocationRelativeTo(null);
          
          labelSoLuongSachTheoTheLoai = new JLabel("Số lượng sách theo thể loại:");
          labelSoLuongSachMuonTheoDocGia = new JLabel("Số lượng sách mượn theo độc giả:");

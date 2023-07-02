@@ -1,19 +1,16 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import dao.DataPhieuMuon;
 
-public class QLPhieuMuonTra implements QuanLyThuVien {
-
-	List<PhieuMuon>listPhieuMuon;
-	QLSach qlSach;
+public class QLPhieuMuonTra extends Observable implements QuanLyThuVien{
+	List<PhieuMuon>listPhieuMuon ;
 	
-
-	public QLPhieuMuonTra(List<PhieuMuon> listPhieuMuon, QLSach qlSach) {
+	public QLPhieuMuonTra() {
 		super();
-//		listPhieuMuon=new ArrayList<>();
-		this.listPhieuMuon = listPhieuMuon;
-		this.qlSach = qlSach;
+		listPhieuMuon = DataPhieuMuon.listPhieu;
 	}
 
 	public List<PhieuMuon> getListPhieuMuon() {
@@ -25,34 +22,45 @@ public class QLPhieuMuonTra implements QuanLyThuVien {
 	}
 
 	@Override
+	public String toString() {
+		return "QLPhieuMuonTra [listPhieuMuon=" + listPhieuMuon + "]";
+	}
+	
+	@Override
 	public List<Object> timKiemTheoID(String id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Object> timKiemTheoTen(String id) {
-		// TODO Auto-generated method stub
+	public List<Object> timKiemTheoTen(String tenSach) {
 		return null;
 	}
-
 	@Override
 	public void them(Object object) {
-		
-		PhieuMuon obj = (PhieuMuon) object;
-		listPhieuMuon.add(obj);
-		for(Sach s: qlSach.listSach) {
-			
-			if(obj.sach.getiD().equals(s.getiD())) {
-				s.setSoLuongChoMuon(s.getSoLuongChoMuon()+1);
+
+	}
+	
+	@Override
+	public void xoa(String id) {
+		for(PhieuMuon p : listPhieuMuon) {
+			if(p.getId()==id) {
+				listPhieuMuon.remove(p);
+				break;
 			}
 		}
 	}
-
-	@Override
-	public void xoa(String id) {
-		// TODO Auto-generated method stub
-		
+	
+	public void capNhat(String id,  String maKH, double tienMuon, String ngayMuon, String ngayDuKienTra, List<String> tenSach) {
+		for(PhieuMuon p : listPhieuMuon) {
+			if(p.getId().equals(id)) {
+				p.setMaKhachHang(maKH);
+				p.setTienMuonSach(tienMuon);
+				p.setNgayMuon(ngayMuon);
+				p.setNgayDuKienTra(ngayDuKienTra);
+				p.setTenSachMuon(tenSach);
+				break;
+			}
+		}
 	}
 
 	@Override
@@ -63,8 +71,7 @@ public class QLPhieuMuonTra implements QuanLyThuVien {
 
 	@Override
 	public int getTongSoLuong() {
-		// TODO Auto-generated method stub
-		return 0;
+		return listPhieuMuon.size();
 	}
 
 	@Override
@@ -72,4 +79,5 @@ public class QLPhieuMuonTra implements QuanLyThuVien {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 }

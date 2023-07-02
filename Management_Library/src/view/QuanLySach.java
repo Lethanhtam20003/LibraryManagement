@@ -5,11 +5,15 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
 import javax.swing.border.Border;
+
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -55,8 +59,6 @@ public class QuanLySach extends JPanel implements Observer {
 
 	public QuanLySach() {
 		this.actionListener = new QLSachController(new QLSach(), this);
-//		setTitle("Quản lý sách");
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900, 619);
 		setVisible(true);
 		setLayout(new BorderLayout(0, 0));
@@ -108,6 +110,7 @@ public class QuanLySach extends JPanel implements Observer {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+
 		btnNewButton.setBounds(620, 23, 85, 31);
 		panel_timKiem.add(btnNewButton);
 
@@ -249,11 +252,13 @@ public class QuanLySach extends JPanel implements Observer {
 		model.setRowCount(0);
 		for (Sach s : list) {
 			stt++;
+
 			model.addRow(new Object[] { stt, s.getiD(), s.getTen(), s.getTheLoai(), s.getTacGia(), s.getNhaXuatBan(),
 					s.getSoLuongNhapKho(), s.getSoLuongChoMuon(), s.getSoLuongNhapKho() - s.getSoLuongChoMuon(),
 					s.getGiaSach(),
 
 			});
+
 		}
 	}
 
@@ -267,10 +272,6 @@ public class QuanLySach extends JPanel implements Observer {
 		txtGia.setText(values.get(8).toString());
 		// Các ô input khác tương tự
 	}
-
-//	public void setMenuBar(JMenuBar menuBar) {
-//	   setJMenuBar(menuBar);
-//	}
 	@Override
 	public void update(Observable observable) {
 		if (observable instanceof QLSach) {

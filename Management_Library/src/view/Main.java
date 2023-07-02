@@ -1,21 +1,16 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import controller.QLSachController;
-import model.QLSach;
-import model.Sach;
+import controller.QuanLyKhachHang_controller;
+import model.QLKhachHang;
 
 public class Main extends JFrame {
 	
@@ -29,7 +24,9 @@ public class Main extends JFrame {
 	 private JMenuItem menuItem1, menuItem2, menuItem3, menuItem4, menuItem5;
 	 ActionListener action;
 	public Main() {
+//		setSize(900, 619);
 		setSize(900, 619);
+		setLocationRelativeTo(null);
      	setVisible(true);
      	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      	MyPanel myPanel = new MyPanel();
@@ -56,6 +53,7 @@ public class Main extends JFrame {
 
 		
 		menuItem3 = new JMenuItem("Quản lý khách hàng");
+		
 		menuItem3.addActionListener(action);
 
 		

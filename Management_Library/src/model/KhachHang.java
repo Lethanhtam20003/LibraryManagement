@@ -50,5 +50,5 @@ public class KhachHang {
 	public String toString() {
 		return "KhachHang [iD=" + iD + ", ten=" + ten + ", soDT=" + soDT + ", diaChi=" + diaChi + "]";
 	}
-	
+
 }

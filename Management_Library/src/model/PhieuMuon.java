@@ -1,101 +1,80 @@
 package model;
 
-import java.util.Date;
+import java.util.List;
 
 public class PhieuMuon {
-	private String iD;
-	private String ten;
-	KhachHang khachHang;
-	Sach sach;
-	Date ngayMuon;
-	Date ngayDuKienTra;
-	private double giaMuon;
-	private String trangThai;
-
-	public PhieuMuon(String iD, String ten, KhachHang khachHang, Sach sach, Date ngayMuon, Date ngayDuKienTra,double giaMuon,
-			String trangThai) {
+	private String id;
+	private String maKhachHang;
+	private List<String> tenSachMuon;
+	private String ngayMuon;
+	private String ngayDuKienTra;
+	private double tienMuonSach;
+	
+	public PhieuMuon(String id, String maKhachHang, List<String> tenSachMuon, String ngayMuon, String ngayDuKienTra,
+			double tienMuonSach) {
 		super();
-		this.iD = iD;
-		this.ten = ten;
-		this.khachHang = khachHang;
-		this.sach = sach;
+		this.id = id;
+		this.maKhachHang = maKhachHang;
+		this.tenSachMuon = tenSachMuon;
 		this.ngayMuon = ngayMuon;
 		this.ngayDuKienTra = ngayDuKienTra;
-		this.giaMuon = giaMuon;
-		this.trangThai = trangThai;
+		this.tienMuonSach = tinhTienMuonSach(tenSachMuon);
 	}
 
-	public PhieuMuon() {
-		super();
+	public String getId() {
+		return id;
 	}
 
-	public String getiD() {
-		return iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public void setiD(String iD) {
-		this.iD = iD;
+	public String getMaKhachHang() {
+		return maKhachHang;
 	}
 
-	public String getTen() {
-		return ten;
+	public void setMaKhachHang(String maKhachHang) {
+		this.maKhachHang = maKhachHang;
 	}
 
-	public void setTen(String ten) {
-		this.ten = ten;
+	public List<String> getTenSachMuon() {
+		return tenSachMuon;
 	}
 
-	public KhachHang getKhachHang() {
-		return khachHang;
+	public void setTenSachMuon(List<String> tenSachMuon) {
+		this.tenSachMuon = tenSachMuon;
 	}
 
-	public void setKhachHang(KhachHang khachHang) {
-		this.khachHang = khachHang;
-	}
-
-	public Sach getSach() {
-		return sach;
-	}
-
-	public void setSach(Sach sach) {
-		this.sach = sach;
-	}
-
-	public Date getNgayMuon() {
+	public String getNgayMuon() {
 		return ngayMuon;
 	}
 
-	public void setNgayMuon(Date ngayMuon) {
+	public void setNgayMuon(String ngayMuon) {
 		this.ngayMuon = ngayMuon;
 	}
 
-	public Date getNgayDuKienTra() {
+	public String getNgayDuKienTra() {
 		return ngayDuKienTra;
 	}
 
-	public void setNgayDuKienTra(Date ngayDuKienTra) {
+	public void setNgayDuKienTra(String ngayDuKienTra) {
 		this.ngayDuKienTra = ngayDuKienTra;
 	}
 
-	public String getTrangThai() {
-		return trangThai;
+	public double getTienMuonSach() {
+		return tienMuonSach;
 	}
 
-	public void setTrangThai(String trangThai) {
-		this.trangThai = trangThai;
-	}
-	public String getGiaMuon() {
-		return trangThai;
-	}
-
-	public void setGiaMuon(double giaMuon) {
-		this.giaMuon = giaMuon;
+	public void setTienMuonSach(double tienMuonSach) {
+		this.tienMuonSach = tienMuonSach;
 	}
 
 	@Override
 	public String toString() {
-		return "--PhieuMuon: iD=" + iD + ", ten=" + ten + ", khachHang=" + khachHang + ", sach=" + sach + ", ngayMuon="
-				+ ngayMuon + ", ngayDuKienTra=" + ngayDuKienTra + ", gia muon:" + giaMuon + ", trangThai=" + trangThai;
+		return "PhieuMuon [id=" + id + ", maKhachHang=" + maKhachHang + ", tenSachMuon=" + tenSachMuon + ", ngayMuon="
+				+ ngayMuon + ", ngayDuKienTra=" + ngayDuKienTra + ", tienMuonSach=" + tienMuonSach + "]";
 	}
-
+	public static double tinhTienMuonSach(List<String> tenSachMuon) {
+		return 1000 * tenSachMuon.size();
+	}
 }
