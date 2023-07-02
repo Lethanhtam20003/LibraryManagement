@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import controller.QLPhieuMuonController;
 import controller.QLSachController;
 import controller.QuanLyKhachHang_controller;
+import controller.ThongKeController;
 import model.QLKhachHang;
 import model.QLPhieuMuonTra;
 import model.QLSach;
@@ -27,7 +28,10 @@ public class MyPanel extends JPanel {
 		thongKe = new ThongKe();
 
 		mainGui.add(quanLySach, "Quản lý sách");
+		
+		ThongKeController thongKeController = new ThongKeController((ThongKe) thongKe, new QLPhieuMuonTra());
 		mainGui.add("Quản lý thống kê", thongKe);
+		thongKeController.getPhieuMuon();
 
 		// le tam
 		QLKhachHang QLkh = new QLKhachHang();
