@@ -84,12 +84,58 @@ public class QLSachController implements ActionListener {
 			view.values = null;
 			JOptionPane.showMessageDialog(null, "Xóa sách thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 			break;
+		case "Tìm kiếm":
+			List<Object> id1 = model.timKiemTheoID(view.txtTimKiem.getText());
+			List<Object> ten = model.timKiemTheoTen(view.txtTimKiem.getText());
+			ArrayList<Sach> listTen = convertObjectToName(ten);
+			ArrayList<Sach> list = convertObjectToSach(id1);
+			ArrayList<Sach> listAll = new ArrayList<Sach>();
+			listAll.addAll(list);
+			listAll.addAll(listTen);
+
+			if (listAll.isEmpty()) {
+				JOptionPane.showMessageDialog(view, "Không tìm thấy thông tin của sách");
+			} else {
+				view.displaySach(listAll);
+			}
+			break;
 		case "Lưu thay đổi":
+			String id_cn = view.txtId.getText();
+			String ten_cn = view.txtTenSach.getText();
+			String tentg_cn = view.txtTacGia.getText();
+			String nhaxb_cn = view.txtNXB.getText();
+			int soluong_cn = Integer.parseInt(view.txtSL.getText());
+			String theloai_cn = view.txtTheLoai.getText();
+			double gia_cn = Double.parseDouble(view.txtGia.getText());
+			
+			model.capNhat(id_cn, ten_cn, theloai_cn, nhaxb_cn, tentg_cn, soluong_cn, gia_cn);
+			model.notifyChanged();
+			view.values = null;
+			JOptionPane.showMessageDialog(null, "Cập nhật sách thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+			break;
 
 		default:
 			break;
 		}
 	}
+	private ArrayList<Sach> convertObjectToName(List<Object> timKiemTheoTen) {
+		// TODO Auto-generated method stub
+		ArrayList<Sach> result = new ArrayList<Sach>();
+		for (Object o : timKiemTheoTen) {
+			result.add((Sach) o);
+		}
+		return result;
+	}
+
+	private ArrayList<Sach> convertObjectToSach(List<Object> timKiemTheoID) {
+		// TODO Auto-generated method stub
+		ArrayList<Sach> result = new ArrayList<Sach>();
+		for (Object o : timKiemTheoID) {
+			result.add((Sach) o);
+		}
+		return result;
+	}
+
 
 	public void initObservers() {
 		ArrayList<Observer> observerView = new ArrayList<>();

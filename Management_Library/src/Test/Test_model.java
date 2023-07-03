@@ -76,7 +76,7 @@ public class Test_model extends TestCase {
 		System.out.println("tim kiem theo ten: " + sach1.timKiemTheoTen("onepice"));
 
 		System.out.println("-----------------------------------------");
-		sach1.capNhat("a3", "kim dong", "quyen", 20, 0, 13000.0);
+		sach1.capNhat("a3","Harry Poter", "truyen", "kim dong", "quyen", 20, 13000.0);
 		System.out.println("thong tin cua mot cuon sach trong kho da cap nhat co: " + s3);
 
 		System.out.println("-----------------------------------------");
