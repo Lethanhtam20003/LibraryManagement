@@ -59,8 +59,6 @@ public class QuanLySach extends JPanel implements Observer {
 
 	public QuanLySach() {
 		this.actionListener = new QLSachController(new QLSach(), this);
-//		setTitle("Quản lý sách");
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900, 619);
 		setVisible(true);
 		setLayout(new BorderLayout(0, 0));
@@ -274,10 +272,6 @@ public class QuanLySach extends JPanel implements Observer {
 		txtGia.setText(values.get(8).toString());
 		// Các ô input khác tương tự
 	}
-
-//	public void setMenuBar(JMenuBar menuBar) {
-//	   setJMenuBar(menuBar);
-//	}
 	@Override
 	public void update(Observable observable) {
 		if (observable instanceof QLSach) {

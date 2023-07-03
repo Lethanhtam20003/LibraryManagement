@@ -61,6 +61,7 @@ public class QLSachController implements ActionListener {
 			view.txtNXB.setText("");
 			view.txtSL.setText("");
 			view.txtGia.setText("");
+			
 			model.notifyChanged();
 			JOptionPane.showMessageDialog(null, "Thêm sách thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 			break;
