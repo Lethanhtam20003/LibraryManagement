@@ -46,9 +46,9 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		} else if (e.getActionCommand().equals("Xóa")) {
 			xoa();
 		} else if (e.getActionCommand().equals("Xem Ds Độc Giả")) {
+			System.out.println(e.getActionCommand());
 			XemDSDocGia();
 		} else if (e.getActionCommand().equals("Xem Phiếu Mượn")) {
-			System.out.println(e.getActionCommand());
 			xemPhieuMuon();
 		}
 	}
@@ -128,7 +128,12 @@ public class QuanLyKhachHang_controller implements ActionListener {
 			String email = this.view.getTfEmail().getText();
 
 			model.capNhat(id + "name:" + name + "sdt:" + sdt + "email:" + email);
-			JOptionPane.showMessageDialog(view, "Cập nhật Thành Công", "Thông Báo", JOptionPane.INFORMATION_MESSAGE);
+			if (!id.isEmpty() && !name.isEmpty()) {
+				JOptionPane.showMessageDialog(view, "Cập nhật Thành Công", "Thông Báo",
+						JOptionPane.INFORMATION_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(view, "Cập nhật không Thành Công", "Lỗi", JOptionPane.ERROR_MESSAGE);
+			}
 		} else {
 			this.view.getLbShow_ChucNangDangThucHien().setText(showChucNang);
 		}
@@ -166,12 +171,13 @@ public class QuanLyKhachHang_controller implements ActionListener {
 
 	private void xemPhieuMuon() {
 		// TODO Auto-generated method stub
-		if (this.view.getTfMaDocGia().getText().isEmpty()) {
+		if (!this.view.getTfMaDocGia().getText().isEmpty()) {
+			this.view.ShowPhieuMuon(qlPhieuMuonTra.getListPhieuMuon(), this.view.getTfMaDocGia().getText());
+			JOptionPane.showOptionDialog(null, this.view.getPnPhieuMuon(), "Phiếu Mượn", JOptionPane.DEFAULT_OPTION,
+					JOptionPane.PLAIN_MESSAGE, null, new Object[] {}, null);
+		} else {
 			JOptionPane.showMessageDialog(view, "Nhập id khách hàng cần xem", "Lỗi", JOptionPane.ERROR_MESSAGE);
 		}
-		this.view.ShowPhieuMuon(qlPhieuMuonTra.getListPhieuMuon(), this.view.getTfMaDocGia().getText());
-		JOptionPane.showOptionDialog(null, this.view.getPnPhieuMuon(), "Phiếu Mượn", JOptionPane.DEFAULT_OPTION,
-				JOptionPane.PLAIN_MESSAGE, null, new Object[] {}, null);
 	}
 
 	/*
@@ -250,7 +256,8 @@ public class QuanLyKhachHang_controller implements ActionListener {
 		ListSelectionListener result = new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				if (showChucNang.equals("Cập Nhật") || showChucNang.equals("Xóa") || showChucNang.equals("Tìm")) {
+				if (showChucNang.equals("Cập Nhật") || showChucNang.equals("Xóa") || showChucNang.equals("Tìm")
+						|| showChucNang.equals("Xem Ds Độc Giả")) {
 
 					if (!e.getValueIsAdjusting()) {
 						int selectedRow = view.getTbDocGia().getSelectedRow();
