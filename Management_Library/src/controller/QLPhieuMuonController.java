@@ -120,7 +120,7 @@ public class QLPhieuMuonController implements ActionListener {
 					String ngayMuon = view.txtNgayMuon.getText();
 					String ngayTra = view.txtNgayTra.getText();		
 					String tinhTrang = view.txtTinhTrang.getText();
-					if(!testInputMaKH(id)) {
+					if(!testInputMaKH(maKH)) {
 						JOptionPane.showMessageDialog(null, "Mã khách hàng không tồn tại ", "Thông báo", JOptionPane.ERROR_MESSAGE);
 					}
 					else if(!testInputSach(tenSach)) {
