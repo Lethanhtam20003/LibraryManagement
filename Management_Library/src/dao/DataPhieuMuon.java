@@ -10,7 +10,7 @@ public class DataPhieuMuon {
 
 	static {
 		List<String> listSach1 = new ArrayList<>();
-		listlistSach1.add("doraemon");
+		listSach1.add("doraemon");
 		List<String> listSach2 = new ArrayList<>();
 		listSach2.add("onepice");
 		List<String> listSach3 = new ArrayList<>();
