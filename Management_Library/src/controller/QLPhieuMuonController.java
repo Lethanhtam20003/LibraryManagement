@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import dao.Data;
+import dao.DataKhachHang;
 import model.PhieuMuon;
 import model.QLKhachHang;
 import model.QLPhieuMuonTra;
@@ -61,7 +63,7 @@ public class QLPhieuMuonController implements ActionListener {
 	}
 	
 	public boolean testInputMaKH(String idKhachHang) {
-		for(KhachHang kh : qlKH.getListKhachHang()) {
+		for(KhachHang kh : DataKhachHang.listKH) {
 			if(kh.getiD().equalsIgnoreCase(idKhachHang)) {
 				return true;
 			}
@@ -70,7 +72,7 @@ public class QLPhieuMuonController implements ActionListener {
 	}
 	
 	public boolean testInputSach(List<String> sach) {
-		for(Sach s : qlSach.getListSach()) {
+		for(Sach s : Data.listSach) {
 			for(String tenSach : sach) {
 				if(s.getTen().equalsIgnoreCase(tenSach)) {
 					return true;
@@ -117,7 +119,7 @@ public class QLPhieuMuonController implements ActionListener {
 					String ngayMuon = view.txtNgayMuon.getText();
 					String ngayTra = view.txtNgayTra.getText();		
 					String tinhTrang = view.txtTinhTrang.getText();
-					if(!testInputMaKH(id)) {
+					if(!testInputMaKH(maKH)) {
 						JOptionPane.showMessageDialog(null, "Mã khách hàng không tồn tại ", "Thông báo", JOptionPane.ERROR_MESSAGE);
 					}
 					else if(!testInputSach(tenSach)) {

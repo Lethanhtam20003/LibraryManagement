@@ -33,9 +33,9 @@ public class ViewQLPhieuMuon extends JPanel implements Observer {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		add(contentPane);
 		contentPane.setLayout(null);
-		JLabel lbl_tieuDe = new JLabel("QUẢN LÝ SÁCH");
+		JLabel lbl_tieuDe = new JLabel("QUẢN LÝ MƯỢN TRẢ");
 		lbl_tieuDe.setFont(new Font("Segoe UI Light", Font.BOLD, 20));
-		lbl_tieuDe.setBounds(364, 10, 142, 39);
+		lbl_tieuDe.setBounds(364, 10, 200, 39);
 		contentPane.add(lbl_tieuDe);
 
 		model = new DefaultTableModel();
