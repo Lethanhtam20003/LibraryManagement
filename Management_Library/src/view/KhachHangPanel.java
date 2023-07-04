@@ -104,19 +104,19 @@ public class KhachHangPanel extends JPanel implements Observer {
 		JPanel panel_3 = new JPanel();
 		pnTren_Trai_ShowChucNang.add(panel_3);
 
-		JLabel lblNewLabel_3 = new JLabel("Quản Lý Độc Giả");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 18));
-		panel_3.add(lblNewLabel_3);
+		JLabel lbTieuDe = new JLabel("Quản Lý Độc Giả");
+		lbTieuDe.setHorizontalAlignment(SwingConstants.TRAILING);
+		lbTieuDe.setFont(new Font("Arial", Font.PLAIN, 18));
+		panel_3.add(lbTieuDe);
 
 		JPanel panel_3_1 = new JPanel();
 		pnTren_Trai_ShowChucNang.add(panel_3_1);
 		panel_3_1.setLayout(new GridLayout(0, 2, 0, 0));
 
-		JLabel lblNewLabel = new JLabel("Chức Năng:  ");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-		panel_3_1.add(lblNewLabel);
+		JLabel lbChucNang = new JLabel("Chức Năng:  ");
+		lbChucNang.setHorizontalAlignment(SwingConstants.TRAILING);
+		lbChucNang.setFont(new Font("Arial", Font.PLAIN, 18));
+		panel_3_1.add(lbChucNang);
 
 		lbShow_ChucNangDangThucHien = new JLabel();
 		lbShow_ChucNangDangThucHien.setText("Tìm");
