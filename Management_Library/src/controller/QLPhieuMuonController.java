@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import model.PhieuMuon;
 import model.QLKhachHang;
@@ -16,7 +14,6 @@ import model.QLSach;
 import model.Sach;
 import view.ViewQLPhieuMuon;
 import model.KhachHang;
-import model.Observable;
 import model.Observer;
 
 public class QLPhieuMuonController implements ActionListener {

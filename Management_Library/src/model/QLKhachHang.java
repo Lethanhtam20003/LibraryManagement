@@ -107,16 +107,15 @@ public class QLKhachHang extends Observable implements QuanLyThuVien {
 		if (listKhachHang.size() >= 1) {
 			int idNumbet = tachSo(listKhachHang.get(listKhachHang.size() - 1).getiD());
 			idNumbet++;
-			boolean idExists;
+
 
 			// Tạo ID
 			id = "KH" + idNumbet;
 
 			// Kiểm tra xem ID đã tồn tại trong danh sách khách hàng chưa
-			idExists = false;
+
 			for (KhachHang khachHang : listKhachHang) {
 				if (khachHang.getiD().equals(id)) {
-					idExists = true;
 					createID("KH" + idNumbet);
 				}
 			}
