@@ -105,21 +105,23 @@ public class QLSach extends Observable implements QuanLyThuVien  {
 		return soLuongConLai;
 	}
 
+	
 	// cap nhat
-	public void capNhat(String id, String nhaXuatBan, String tenTacGia, int soLuongNhapKho, int soLuongChoMuon,
-			double giaSach) {
-		for (Sach sach : listSach) {
-			if (sach.getiD().equals(id)) {
-				sach.setTacGia(tenTacGia);
-				sach.setNhaXuatBan(nhaXuatBan);
-				sach.setSoLuongNhapKho(soLuongNhapKho);
-				sach.setSoLuongChoMuon(soLuongChoMuon);
-				sach.setGiaSach(giaSach);
-				break;
+		public void capNhat(String id,String ten, String theLoai,String nhaXuatBan, String tenTacGia, int soLuongNhapKho, 
+				double giaSach) {
+			for (Sach sach : listSach) {
+				if (sach.getiD().equals(id)) {
+					sach.setTen(ten);
+					sach.setTheLoai(theLoai);
+					sach.setTacGia(tenTacGia);
+					sach.setNhaXuatBan(nhaXuatBan);
+					sach.setSoLuongNhapKho(soLuongNhapKho);
+					sach.setGiaSach(giaSach);
+					break;
+				}
 			}
-		}
 
-	}
+		}
 
 	@Override
 	public int getSoLuong(String id) {
@@ -130,5 +132,7 @@ public class QLSach extends Observable implements QuanLyThuVien  {
 		}
 		return getSoLuong(id);
 	}
+
+	
 
 }

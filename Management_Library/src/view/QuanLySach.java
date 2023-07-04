@@ -106,10 +106,7 @@ public class QuanLySach extends JPanel implements Observer {
 		txtTimKiem.setColumns(10);
 
 		JButton btnNewButton = new JButton("Tìm kiếm");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnNewButton.addActionListener(actionListener);
 
 		btnNewButton.setBounds(620, 23, 85, 31);
 		panel_timKiem.add(btnNewButton);

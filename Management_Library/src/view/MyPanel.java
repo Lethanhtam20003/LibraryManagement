@@ -25,14 +25,17 @@ public class MyPanel extends JPanel {
 
 		quanLySach = new QuanLySach();
 		controller = new QLSachController(new QLSach(), (QuanLySach) quanLySach);
-		thongKe = new ThongKe();
 
+		
 		QLPhieuMuonTra qlpmn = new QLPhieuMuonTra();
 		ViewQLPhieuMuon viewpmt = new ViewQLPhieuMuon();
 		QLPhieuMuonController acpmt = new QLPhieuMuonController(qlpmn, viewpmt);
 
+
 		mainGui.add(quanLySach, "Quản lý sách");
+		controller.getSach();
 		
+		thongKe = new ThongKe();
 		ThongKeController thongKeController = new ThongKeController((ThongKe) thongKe, new QLPhieuMuonTra());
 		mainGui.add("Quản lý thống kê", thongKe);
 		thongKeController.getPhieuMuon();
@@ -48,7 +51,7 @@ public class MyPanel extends JPanel {
 		mainGui.add(viewpmt, "Quản lý mượn trả");
 
 		add(mainGui, BorderLayout.CENTER);
-		controller.getSach();
+		
 	}
 
 	public void change(String actionCommand) {
